@@ -9,3 +9,4 @@ Hint: Als Ordnername ist immer das Jahr zu verwenden in welchem der Wettbewerb e
 Bei neuen Commits immer möglichst kurze, beschreibende Commit Messages verwenden. Diese sollten auf Englisch verfasst sein.
 ## Aktuelle Mitarbeiter:
   - Moritz
+  - Leonard
