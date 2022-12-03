@@ -10,3 +10,6 @@ Bei neuen Commits immer möglichst kurze, beschreibende Commit Messages verwende
 ## Aktuelle Mitarbeiter:
   - Moritz
   -Jonathan Metz
+  - Leonard
+  - Seeverin
+
