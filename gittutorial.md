@@ -1,4 +1,4 @@
-Git add . =>  Hochladen
-Git commit -m "Nachricht" => Commit wird erstellt
-Git push => Commit wird hochgeladen
-Git pull => holt Änderungen, wenn man im Ordner ist
+- Git add . =>  Hochladen
+- Git commit -m "Nachricht" => Commit wird erstellt
+- Git push => Commit wird hochgeladen
+- Git pull => holt Änderungen, wenn man im Ordner ist
