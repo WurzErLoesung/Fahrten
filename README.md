@@ -13,3 +13,4 @@ Bei neuen Commits immer möglichst kurze, beschreibende Commit Messages verwende
   - Seeverin
   -Jonathan Metz
   - Leonard
+  - Emil
