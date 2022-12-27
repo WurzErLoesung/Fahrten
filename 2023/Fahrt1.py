@@ -3,6 +3,11 @@ from spike.control import wait_for_seconds, wait_until
 from spike.control import Timer as SpikeTimer
 from math import *
 
+print("Ready")
+force = ForceSensor('D')
+wait_until(force.is_pressed)
+wait_for_seconds(0.5)
+
 def relative_yaw(target_yaw: int):
     yaw(current_yaw + target_yaw)
 
@@ -10,7 +15,7 @@ def yaw(target_yaw: int):
     drive.start(100 * (min(1, max(MotionSensor.get_yaw_angle() - target_yaw, -1))), 10)
     wait_until(MotionSensor.get_yaw_angle, target_value=target_yaw)
     drive.stop()
-    current_yaw = MotionSensor.get_yaw_angle()
+    return MotionSensor.get_yaw_angle()
 
 # INITIALIZATION
 hub = PrimeHub()
@@ -24,37 +29,62 @@ drive.set_stop_action("hold")
 # Variable Initialization
 start_yaw = MotionSensor.get_yaw_angle()
 current_yaw = start_yaw
-windmill_alignment_yaw = 45
+# Adjust Yaw of Alignment
+windmill_alignment_yaw = 46
+# Adjust Speed when activating windmill
+windmill_speed = 70
+# Adjust number of repeats during windmill
+windmill_repeatation = 4
+# Adjust how far the robot moves to activate windmill
+windmill_length = 32
+# Adjust adjustment length
+car_alignment_length = 5
+# Adjust how far robot moves in direction of the car
+car_alignment_width = 23.5
+# Adjust alignment yaw for the car
+car_alignment_yaw = -52
+# Adjust how far the robot moves to activate car
+car_length = 30
+# Adjust Speed for activating car
+car_speed = 60
+# Adjust the robot's default speed
+default_speed = 30
+# Adjust how far the robot moves back after activating the car
+backwards_after_car = -20
+# Adjust the steering when moving backwards after car
+steering_after_car = 37
 
 # TV
-drive.set_default_speed(30)
-drive.move(55)
-drive.move(-15)
-yaw(start_yaw)
+drive.set_default_speed(default_speed)
+drive.move(55, "cm", 0, default_speed)
+drive.move(-10, "cm", 0, default_speed)
+current_yaw = yaw(start_yaw)
 
-# Drive to windmill
-drive.move(5, steering=100)
-drive.move(45)
-drive.set_default_speed(60)
-yaw(windmill_alignment_yaw)
+# Drive to WINDMILL
+current_yaw = yaw(-45)
+drive.move(43)
+current_yaw = yaw(windmill_alignment_yaw)
+drive.move(4)
 
-# Do windmill
-for i in range(4):
-    drive.set_default_speed(80)
-    drive.move(1, 'seconds')
+# WINDMILL
+for i in range(windmill_repeatation):
+    drive.set_default_speed(windmill_speed)
+    drive.move(windmill_length)
     wait_for_seconds(0.25)
-    drive.set_default_speed(20)
-    drive.move(-2)
-    yaw(windmill_alignment_yaw)
-    drive.move(-8)
-    wait_for_seconds(0.75)
+    drive.set_default_speed(default_speed)
+    drive.move(-4)
+    current_yaw = yaw(windmill_alignment_yaw)
+    drive.move(-10)
+    current_yaw = yaw(windmill_alignment_yaw)
+    wait_for_seconds(0.25)
 
-# Drive to Car
-drive.move(-10)
-yaw(-80)
-drive.move(35)
-relative_yaw(35)
-
-# Activate Car
-drive.set_default_speed(30)
-drive.move(10)
+current_yaw = yaw(0)
+drive.move(car_alignment_length)
+current_yaw = yaw(-90)
+drive.move(car_alignment_width)
+current_yaw = yaw(car_alignment_yaw)
+drive.move(car_length, "cm", 0, car_speed)
+drive.move(backwards_after_car, "cm", steering_after_car)
+current_yaw = current_yaw = yaw(car_alignment_yaw)
+drive.move(-40, "cm", 0, default_speed)
+drive.move(-120, "cm", -2, default_speed)
