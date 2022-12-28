@@ -1,3 +1,6 @@
+# Bei Fragen und Problemen an Simon Unger wenden
+# Fahrt ist zuständig für TV, Windrad, Auto und akku mitenehmen neben Trichter.
+
 from spike import PrimeHub, LightMatrix, Button, StatusLight, ForceSensor, MotionSensor, Speaker, ColorSensor, App, DistanceSensor, Motor, MotorPair
 from spike.control import wait_for_seconds, wait_until
 from spike.control import Timer as SpikeTimer
@@ -34,13 +37,13 @@ windmill_alignment_yaw = 46
 # Adjust Speed when activating windmill
 windmill_speed = 70
 # Adjust number of repeats during windmill
-windmill_repeatation = 4
+windmill_repeatation = 3
 # Adjust how far the robot moves to activate windmill
 windmill_length = 32
 # Adjust adjustment length
 car_alignment_length = 5
 # Adjust how far robot moves in direction of the car
-car_alignment_width = 23.5
+car_alignment_width = 25
 # Adjust alignment yaw for the car
 car_alignment_yaw = -52
 # Adjust how far the robot moves to activate car
@@ -48,9 +51,9 @@ car_length = 30
 # Adjust Speed for activating car
 car_speed = 60
 # Adjust the robot's default speed
-default_speed = 30
+default_speed = 50
 # Adjust how far the robot moves back after activating the car
-backwards_after_car = -20
+backwards_after_car = -22
 # Adjust the steering when moving backwards after car
 steering_after_car = 37
 
