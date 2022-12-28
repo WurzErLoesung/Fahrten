@@ -1,3 +1,6 @@
+# Bei Fragen und Problemen an Simon Unger wenden
+# Fahrt ist zuständig für Kraftwerk und Spielzeugfabrik
+
 from spike import PrimeHub, LightMatrix, Button, StatusLight, ForceSensor, MotionSensor, Speaker, ColorSensor, App, DistanceSensor, Motor, MotorPair
 from spike.control import wait_for_seconds, wait_until
 from spike.control import Timer as SpikeTimer
