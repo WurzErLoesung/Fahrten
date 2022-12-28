@@ -24,6 +24,12 @@ def onBlackLine():
     else:
         return False
 
+def moveUntilBlackLine(speed: int, delay = 1, steering :int = 0):
+    motor_pair.start(speed=speed, steering = steering)
+    wait_for_seconds(delay)
+    wait_until(onBlackLine,target_value=True)
+    motor_pair.stop()
+
 hub.motion_sensor.reset_yaw_angle()
 
 #yaw(11)
@@ -36,11 +42,7 @@ motor_pair.move(62, "cm", steering=-6, speed=60)
 
 #yaw(targetYaw=0, speed=20)
 
-motor_pair.start(speed=50)
-
-wait_until(onBlackLine,target_value=True)
-
-motor_pair.stop()
+moveUntilBlackLine(50)
 
 motor_pair.move(3, "cm", speed=20)
 
@@ -55,9 +57,7 @@ elif color2.get_color == "black":
     motor_pair.move(3, "cm", speed=15)
     yaw(targetYaw=90, speed=20)
 
-motor_pair.start(speed=40)
-wait_for_seconds(2)
-wait_until(onBlackLine,target_value=True)
+moveUntilBlackLine(40)
 
 motor_pair.move(20, "cm", speed=30)
 
