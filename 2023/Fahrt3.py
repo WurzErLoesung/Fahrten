@@ -1,3 +1,6 @@
+# Bei Fragen an Severin wenden
+# Fahrt ist zuständig für Hand, Ölinsel und die Energiezellen daneben.
+
 from spike import PrimeHub, LightMatrix, Button, StatusLight, ForceSensor, MotionSensor, Speaker, ColorSensor, App, DistanceSensor, Motor, MotorPair
 from spike.control import wait_for_seconds, wait_until, Timer
 from math import *
