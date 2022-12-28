@@ -53,5 +53,5 @@ yaw(23) #Spins so the robot is able to drive between the hand and the other fuck
 
 motor_pair.move(10, "cm", speed=30) #Drives a bit forward, so the robot is able to do the next line without crashing into the hand
 motor_pair.move(30, "cm", steering=-69, speed=30) #Drives a curve, so the robot is able to collect the batteries on the side
-yaw(90)
-MoveUntilLine(-10, delay=0, color="white")
+yaw(90) #Spin, so the robot can drive to the batteries. Also corrects yaw
+MoveUntilLine(-10, delay=0, color="white") #Correct position
