@@ -37,9 +37,10 @@ def yaw(targetYaw :int, speed :int=15):
 
 
 #Code for Driving
-motor_pair.move(62, "cm", steering=-6, speed=60) #Drive a smooth curve around "Trichter"
+motor_pair.move(55, "cm", steering=-16, speed=60) #Drive a smooth curve around "Trichter"
+yaw(0)
 
-MoveUntilLine(50) #Drives straight until the black line in the middle
+MoveUntilLine(50, delay=0) #Drives straight until the black line in the middle
 motor_pair.move(3, "cm", speed=20) #Correction because the color sensors are not placed on the same position as the wheels
 
 yaw(90) #Spins until the robot is parallel to the black line in the middle
@@ -47,11 +48,19 @@ yaw(90) #Spins until the robot is parallel to the black line in the middle
 MoveUntilLine(40) #Drives until the black line before the hand
 motor_pair.move(20, "cm", speed=30) #Drives forward into the hand
 motor_pair.move(9, "cm", speed=-15) #Drives backwards, so the hand gets triggered
-motor_pair.move(11, "cm", speed=-100) #Drives backwards, so the module for the hand disconnects from the robot
+motor_pair.move(22, "cm", speed=-100) #Drives backwards, so the module for the hand disconnects from the robot
+yaw(-144)
+MoveUntilLine(-30, delay=0, steering=20)
+yaw(-157)
+motor_pair.move(10, "cm", speed=-30, steering=0)
+motor_pair.move(10, "cm", speed=-30, steering=-94)
+motor_pair.move(4, "cm", speed=-100, steering=50)
+motor_pair.start(speed=15, steering=-100)
+wait_until(hub.motion_sensor.get_yaw_angle,target_value=0)
+motor_pair.stop()
 
-yaw(23) #Spins so the robot is able to drive between the hand and the other fucking thing
-
-motor_pair.move(10, "cm", speed=30) #Drives a bit forward, so the robot is able to do the next line without crashing into the hand
-motor_pair.move(30, "cm", steering=-69, speed=30) #Drives a curve, so the robot is able to collect the batteries on the side
-yaw(90) #Spin, so the robot can drive to the batteries. Also corrects yaw
-MoveUntilLine(-10, delay=0, color="white") #Correct position
+for i in range(5):
+    motor_pair.move(38, "cm", speed=100)
+    motor_pair.move(10, "cm", speed=-55)
+    yaw(0)
+    motor_pair.move(20, "cm", speed=-55)
