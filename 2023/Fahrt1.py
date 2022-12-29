@@ -43,7 +43,7 @@ windmill_length = 32
 # Adjust adjustment length
 car_alignment_length = 5
 # Adjust how far robot moves in direction of the car
-car_alignment_width = 25
+car_alignment_width = 25.5
 # Adjust alignment yaw for the car
 car_alignment_yaw = -52
 # Adjust how far the robot moves to activate car
