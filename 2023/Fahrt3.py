@@ -16,8 +16,8 @@ hub.motion_sensor.reset_yaw_angle()
 
 
 #Black line stuff
-def onLine(color: str = "black"): #Returns True if both color sensors are detecting the specified color
-    if color1.get_color() and color2.get_color() == color:
+def onLine(color: str = "black", mode: str = "both"): #Returns True if both color sensors are detecting the specified color
+    if mode == "both" and color1.get_color() and color2.get_color() == color or mode == "left" and color1.get_color() == color or mode == "right" and color2().get_color == color:
         return True
     else:
         return False
