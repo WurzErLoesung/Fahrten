@@ -37,15 +37,17 @@ def yaw(targetYaw :int, speed :int=15):
 
 
 #Code for Driving
-motor_pair.move(55, "cm", steering=-16, speed=60) #Drive a smooth curve around "Trichter"
+motor_pair.move(57, "cm", steering=-19, speed=60) #Drive a smooth curve around "Trichter"
 yaw(0)
 
 MoveUntilLine(50, delay=0) #Drives straight until the black line in the middle
 motor_pair.move(3, "cm", speed=20) #Correction because the color sensors are not placed on the same position as the wheels
 
-yaw(90) #Spins until the robot is parallel to the black line in the middle
-
+yaw(90, speed=10) #Spins until the robot is parallel to the black line in the middle
+motor_pair.move(30, "cm", speed=30) #Drives forward into the hand
+yaw(90, speed=10)
 MoveUntilLine(40) #Drives until the black line before the hand
+yaw(90, speed=10)
 motor_pair.move(20, "cm", speed=30) #Drives forward into the hand
 motor_pair.move(9, "cm", speed=-15) #Drives backwards, so the hand gets triggered
 motor_pair.move(22, "cm", speed=-100) #Drives backwards, so the module for the hand disconnects from the robot
@@ -55,7 +57,7 @@ yaw(-157)
 motor_pair.move(10, "cm", speed=-30, steering=0)
 motor_pair.move(10, "cm", speed=-30, steering=-94)
 motor_pair.move(4, "cm", speed=-100, steering=50)
-motor_pair.start(speed=15, steering=-100)
+motor_pair.start(speed=15, steering=-90)
 wait_until(hub.motion_sensor.get_yaw_angle,target_value=0)
 motor_pair.stop()
 
