@@ -1,6 +1,3 @@
-# Bei Fragen und Problemen an Simon Unger wenden
-# Fahrt ist zuständig für Kraftwerk und Spielzeugfabrik
-
 from spike import PrimeHub, LightMatrix, Button, StatusLight, ForceSensor, MotionSensor, Speaker, ColorSensor, App, DistanceSensor, Motor, MotorPair
 from spike.control import wait_for_seconds, wait_until
 from spike.control import Timer as SpikeTimer
@@ -12,8 +9,8 @@ wait_until(force.is_pressed)
 wait_for_seconds(0.5)
 
 def dropEnergy():
-    action.start(-30)
-    wait_for_seconds(3)
+    action.start(-8)
+    wait_for_seconds(4.5)
     action.stop()
 
 def onBlackLine():
@@ -49,6 +46,8 @@ default_speed = 50
 # Drive to POWER ENGINE
 drive.set_default_speed(default_speed)
 current_yaw = yaw(2)
+drive.move(50, "cm", -7)
+current_yaw = yaw(0)
 drive.start()
 wait_until(onBlackLine)
 drive.stop()
@@ -83,4 +82,7 @@ drive.start()
 wait_until(ColorLeft.get_color, target_value="black")
 drive.stop()
 current_yaw = yaw(5)
-drive.move(-180, "cm", 2)
+drive.start(2, -default_speed)
+
+wait_until(force.is_pressed)
+drive.stop()
