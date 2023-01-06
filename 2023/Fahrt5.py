@@ -49,11 +49,11 @@ way_drop_center = 25
 yaw_drop_center = 90
 # Adjust way after drop at CENTER
 way_after_center = 5.5
-# Adjust yaw to SOLAR PARK
+# Adjust yaw to BATTERY
 yaw_after_center = 45
-# Adjust way to SOLAR PARK
+# Adjust way to BATTERY
 way_to_solar = 70
-# Adjust speed to SOLAR PARK & GOAL
+# Adjust speed to BATTERY & GOAL
 speed_to_goal = 70
 
 # Collect OIL VEHICLE
@@ -84,7 +84,7 @@ drive.move(way_to_center, "cm", steering_to_center)
 drive.move(-way_drop_center)
 current_yaw = yaw(yaw_drop_center)
 
-# Move to SOLAR PARK
+# Move to BATTERY
 drive.move(way_after_center)
 current_yaw = yaw(yaw_after_center)
 drive.set_stop_action("hold")
