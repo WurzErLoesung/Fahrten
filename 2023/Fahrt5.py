@@ -46,11 +46,11 @@ steering_to_center = 12
 # Adjust way to drop at CENTER
 way_drop_center = 25
 # Adjust yaw for drop at CENTER
-yaw_drop_center = 0
+yaw_drop_center = 90
 # Adjust way after drop at CENTER
 way_after_center = 5.5
 # Adjust yaw to SOLAR PARK
-yaw_after_center = -45
+yaw_after_center = 45
 # Adjust way to SOLAR PARK
 way_to_solar = 70
 # Adjust speed to SOLAR PARK & GOAL
