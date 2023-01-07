@@ -1,68 +1,111 @@
-# Bei Fragen an Severin wenden
-# Fahrt ist zuständig für Hand, Ölinsel und die Energiezellen daneben.
-
-
 from spike import PrimeHub, LightMatrix, Button, StatusLight, ForceSensor, MotionSensor, Speaker, ColorSensor, App, DistanceSensor, Motor, MotorPair
 from spike.control import wait_for_seconds, wait_until, Timer
 from math import *
 
-
-#Initialising
 hub = PrimeHub()
-motor_pair = MotorPair("B", "F")
-color1 = ColorSensor("E")
-color2 = ColorSensor("A")
-hub.motion_sensor.reset_yaw_angle()
+
+print("Ready")
+force = ForceSensor('D')
+wait_until(force.is_pressed)
+wait_for_seconds(0.5)
+
+def relative_yaw(target_yaw: int):
+    return yaw(current_yaw + target_yaw)
+
+def yaw(target_yaw: int): 
+    drive.start(100 * (min(1, max(MotionSensor.get_yaw_angle() - target_yaw, -1))), 10)
+    wait_until(MotionSensor.get_yaw_angle, target_value=target_yaw)
+    drive.stop()
+    return MotionSensor.get_yaw_angle()
+
+def onLine():
+    return ColorLeft.get_color() == "black" and ColorRight.get_color() == "black"
+# INITIALIZATION
+hub = PrimeHub()
+MotionSensor = hub.motion_sensor
+MotionSensor.reset_yaw_angle()
+drive = MotorPair('B', 'F')
+action = Motor('C')
+ColorLeft = ColorSensor('E')
+ColorRight = ColorSensor('A')
+drive.set_stop_action("hold")
+
+# VAR INITIALIZATION
+start_yaw = MotionSensor.get_yaw_angle()
+current_yaw = start_yaw
+# Adjust Default Speed
+default_speed = 35
+# Adjust way out of START ZONE
+way_out_start = 63
+# Adjust steering out of START ZONE
+steering_out_start = 13
 
 
-#Black line stuff
-def onLine(color: str = "black", mode: str = "both"): #Returns True if both color sensors are detecting the specified color
-    if mode == "both" and color1.get_color() and color2.get_color() == color or mode == "left" and color1.get_color() == color or mode == "right" and color2().get_color == color:
-        return True
-    else:
-        return False
+# Drive to SMART GRID
+drive.set_default_speed(default_speed)
+drive.move(-way_out_start, "cm", steering_out_start)
+current_yaw = yaw(0)
+wait_for_seconds(0.1)
 
-def MoveUntilLine(speed: int, delay :float = 1, steering :int = 0, color: str = "black"): #Starts the motor pair and leaves it running until onLine returns True
-    motor_pair.start(speed=speed, steering = steering)
-    wait_for_seconds(delay)
-    wait_until(onLine,target_value=True)
-    motor_pair.stop()
+drive.start(0, -default_speed)
+wait_until(onLine)
+drive.stop()
+drive.move(2)
+wait_for_seconds(0.1)
 
+current_yaw = yaw(90)
+wait_for_seconds(0.1)
 
-#Easy to use spinning function
-def yaw(targetYaw :int, speed :int=15):
-    motor_pair.start(speed=speed, steering=100 * (min(1, max(hub.motion_sensor.get_yaw_angle() - targetYaw, -1))))
-    wait_until(hub.motion_sensor.get_yaw_angle,target_value=targetYaw)
-    motor_pair.stop()
+drive.start(0, default_speed)
+wait_until(onLine)
+drive.stop()
+wait_for_seconds(0.1)
 
+# Activate SMART GRID
+drive.move(-58)
+drive.move(22, "cm", 0, 60)
 
-#Code for Driving
-motor_pair.move(57, "cm", steering=-19, speed=60) #Drive a smooth curve around "Trichter"
-yaw(0)
+# Move to SOLAR FARM
+start_yaw = yaw(179)
+MotionSensor.reset_yaw_angle()
+current_yaw = start_yaw
 
-MoveUntilLine(50, delay=0) #Drives straight until the black line in the middle
-motor_pair.move(3, "cm", speed=20) #Correction because the color sensors are not placed on the same position as the wheels
+current_yaw = yaw(45)
 
-yaw(90, speed=10) #Spins until the robot is parallel to the black line in the middle
-motor_pair.move(30, "cm", speed=30) #Drives forward into the hand
-yaw(90, speed=10)
-MoveUntilLine(40) #Drives until the black line before the hand
-yaw(90, speed=10)
-motor_pair.move(20, "cm", speed=30) #Drives forward into the hand
-motor_pair.move(9, "cm", speed=-15) #Drives backwards, so the hand gets triggered
-motor_pair.move(22, "cm", speed=-100) #Drives backwards, so the module for the hand disconnects from the robot
-yaw(-144)
-MoveUntilLine(-30, delay=0, steering=20)
-yaw(-157)
-motor_pair.move(10, "cm", speed=-30, steering=0)
-motor_pair.move(10, "cm", speed=-30, steering=-94)
-motor_pair.move(4, "cm", speed=-100, steering=50)
-motor_pair.start(speed=15, steering=-90)
-wait_until(hub.motion_sensor.get_yaw_angle,target_value=0)
-motor_pair.stop()
+drive.move(15)
+drive.move(18, "cm", -20)
+current_yaw = yaw(90)
+drive.move(17)
 
-for i in range(5):
-    motor_pair.move(38, "cm", speed=100)
-    motor_pair.move(10, "cm", speed=-55)
-    yaw(0)
-    motor_pair.move(20, "cm", speed=-55)
+# Collect ENERGY
+current_yaw = yaw(16)
+drive.move(18)
+
+# Store ENERGY and move to OIL PLATFORM
+current_yaw = yaw(-90)
+drive.move(10)
+
+current_yaw = yaw(-80)
+drive.move(3)
+start_yaw = yaw(90)
+MotionSensor.reset_yaw_angle()
+start_yaw = yaw(90)
+MotionSensor.reset_yaw_angle()
+current_yaw = start_yaw
+drive.move(-10)
+
+for i in range(4):
+    drive.move(-25, "cm", 0, 100)
+    wait_for_seconds(0.1)
+    drive.move(20)
+    wait_for_seconds(0.1)
+
+start_yaw = yaw(150)
+drive.move(20)
+current_yaw = yaw(90)
+drive.move(45, "cm", 0, 70)
+current_yaw = yaw(179)
+
+drive.start()
+wait_until(force.is_pressed)
+drive.stop()
