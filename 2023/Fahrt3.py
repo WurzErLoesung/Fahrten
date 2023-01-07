@@ -1,3 +1,6 @@
+# Bei Fragen und Problemen an Simon Unger wenden
+# Fahrt ist zuständig für Smart Grid, Solar Park, Öl-Plattform sowie wegräumen blauer Wassereinheiten
+
 from spike import PrimeHub, LightMatrix, Button, StatusLight, ForceSensor, MotionSensor, Speaker, ColorSensor, App, DistanceSensor, Motor, MotorPair
 from spike.control import wait_for_seconds, wait_until, Timer
 from math import *
@@ -12,7 +15,7 @@ wait_for_seconds(0.5)
 def relative_yaw(target_yaw: int):
     return yaw(current_yaw + target_yaw)
 
-def yaw(target_yaw: int): 
+def yaw(target_yaw: int):
     drive.start(100 * (min(1, max(MotionSensor.get_yaw_angle() - target_yaw, -1))), 10)
     wait_until(MotionSensor.get_yaw_angle, target_value=target_yaw)
     drive.stop()
@@ -57,7 +60,7 @@ current_yaw = yaw(90)
 wait_for_seconds(0.1)
 
 drive.start(0, default_speed)
-wait_until(onLine)
+wait_for_seconds(1)
 drive.stop()
 wait_for_seconds(0.1)
 
