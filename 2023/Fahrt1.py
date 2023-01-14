@@ -53,7 +53,7 @@ car_length = 30
 # Adjust Speed for activating car
 car_speed = 60
 # Adjust the robot's default speed
-default_speed = 50
+default_speed = 55
 # Adjust how far the robot moves back after activating the car
 backwards_after_car = -22
 # Adjust the steering when moving backwards after car
