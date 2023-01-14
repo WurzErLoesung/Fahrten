@@ -37,11 +37,11 @@ drive.set_stop_action("hold")
 start_yaw = MotionSensor.get_yaw_angle()
 current_yaw = start_yaw
 # Adjust Default Speed
-default_speed = 35
+default_speed = 50
 # Adjust way out of START ZONE
 way_out_start = 63
 # Adjust steering out of START ZONE
-steering_out_start = 13
+steering_out_start = 15
 
 
 # Drive to SMART GRID
@@ -59,13 +59,8 @@ wait_for_seconds(0.1)
 current_yaw = yaw(90)
 wait_for_seconds(0.1)
 
-drive.start(0, default_speed)
-wait_for_seconds(1)
-drive.stop()
-wait_for_seconds(0.1)
-
 # Activate SMART GRID
-drive.move(-58)
+drive.move(-50)
 drive.move(22, "cm", 0, 60)
 
 # Move to SOLAR FARM
@@ -98,8 +93,8 @@ current_yaw = start_yaw
 drive.move(-10)
 
 for i in range(4):
-    drive.move(-25, "cm", 0, 100)
-    wait_for_seconds(0.1)
+    drive.start(speed=-100)
+    wait_for_seconds(1)
     drive.move(20)
     wait_for_seconds(0.1)
 
