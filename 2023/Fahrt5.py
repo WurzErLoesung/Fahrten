@@ -1,8 +1,10 @@
-from spike import PrimeHub, LightMatrix, Button, StatusLight, ForceSensor, MotionSensor, Speaker, ColorSensor, App, DistanceSensor, Motor, MotorPair
-from spike.control import wait_for_seconds, wait_until, Timer
-from math import *
+# Bei Fragen und Problemen an Simon Unger wenden
+# Fahrt ist zuständig für TV, Windrad, Auto und akku mitenehmen neben Trichter.
 
-hub = PrimeHub()
+from spike import PrimeHub, LightMatrix, Button, StatusLight, ForceSensor, MotionSensor, Speaker, ColorSensor, App, DistanceSensor, Motor, MotorPair
+from spike.control import wait_for_seconds, wait_until
+from spike.control import Timer as SpikeTimer
+from math import *
 
 print("Ready")
 force = ForceSensor('D')
@@ -23,7 +25,6 @@ hub = PrimeHub()
 MotionSensor = hub.motion_sensor
 MotionSensor.reset_yaw_angle()
 drive = MotorPair('B', 'F')
-action = Motor('C')
 ColorLeft = ColorSensor('E')
 ColorRight = ColorSensor('A')
 drive.set_stop_action("hold")
@@ -31,65 +32,64 @@ drive.set_stop_action("hold")
 # Variable Initialization
 start_yaw = MotionSensor.get_yaw_angle()
 current_yaw = start_yaw
-# Adjust Default Speed
-default_speed = 35
-# Adjust Speed to OIL VEHICLE
-speed_vehicle = 35
-# Adjust way to OIL VEHICLE
-way_to_oil = 55
-# Adjust straight way at start of Part 2
-straight_part_two = 3
-# Asjust way to CENTER
-way_to_center = 101
-# Adjust steering to CENTER
-steering_to_center = 12
-# Adjust way to drop at CENTER
-way_drop_center = 25
-# Adjust yaw for drop at CENTER
-yaw_drop_center = 90
-# Adjust way after drop at CENTER
-way_after_center = 5.5
-# Adjust yaw to BATTERY
-yaw_after_center = 45
-# Adjust way to BATTERY
-way_to_solar = 70
-# Adjust speed to BATTERY & GOAL
-speed_to_goal = 70
+# Adjust how far Robot moves in direction of WINDMILL
+windmill_alignment_length = 42
+# Adjust Yaw of Alignment
+windmill_alignment_yaw = 47
+# Adjust Speed when activating windmill
+windmill_speed = 70
+# Adjust number of repeats during windmill
+windmill_repeatation = 4
+# Adjust how far the robot moves to activate windmill
+windmill_length = 32
+# Adjust adjustment length
+car_alignment_length = 6
+# Adjust how far robot moves in direction of the car
+car_alignment_width = 25
+# Adjust alignment yaw for the car
+car_alignment_yaw = -52
+# Adjust how far the robot moves to activate car
+car_length = 30
+# Adjust Speed for activating car
+car_speed = 60
+# Adjust the robot's default speed
+default_speed = 55
+# Adjust how far the robot moves back after activating the car
+backwards_after_car = -22
+# Adjust the steering when moving backwards after car
+steering_after_car = 37
 
-# Collect OIL VEHICLE
-current_yaw = yaw(1)
+# TV
 drive.set_default_speed(default_speed)
-drive.set_stop_action("coast")
-drive.move(way_to_oil/2, "cm", 0, speed_vehicle)
-yaw(0)
-drive.move(way_to_oil/2, "cm", 0, speed_vehicle)
-wait_for_seconds(0.25)
-drive.start(speed=-speed_vehicle)
-wait_until(force.is_pressed)
-wait_for_seconds(0.5)
-drive.stop()
+drive.move(55, "cm", 0, default_speed)
+drive.move(-10, "cm", 0, default_speed)
+current_yaw = yaw(start_yaw)
 
-# Wait until Button is pressed
-wait_until(force.is_pressed)
-wait_for_seconds(0.5)
+# Drive to WINDMILL
+current_yaw = yaw(-45)
+drive.move(windmill_alignment_length)
+current_yaw = yaw(windmill_alignment_yaw)
+drive.move(4)
 
-# PART 2
+# WINDMILL
+for i in range(windmill_repeatation):
+    drive.set_default_speed(windmill_speed)
+    drive.move(windmill_length)
+    wait_for_seconds(0.25)
+    drive.set_default_speed(default_speed)
+    drive.move(-4)
+    current_yaw = yaw(windmill_alignment_yaw)
+    drive.move(-10)
+    current_yaw = yaw(windmill_alignment_yaw)
+    wait_for_seconds(0.25)
 
-drive.move(straight_part_two)
-
-# Drive to CENTER
-drive.move(way_to_center, "cm", steering_to_center)
-
-# Drop at CENTER
-drive.move(-way_drop_center)
-current_yaw = yaw(yaw_drop_center)
-
-# Move to BATTERY
-drive.move(way_after_center)
-current_yaw = yaw(yaw_after_center)
-drive.set_stop_action("hold")
-drive.move(65, "cm", 0, speed_to_goal)
-action.run_for_seconds(0.5, -50)
-drive.start(speed=speed_to_goal)
-wait_for_seconds(0.2)
-drive.move(3, "cm", 0, -100)
+current_yaw = yaw(0)
+drive.move(car_alignment_length)
+current_yaw = yaw(-90)
+drive.move(car_alignment_width)
+current_yaw = yaw(car_alignment_yaw)
+drive.move(car_length, "cm", 1, car_speed)
+drive.move(backwards_after_car, "cm", steering_after_car)
+current_yaw = current_yaw = yaw(car_alignment_yaw)
+drive.move(-40, "cm", 0, default_speed)
+drive.move(-120, "cm", -2, default_speed)
