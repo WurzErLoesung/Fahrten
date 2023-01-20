@@ -42,7 +42,7 @@ windmill_alignment_yaw = 47
 # Adjust Speed when activating windmill
 windmill_speed = 70
 # Adjust number of repeats during windmill
-windmill_repeatation = 4
+windmill_repeatation = 3
 # Adjust how long the robot moves to activate windmill
 windmill_time = 1
 # Adjust adjustment length
