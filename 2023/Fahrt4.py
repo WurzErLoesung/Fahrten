@@ -20,7 +20,7 @@ drive.set_default_speed(default_speed)
 drive.set_stop_action('coast')
 drive.move(33.5, "cm", -5)
 drive.move(38, "cm", 5)
-drive.move(1.5, "cm", 5, 10)
+drive.move(2, "cm", 5, 10)
 wait_for_seconds(0.3)
 
 # collect drawer from storage
