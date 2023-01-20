@@ -1,5 +1,5 @@
 # Bei Fragen und Problemen an Simon Unger wenden
-# Fahrt ist zuständig für TV, Windrad, Auto und akku mitenehmen neben Trichter.
+# Fahrt ist zuständig für POWER ENGINE und TOY FACTORY
 
 from spike import PrimeHub, LightMatrix, Button, StatusLight, ForceSensor, MotionSensor, Speaker, ColorSensor, App, DistanceSensor, Motor, MotorPair
 from spike.control import wait_for_seconds, wait_until
