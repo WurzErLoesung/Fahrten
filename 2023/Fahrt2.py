@@ -1,24 +1,32 @@
+# Bei Fragen und Problemen an Simon Unger wenden
+# Fahrt ist zuständig für TV, Windrad, Auto und akku mitenehmen neben Trichter.
+
 from spike import PrimeHub, LightMatrix, Button, StatusLight, ForceSensor, MotionSensor, Speaker, ColorSensor, App, DistanceSensor, Motor, MotorPair
 from spike.control import wait_for_seconds, wait_until
 from spike.control import Timer as SpikeTimer
 from math import *
 
+# Wait until force sensor is pressed
 print("Ready")
 force = ForceSensor('D')
 wait_until(force.is_pressed)
 wait_for_seconds(0.5)
 
+# function to activate TOY FACTORY
 def dropEnergy():
     action.start(-8)
     wait_for_seconds(4.5)
     action.stop()
 
+# funtion so stop on Black Line
 def onBlackLine():
     return ColorLeft.get_color() == "black" and ColorRight.get_color() == "black"
 
+# rotating relative to current position
 def relative_yaw(target_yaw: int):
     yaw(current_yaw + target_yaw)
 
+# rotating to a specific position
 def yaw(target_yaw: int):
     drive.start(100 * (min(1, max(MotionSensor.get_yaw_angle() - target_yaw, -1))), 10)
     wait_until(MotionSensor.get_yaw_angle, target_value=target_yaw)
@@ -41,20 +49,36 @@ start_yaw = MotionSensor.get_yaw_angle()
 current_yaw = start_yaw
 # Adjust robots default speed
 default_speed = 50
+# Adjust how far the Robot moves out of HOMEZONE
+way_out_home = 50
+# Adjust the steering out of HOMEZONE
+steering_out_home = -7
+# Adjust how far the robot moves back after standing on black line
+back_after_black = -10
+# Adjust yaw for aligning on black line
+yaw_align_black = 45
+# Adjust way back after POWER ENGINE
+back_after_power = -15
+# Adjust alignment yaw for TOY FACTORY
+yaw_toy_factory = -35
+# Adjust way to TOY FACTORY
+way_toy_factory = -20
+# Adjust way back for TOY FACTORY
+back_toy_factory = 3
 
 
 # Drive to POWER ENGINE
 drive.set_default_speed(default_speed)
 current_yaw = yaw(2)
-drive.move(50, "cm", -7)
+drive.move(way_out_home, "cm", steering_out_home)
 current_yaw = yaw(0)
 drive.start()
 wait_until(onBlackLine)
 drive.stop()
 
 # Align linear to POWER ENGINE
-drive.move(-10)
-current_yaw = yaw(45)
+drive.move(back_after_black)
+current_yaw = yaw(yaw_align_black)
 drive.start()
 wait_until(ColorLeft.get_color, target_value="black")
 wait_for_seconds(max(0, 0.7 - (default_speed/100)))
@@ -69,10 +93,10 @@ drive.stop()
 wait_for_seconds(0.25)
 
 # Align for TOY FACTORY
-drive.move(-15)
-current_yaw = yaw(-35)
-drive.move(-20)
-drive.move(3)
+drive.move(back_after_power)
+current_yaw = yaw(yaw_toy_factory)
+drive.move(way_toy_factory)
+drive.move(back_toy_factory)
 
 # Activate TOY FACTORYs
 dropEnergy()
