@@ -1,8 +1,11 @@
 from spike import PrimeHub, LightMatrix, Button, StatusLight, ForceSensor, MotionSensor, Speaker, ColorSensor, App, DistanceSensor, Motor, MotorPair
 from spike.control import wait_for_seconds, wait_until, Timer
+from spike.operator import equal_to
 from math import *
+hub = PrimeHub()
 
 print("Ready")
+hub.light_matrix.show_image('HAPPY')
 force = ForceSensor('D')
 wait_until(force.is_pressed)
 wait_for_seconds(0.5)
@@ -16,8 +19,11 @@ def yaw(target_yaw: int):
     drive.stop()
     return MotionSensor.get_yaw_angle()
 
+def black_found():
+    if ColorLeft.get_color() in ["white", "black"] or ColorRight.get_color() in ["white", "black"]:
+        return True
+
 # INITIALIZATION
-hub = PrimeHub()
 MotionSensor = hub.motion_sensor
 MotionSensor.reset_yaw_angle()
 drive = MotorPair('B', 'F')
@@ -26,6 +32,9 @@ ColorLeft = ColorSensor('E')
 ColorRight = ColorSensor('A')
 drive.set_stop_action("hold")
 
-drive.start(speed=60)
+
+drive.start(speed=100)
+wait_for_seconds(1.35)
+action.run_for_rotations(0.5, speed=70)
 wait_until(force.is_pressed)
 drive.stop()
