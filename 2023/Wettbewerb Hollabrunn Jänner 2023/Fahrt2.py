@@ -14,8 +14,8 @@ wait_for_seconds(0.5)
 
 # function to activate TOY FACTORY
 def dropEnergy():
-    action.start(-8)
-    wait_for_seconds(4.5)
+    action.start(-100)
+    wait_for_seconds(1.25)
     action.stop()
 
 # funtion so stop on Black Line
@@ -48,7 +48,7 @@ drive.set_stop_action("hold")
 start_yaw = MotionSensor.get_yaw_angle()
 current_yaw = start_yaw
 # Adjust robots default speed
-default_speed = 50
+default_speed = 55
 # Adjust how far the Robot moves out of HOMEZONE
 way_out_home = 50
 # Adjust the steering out of HOMEZONE
@@ -64,7 +64,7 @@ yaw_toy_factory = -35
 # Adjust way to TOY FACTORY
 way_toy_factory = -20
 # Adjust way back for TOY FACTORY
-back_toy_factory = 3
+back_toy_factory = 0
 
 
 # Drive to POWER ENGINE
@@ -77,9 +77,9 @@ wait_until(onBlackLine)
 drive.stop()
 
 # Align linear to POWER ENGINE
-drive.move(back_after_black)
+drive.move(back_after_black, speed=70)
 current_yaw = yaw(yaw_align_black)
-drive.start()
+drive.start(0)
 wait_until(ColorLeft.get_color, target_value="black")
 wait_for_seconds(max(0, 0.7 - (default_speed/100)))
 drive.stop()
@@ -88,7 +88,7 @@ current_yaw = yaw(-90)
 # Activate POWER ENGINE
 drive.start()
 wait_until(onBlackLine)
-wait_for_seconds(1)
+wait_for_seconds(0.5)
 drive.stop()
 wait_for_seconds(0.25)
 
@@ -106,7 +106,7 @@ drive.start()
 wait_until(ColorLeft.get_color, target_value="black")
 drive.stop()
 current_yaw = yaw(5)
-drive.start(2, -default_speed)
+drive.start(2, -100)
 
 wait_until(force.is_pressed)
 drive.stop()
