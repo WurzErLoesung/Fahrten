@@ -36,21 +36,21 @@ drive.set_stop_action("hold")
 start_yaw = MotionSensor.get_yaw_angle()
 current_yaw = start_yaw
 # Adjust how far Robot moves in direction of WINDMILL
-windmill_alignment_length = 42
+windmill_alignment_length = 45
 # Adjust Yaw of Alignment
 windmill_alignment_yaw = 47
 # Adjust Speed when activating windmill
 windmill_speed = 70
 # Adjust number of repeats during windmill
-windmill_repeatation = 3
+windmill_repeatation = 4
 # Adjust how long the robot moves to activate windmill
-windmill_time = 1
+windmill_time = 1.5
 # Adjust adjustment length
 car_alignment_length = 6
 # Adjust how far robot moves in direction of the car
 car_alignment_width = 25
 # Adjust alignment yaw for the car
-car_alignment_yaw = -52
+car_alignment_yaw = -40
 # Adjust how far the robot moves to activate car
 car_length = 30
 # Adjust Speed for activating car
@@ -64,7 +64,7 @@ steering_after_car = 37
 
 # TV
 drive.set_default_speed(default_speed)
-drive.move(55, "cm", 0, default_speed)
+drive.move(53, "cm", 0, default_speed)
 drive.move(-10, "cm", 0, default_speed)
 current_yaw = yaw(start_yaw)
 
@@ -100,5 +100,5 @@ drive.move(backwards_after_car, "cm", steering_after_car)
 
 # Drive back to HOMEZONE
 current_yaw = current_yaw = yaw(car_alignment_yaw)
-drive.move(-40, "cm", 0, default_speed)
+drive.move(-20, "cm", 0, default_speed)
 drive.move(-120, "cm", -2, default_speed)
