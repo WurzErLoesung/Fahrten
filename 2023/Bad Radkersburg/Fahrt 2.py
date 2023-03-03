@@ -15,7 +15,7 @@ wait_for_seconds(0.5)
 # function to activate TOY FACTORY
 def dropEnergy():
     action.start(-100)
-    wait_for_seconds(1.25)
+    wait_for_seconds(1.5)
     action.stop()
 
 # funtion so stop on Black Line
