@@ -14,7 +14,7 @@ def onBlackLine():
 
 def leftOnBlack():
     return ColorLeft.get_color() == "black"
-
+ 
 def relative_yaw(target_yaw: int):
     yaw(current_yaw + target_yaw)
 
