@@ -18,7 +18,7 @@ def dropEnergy():
     wait_for_seconds(4.5)
     action.stop()
 
-# funtion so stop on Black Line
+# function so stop on Black Line
 def onBlackLine():
     return ColorLeft.get_color() == "black" and ColorRight.get_color() == "black"
 
