@@ -57,7 +57,7 @@ drive.move(10, "cm", 0, 20)
 #adjust for oil
 drive.move(-21)
 current_yaw = yaw(45)
-drive.move(20)
+drive.move(23)
 current_yaw = yaw(90)
 drive.move(-4)
 
@@ -74,7 +74,7 @@ drive.move(-8, "cm", -60)
 drive.move(12, "cm")
 drive.move(5, "cm", -20)
 current_yaw = yaw(90)
-drive.move(-5, "cm")
+drive.move(-4.5, "cm")
 
 #collect energy 1 + 2
 action.run_for_seconds(1.5, -100)
@@ -85,7 +85,7 @@ drive.move(5, "cm", -100)
 yaw(150)
 
 #drive to center
-drive.move(26, "cm", 10)
+drive.move(23, "cm", 10)
 yaw(179)
 drive.move(25, "cm")
 
