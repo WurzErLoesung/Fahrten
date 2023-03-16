@@ -103,7 +103,7 @@ wait_for_seconds(1)
 drive.stop()
 wait_for_seconds(1.5)
 action.stop()
-drive.move(15, "cm", -5)
+drive.move(10, "cm", -5)
 
 wait_until(force.is_pressed)
 drive.stop()
