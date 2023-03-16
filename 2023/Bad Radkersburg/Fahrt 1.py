@@ -52,9 +52,9 @@ car_alignment_width = 25
 # Adjust alignment yaw for the car
 car_alignment_yaw = -40
 # Adjust how far the robot moves to activate car
-car_length = 20
+car_length = 21
 # Adjust Speed for activating car
-car_speed = 60
+car_speed = 70
 # Adjust the robot's default speed
 default_speed = 55
 # Adjust how far the robot moves back after activating the car
