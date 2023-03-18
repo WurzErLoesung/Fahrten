@@ -71,21 +71,20 @@ for i in range(4):
 #adjust for energy
 drive.move(5, "cm")
 drive.move(-8, "cm", -60)
-drive.move(12, "cm")
-drive.move(5, "cm", -20)
+drive.move(10.5, "cm")
+drive.move(2, "cm", -20)
 current_yaw = yaw(90)
-drive.move(-4.5, "cm")
+#drive.move(-2.5, "cm")
 
 #collect energy 1 + 2
 action.run_for_seconds(1.5, -100)
 
 #collect energy 3
-drive.move(22, "cm", 7)
-drive.move(5, "cm", -100)
+drive.move(23, "cm", 0)
 yaw(150)
 
 #drive to center
-drive.move(23, "cm", 10)
+drive.move(19, "cm", -3)
 yaw(179)
 drive.move(25, "cm")
 
@@ -101,7 +100,7 @@ drive.start(5, 50)
 action.start(-100)
 wait_for_seconds(1)
 drive.stop()
-wait_for_seconds(1.5)
+wait_for_seconds(1)
 action.stop()
 drive.move(10, "cm", -5)
 

@@ -52,9 +52,9 @@ car_alignment_width = 25
 # Adjust alignment yaw for the car
 car_alignment_yaw = -40
 # Adjust how far the robot moves to activate car
-car_length = 21
+car_length = 17
 # Adjust Speed for activating car
-car_speed = 70
+car_speed = 50
 # Adjust the robot's default speed
 default_speed = 55
 # Adjust how far the robot moves back after activating the car
@@ -64,8 +64,8 @@ steering_after_car = 37
 
 # TV
 drive.set_default_speed(default_speed)
-drive.move(53, "cm", 0, default_speed)
-drive.move(-10, "cm", 0, default_speed)
+drive.move(53, "cm", 0, 40)
+drive.move(-10, "cm", 0, 40)
 current_yaw = yaw(start_yaw)
 
 # Drive to WINDMILL
@@ -96,7 +96,7 @@ current_yaw = yaw(car_alignment_yaw)
 
 # Acitivate CAR
 drive.move(car_length, "cm", 1, car_speed)
-drive.move(-15, "cm", -10)
-drive.move(-15, "cm", 17)
-drive.move(-10, "cm", -20)
-drive.move(-100, "cm", 3)
+yaw(-30)
+drive.move(-12, "cm", 0)
+yaw(car_alignment_yaw)
+drive.move(-100, "cm", 0, 100)
