@@ -60,7 +60,7 @@ yaw_align_black = 45
 # Adjust way back after POWER ENGINE
 back_after_power = -15
 # Adjust alignment yaw for TOY FACTORY
-yaw_toy_factory = -35
+yaw_toy_factory = -37 # BEFORE: -35
 # Adjust way to TOY FACTORY
 way_toy_factory = -19 # BEFORE: -20
 # Adjust way back for TOY FACTORY
