@@ -44,7 +44,7 @@ windmill_speed = 70
 # Adjust number of repeats during windmill
 windmill_repeatation = 4
 # Adjust how long the robot moves to activate windmill
-windmill_time = 1.2 # BEFORE: 1.5
+windmill_time = 1.4 # BEFORE: 1.5
 # Adjust adjustment length
 car_alignment_length = 6
 # Adjust how far robot moves in direction of the car
@@ -96,5 +96,5 @@ current_yaw = yaw(car_alignment_yaw)
 
 # Acitivate CAR
 drive.move(car_length, "cm", 1, car_speed)
-drive.move(-10)
+drive.move(-15)
 drive.start(2, -100)
