@@ -72,7 +72,7 @@ for i in range(4):
 drive.move(5, "cm")
 drive.move(-8, "cm", -60)
 drive.move(12, "cm")
-drive.move(5, "cm", -20)
+drive.move(4, "cm", -20) # BEFORE: 5
 current_yaw = yaw(90)
 drive.move(-4.5, "cm")
 
