@@ -14,7 +14,7 @@ wait_for_seconds(0.5)
 
 # function to activate TOY FACTORY
 def dropEnergy():
-    action.run_for_rotations(-4, 100)
+    action.run_for_rotations(4, 80)
 
 # funtion so stop on Black Line
 def onBlackLine():
@@ -58,9 +58,9 @@ yaw_align_black = 45
 # Adjust way back after POWER ENGINE
 back_after_power = -15
 # Adjust alignment yaw for TOY FACTORY
-yaw_toy_factory = -40 # BEFORE: -39
+yaw_toy_factory = -37 # BEFORE: -35
 # Adjust way to TOY FACTORY
-way_toy_factory = -18 # BEFORE: -20
+way_toy_factory = -19 # BEFORE: -20
 # Adjust way back for TOY FACTORY
 back_toy_factory = 0
 
