@@ -22,20 +22,34 @@ action_front = Motor('D')
 
 hub.light_matrix.show_image('HAPPY')
 
-action_back.run_for_rotations(0.5)
-drive.move(-30, speed=40)
 action_back.run_for_rotations(-0.5)
-drive.move(-10)
-action_back.run_for_rotations(0.5)
-drive.move(3)
-drive.set_stop_action('coast')
-drive.move(-2, steering=-100)
-drive.move(-1, steering=100)
-drive.set_stop_action('brake')
-drive.move(40, steering=-7)
 
+
+drive.move(-35, speed=40)
+yaw(0)
+action_back.run_for_rotations(0.5)
+drive.move(-4.5)
+
+action_back.run_for_rotations(-0.5)
+drive.move(3)
+
+
+drive.set_stop_action('coast')
+drive.move(-5, steering=-100)
+
+
+drive.move(-1, steering=100)
+
+
+yaw(0)
+
+drive.move(44, steering=0)
+
+
+'''
 wait_for_seconds(3)
 
+# Mischpult
 drive.start(speed=40)
 wait_for_seconds(2)
 action_front.run_for_seconds(0.5, speed=-100)
@@ -46,3 +60,4 @@ drive.move(-10, 'cm', 100, 10)
 drive.move(-30)
 drive.move(10, steering=-100)
 drive.move(40)
+'''
