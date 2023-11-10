@@ -13,6 +13,8 @@ def yaw(target_yaw: int = 0):
 def relative_yaw(yaw_step: int):
     yaw(gyro.get_yaw_angle() + yaw_step)
 
+drop_figure_time = 0.3
+
 #Initalizing
 hub = PrimeHub()
 
@@ -29,22 +31,26 @@ gyro.reset_yaw_angle()
 
 drive.set_stop_action("brake")
 
-drive.move(20,steering=20)
-yaw(15)
-yaw(10)
+drive.move(21,steering=32)
+drive.move(7, steering=-100)
+yaw(0)
 drive.move(-3)
-yaw(-10)
-drive.move(-13,steering=-35,speed=100)
-yaw(42)
-drive.move(34)
-action_front.run_for_seconds(1,speed=-100)
+yaw(-8)
+drive.move(-13,steering=-38,speed=100)
+yaw(38)
+drive.move(34, steering=5)
+action_front.run_for_seconds(drop_figure_time, speed=-100)
 drive.move(1)
-drive.move(30, steering=43)
-action_front.run_for_seconds(1,speed=-100)
-for i in range((2 if color.get_color() == 'violet' else 1)):
-    drive.move(10)
-    wait_for_seconds(1.5)
-    drive.move(-10)
-yaw(70)
-drive.move(40)
-   
+drive.move(30, steering=46)
+value = (2 if color.get_color() == 'yellow' else 1)
+print(value)
+for i in range(value):
+    drive.move(12, speed=60)
+    if i == 0: action_front.run_for_seconds(drop_figure_time, speed=-100)
+    drive.move(-5)
+    wait_for_seconds(1)
+drive.move(-10, steering=70)
+drive.move(15, steering=-30)
+yaw(100)
+drive.move(17)
+action_front.run_for_seconds(drop_figure_time, speed=-100)
