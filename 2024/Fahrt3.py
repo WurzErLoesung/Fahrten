@@ -24,14 +24,17 @@ def relative_yaw(yaw_step: int):
     yaw((gyro.get_yaw_angle() + yaw_step + 180) % 360 - 180)
 action_front = Motor('D')
 
-hub.light_matrix.show_image('HAPPY')
+#hub.light_matrix.show_image('HAPPY')
 
+action_back.run_for_degrees(90)
 drive.move(-35)
 drive.move(30, steering=30)
-yaw(-138)
-drive.move(47)
+yaw(-134)
+drive.move(49)
 drive.move(-1)
 relative_yaw(-90)
-drive.move(34)
+drive.move(38) #4cm dazu gegeben
 yaw(0)
-drive.move(60)
+drive.move(-10)
+action_back.run_for_degrees(-90)
+drive.move(70)
