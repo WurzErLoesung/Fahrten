@@ -36,5 +36,7 @@ relative_yaw(-90)
 drive.move(38) #4cm dazu gegeben
 yaw(0)
 drive.move(-10)
+relative_yaw(-1)
 action_back.run_for_degrees(-90)
+relative_yaw(1)
 drive.move(70)
