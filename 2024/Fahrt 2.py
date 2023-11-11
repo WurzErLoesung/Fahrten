@@ -13,12 +13,10 @@ def yaw(target_yaw: int = 0):
 def relative_yaw(yaw_step: int):
     yaw(gyro.get_yaw_angle() + yaw_step)
 
-drop_figure_time = 0.3
-
+drop_figure_time = 1.3
 #Initalizing
 hub = PrimeHub()
 
-hub.light_matrix.show_image('HAPPY')
 drive_right = Motor ("A")
 drive_left = Motor ("E")
 action_front = Motor ("D")
@@ -37,12 +35,15 @@ yaw(0)
 drive.move(-3)
 yaw(-8)
 drive.move(-13,steering=-38,speed=100)
-yaw(38)
-drive.move(34, steering=5)
+
+wait_for_seconds(5)
+drive.move(-57, steering=2)
 action_front.run_for_seconds(drop_figure_time, speed=-100)
-drive.move(1)
-drive.move(30, steering=46)
+action_front.run_for_seconds(drop_figure_time, speed=100)
+drive.move(-1)
+drive.move(-30, steering=-46)
 value = (2 if color.get_color() == 'yellow' else 1)
+relative_yaw(180)
 print(value)
 for i in range(value):
     drive.move(12, speed=60)
@@ -57,5 +58,5 @@ drive.move(12)
 action_front.run_for_seconds(drop_figure_time, speed=-100)
 drive.move(15,steering=-24)
 drive.move(30)
-yaw(0)
+yaw(0) 
 drive.move(20)
