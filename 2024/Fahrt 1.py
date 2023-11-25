@@ -1,3 +1,6 @@
+#Ausrichtung:
+#Linker Reifen: x=-3 , y=0 
+
 from spike import PrimeHub, LightMatrix, Button, StatusLight, ForceSensor, MotionSensor, Speaker, ColorSensor, App, DistanceSensor, Motor, MotorPair
 from spike.control import wait_for_seconds, wait_until, Timer
 from spike.operator import *
@@ -16,6 +19,7 @@ def yaw(target_yaw: int = 0):
     wait_until(gyro.get_yaw_angle, equal_to, target_yaw)            # Wartet, bis die Richtung 0° ist
     drive.stop()
 
+#Funktion fürs Drehen aus der aus der aktuellen Position um eine Anzahl an Grad
 def relative_yaw(yaw_step: int):
     yaw(gyro.get_yaw_angle() + yaw_step)
 action_front = Motor('D')
@@ -24,7 +28,7 @@ hub.light_matrix.show_image('HAPPY')
 
 action_back.run_for_rotations(-0.5)
 
-
+#banana car
 drive.move(-35, speed=40)
 yaw(0)
 action_back.run_for_rotations(0.5)
