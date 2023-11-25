@@ -33,23 +33,24 @@ color = ColorSensor ("C")
 gyro.reset_yaw_angle()
 
 drive.set_stop_action("brake")
-drop_figure_time = 1.3
-# drive.move(21,steering=32)
-# drive.move(7, steering=-100)
-# yaw(0)
-# drive.move(-3)
-# yaw(-8)
-# drive.move(-13,steering=-38,speed=100)
 
-# wait_for_seconds(5)
+#3d Kino
+drop_figure_time = 1.3
+drive.move(21,steering=32)
+drive.move(7, steering=-100)
+yaw(0)
+drive.move(-3)
+yaw(-8)
+drive.move(-13,steering=-38,speed=100)
+
+wait_for_seconds(5)
 drive.move(-57, steering=2)
 drop_figure()
 drive.move(-1)
 #second person
-#!hier weitermachen!
 drop_figure()
 #Aufgabe Szenenwechsel
-value = (2 if color.get_color() == 'yellow' else 1) # Unterschiedlich oft anfahren, je nachdem welche Farbe erkannt wird
+value = (2 if color.get_color() == 'yellow' else 1) 
 relative_yaw(180)
 print(value)
 for i in range(value):
@@ -57,13 +58,13 @@ for i in range(value):
     if i == 0: action_front.run_for_seconds(drop_figure_time, speed=-100)
     drive.move(-5)
     wait_for_seconds(1)
-# drive.move(-10, steering=70)
-# drive.move(15, steering=-30)
-# drive.move(8)
-# yaw(85)
-# drive.move(12)
-# action_front.run_for_seconds(drop_figure_time, speed=-100)
-# drive.move(15,steering=-24)
-# drive.move(30)
-# yaw(0) 
-# drive.move(20)
+drive.move(-10, steering=70)
+drive.move(15, steering=-30)
+drive.move(8)
+yaw(85)
+drive.move(12)
+action_front.run_for_seconds(drop_figure_time, speed=-100)
+drive.move(15,steering=-24)
+drive.move(30)
+yaw(0) 
+drive.move(20)
