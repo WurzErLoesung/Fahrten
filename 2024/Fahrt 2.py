@@ -35,7 +35,6 @@ gyro.reset_yaw_angle()
 drive.set_stop_action("brake")
 
 #3d Kino
-drop_figure_time = 1.3
 drive.move(21,steering=32)
 drive.move(7, steering=-100)
 yaw(0)
