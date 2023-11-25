@@ -1,5 +1,5 @@
 #Ausrichtung:
-#Linker Reifen: x=-3 , y=0 
+#Linker Reifen: 
 
 from spike import PrimeHub, LightMatrix, Button, StatusLight, ForceSensor, MotionSensor, Speaker, ColorSensor, App, DistanceSensor, Motor, MotorPair
 from spike.control import wait_for_seconds, wait_until, Timer
