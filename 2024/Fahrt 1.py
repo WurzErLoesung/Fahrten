@@ -50,8 +50,8 @@ wait_for_seconds(4)
 # Mischpult (Motorgesteuerte Unterstützung notwendig)
 drive.start(speed=40)
 wait_for_seconds(3.0) # Previous: 1.9
-# action_front.run_for_seconds(0.5, speed=100)
-# wait_for_seconds(0.5)
+action_front.run_for_seconds(0.5, speed=100)
+wait_for_seconds(0.5)
 
 drive.stop()
 drive.move(-1)
