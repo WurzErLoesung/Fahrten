@@ -15,7 +15,7 @@ def relative_yaw(yaw_step: int):
 
 def drop_figure():
     drop_figure_time = 1.3
-    action_front.run_for_seconds(drop_figure_time, speed=-100) 
+    action_front.run_for_seconds(drop_figure_time, speed=-100)
     action_front.run_for_seconds(drop_figure_time, speed=100)
 
 
@@ -33,6 +33,7 @@ color = ColorSensor ("C")
 gyro.reset_yaw_angle()
 
 drive.set_stop_action("brake")
+drive.set_default_speed(50) #Standard Schnelligkeit 50%
 
 #3d Kino
 drive.move(21,steering=32)
@@ -40,16 +41,16 @@ drive.move(7, steering=-100)
 yaw(0)
 drive.move(-3)
 yaw(-8)
-drive.move(-13,steering=-38,speed=100)
+drive.move(13,steering=38,speed=100)
 
 wait_for_seconds(5)
-drive.move(-57, steering=2)
-drop_figure()
-drive.move(-1)
-#second person
+drive.move(35, steering = -15) #Fährt zu Popcorn
+drop_figure() #lässt erste Figur fallen
+drive.move(-2)
+drive.move(32, steering = 47) #Fährt zu Aufgabe Szenenwechsel
 drop_figure()
 #Aufgabe Szenenwechsel
-value = (2 if color.get_color() == 'yellow' else 1) 
+value = (2 if color.get_color() == 'yellow' else 1)
 relative_yaw(180)
 print(value)
 for i in range(value):
@@ -65,5 +66,5 @@ drive.move(12)
 action_front.run_for_seconds(drop_figure_time, speed=-100)
 drive.move(15,steering=-24)
 drive.move(30)
-yaw(0) 
+yaw(0)
 drive.move(20)
