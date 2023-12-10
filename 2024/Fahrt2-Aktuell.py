@@ -39,6 +39,16 @@ drive.set_stop_action("brake")#Bremseinstellung wird zu "brake" geändert (brems
 
 drive.set_default_speed(50) #Standard Schnelligkeit 50%
 
+#3d Kino
+drive.move(22, steering=32)
+drive.move(7, steering=-100)
+yaw(0)
+drive.move(-3)
+yaw(-8)
+drive.move(-13, steering=38, speed=100)
+
+wait_for_seconds(10)
+
 drive.move(33, steering = -15) #Fährt zu Popcorn
 drop_figure() #lässt erste Figur fallen
 drop_figure_time=0.3
