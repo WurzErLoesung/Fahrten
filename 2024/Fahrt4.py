@@ -1,3 +1,10 @@
+#Ausrichtung:
+#blaue Base
+#x-Achse West-Ost, y-Achse Süd-Nord
+#Räder nach Norden
+#Mitte der Lauffläche des rechten Reifens auf x=-4, y=~2,5 (am besten mittels Bande [4 Teile] ausrichten)
+
+
 from spike import PrimeHub, LightMatrix, Button, StatusLight, ForceSensor, MotionSensor, Speaker, ColorSensor, App, DistanceSensor, Motor, MotorPair
 from spike.control import wait_for_seconds, wait_until, Timer
 from spike.operator import *
@@ -16,7 +23,6 @@ def relative_yaw(yaw_step: int):
 #Initalizing
 hub = PrimeHub()
 
-hub.light_matrix.show_image('HAPPY')
 drive_right = Motor ("A")
 drive_left = Motor ("E")
 action_front = Motor ("D")
@@ -25,19 +31,25 @@ drive = MotorPair ("E", "A")
 gyro = hub.motion_sensor
 
 gyro.reset_yaw_angle()
-
+action_front.set_default_speed(100)
 drive.set_stop_action("brake")
 
 
-
-yaw(-48)
-drive.move(55)
-action_front.run_for_rotations(10, speed = 100)
-drive.move(-20)
-yaw(10)
-drive.move(54)
-yaw(37)
-drive.move(20, speed = 60)
-drive.move(-20)
-yaw(150)
-drive.move(75)
+drive.move(-16, speed=90)
+yaw(-41)
+action_front.run_for_rotations(-2)
+drive.move(-32, steering=4, speed=80)
+action_front.run_for_rotations(-1)
+drive.move(17)
+yaw(0)
+action_front.run_for_rotations(2.3)
+drive.move(-45, speed=100)
+drive.move(13)
+yaw(43)
+drive.move(-18)
+action_back.run_for_rotations(1)
+action_front.run_for_rotations(-1)
+drive.move(20)
+yaw(0)
+drive.move(40)
+                
