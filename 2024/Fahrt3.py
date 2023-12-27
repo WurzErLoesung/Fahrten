@@ -1,3 +1,8 @@
+#Ausrichtung:
+# linke Ecke mit Aufsatz
+# Zeit= ~18 sec.
+
+
 from spike import PrimeHub, LightMatrix, Button, StatusLight, ForceSensor, MotionSensor, Speaker, ColorSensor, App, DistanceSensor, Motor, MotorPair
 from spike.control import wait_for_seconds, wait_until, Timer
 from spike.operator import *
@@ -26,16 +31,15 @@ action_front = Motor('D')
 
 
 
-action_back.run_for_degrees(100)
-drive.move(-35)
-drive.move(30, steering=30)
+drive.move(-35, speed=100)
+drive.move(33, steering=50)
 yaw(-134)
-drive.move(49)
+drive.move(48, speed=60)
 drive.move(-1)
-relative_yaw(-86)
-drive.move(38) #4cm dazu gegeben
-yaw(0)
+relative_yaw(-88)
+drive.move(39)
+drive.move(30, steering=100, speed=100)
 drive.move(-7)
-relative_yaw(-1)
-action_back.run_for_degrees(-90)
-drive.move(70)
+action_front.run_for_rotations(1)
+relative_yaw(8)
+drive.move(75, speed=100)
