@@ -33,7 +33,7 @@ def relative_yaw(yaw_step: int):
     yaw(gyro.get_yaw_angle() + yaw_step)
 
 
-    
+
 
 
 #Initalizing
@@ -50,44 +50,48 @@ color = ColorSensor ("C")
 gyro.reset_yaw_angle()
 
 drive.set_stop_action("brake")
-drive.set_default_speed(50) #Standard Schnelligkeit 50%
+drive.set_default_speed(75) #Standard Schnelligkeit 50%
 
-#3d Kino
-drop_figure_time = 1.3
-drive.move(24,steering=32)
-drive.move(7, steering=-100)
-yaw(0)
-drive.move(-24)
-wait_for_seconds(5)
-drive.move(34, steering = -11)#Fährt zu Popcorn
+# 3d Kino
+# drop_figure_time = 1.3
+# drive.move(24,steering=36, speed=100)
+# drive.move(9, steering=-100, speed=80)
+# yaw(0)
+# drive.move(-15, speed=100)
 
-drive_left.run_for_rotations(-0.3)
+
+# wait_for_seconds(5)
+
+
+drive.move(37, steering = -9, speed=70)#Fährt zu Popcorn
+drive_left.run_for_rotations(-0.1)
 action_front.run_for_rotations(-0.7)
-wait_for_seconds(1)
-drive.move(16) #Fährt zu Aufgabe Szenenwechsel
-
-
-action_front.run_for_rotations(-0.7) #Zweite Figur bei Szenenwechsel abladen
+drive.move(30, steering=36, speed=70)
+drive.move(-5)
 wait_for_seconds(0.5)
-drive.move(-15,steering=30)
-"""
-#Aufgabe Szenenwechsel
-value = (2 if color.get_color() == 'yellow' else 1)
-relative_yaw(180)
-print(value)
-for i in range(value):
-    drive.move(12, speed=60)
-    if i == 0: action_front.run_for_seconds(drop_figure_time, speed=-100)
-    drive.move(-5)
-    wait_for_seconds(1)
+drive.move(9)
+drive.move(-5)
 drive.move(-10, steering=70)
-drive.move(15, steering=-30)
-drive.move(8)
-yaw(85)
-drive.move(12)
-action_front.run_for_seconds(drop_figure_time, speed=-100)
-drive.move(15,steering=-24)
-drive.move(30)
-yaw(0)
-drive.move(20)
-"""
+drive.move(10, steering=-20, speed=60)
+relative_yaw(45)
+drive.move(20, steering=-30)
+action_front.run_for_rotations(-0.6)
+drive.move(10, steering=-30, speed=50)
+drive.move(15, steering=-35, speed=70)
+drive.move(22, steering=-40)
+action_front.run_for_rotations(-0.6)
+action_front.run_for_rotations(2.5)
+action_front.run_for_rotations(-1.1)
+action_front.run_for_rotations(1.1)
+action_back.run_for_rotations(7)
+
+
+# drive.move(20, steering=-50, speed=70)
+
+
+# drive.move(5, steering=-100, speed=50)
+# drive.move(30, steering=-50)
+# action_front.run_for_rotations(-0.6)
+# drive.move(6, steering=-100)
+# action_back.run_for_rotations(3)
+
