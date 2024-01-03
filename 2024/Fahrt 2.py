@@ -7,7 +7,8 @@ from math import *
 #Rote Base
 #Gabelstapler unten
 #L eingehängt
-#Maxerl mit Kopf nach Süden und Vorderteil nach Westen laden
+#Maxerl mit Rücken nach Oben und Kopf nach Süden in den Schacht einlegen
+#Schacht-Piston einmal ganz zurück ziehen
 #x-Achse West-Ost, y-Achse Süd-Nord
 #Räder nach Norden
 #mitte vom linken Rad: x=2, y=10,5
@@ -16,26 +17,28 @@ from math import *
 #Ausrichtung 2 (In der Mitte von der Fahrt)
 #Rote Base
 #Gabelstapler unten
-#L eingehängt
-#Maxerl mit Kopf nach Süden und Vorderteil nach Westen laden
+#L ausgehängt
+#Maxerl mit Kopf nach Oben und Osten in den Schacht einlegen
+#Schacht-Piston einmal ganz zurück ziehen
 #x-Achse West-Ost, y-Achse Süd-Nord
 #Räder nach Norden
-#Mitte des rechten Rades: x = 14, y = 10,5
+#Mitte des linken Rades: x = 14, y = 10.5
 
 def yaw(target_yaw: int = 0):
-    direction = min(1, max(-1, gyro.get_yaw_angle() - target_yaw))
+    direction = min(1, max(-1, (gyro.get_yaw_angle() - target_yaw + 180) % 360 - 180))# Wählt für alle Gradzahlen unter dem target_yaw -1, für alle Zahlen darüber +1 aus
     steering = 100*direction
-    drive.start(steering, speed=8)
-    wait_until(gyro.get_yaw_angle, equal_to, target_yaw + 4*direction)
+    drive.start(steering, speed=15)
+    wait_until(gyro.get_yaw_angle, equal_to, target_yaw)
     drive.stop()
 
 def relative_yaw(yaw_step: int):
     yaw(gyro.get_yaw_angle() + yaw_step)
 
 def drop_figure():
-    action_front.run_for_rotations(-0.7, speed=80)
-    wait_for_seconds(0.3)
-
+    action_front.run_for_rotations(1.2, speed=100)
+    wait_for_seconds(0.2)
+    action_front.run_for_rotations(-1.3, speed=100)
+    wait_for_seconds(0.2)
 
 #Initalizing
 hub = PrimeHub()
@@ -54,7 +57,6 @@ drive.set_stop_action("hold")
 drive.set_default_speed(75) #Standard Schnelligkeit 75%
 
 # 3d Kino
-# drop_figure_time = 1.3
 # drive.move(24,steering=36, speed=100) #Fährt zum Drachen
 # drive.move(9, steering=-100, speed=80) #Löst den Drachen aus
 # drive.move(-15, speed=100)
@@ -62,31 +64,70 @@ drive.set_default_speed(75) #Standard Schnelligkeit 75%
 
 # wait_for_seconds(5) #neu Ausrichten für 2. Teil
 
+# Drives to Popcorn and drops spectator
+drive.move(28, steering = -8, speed=70)
+yaw()
+drop_figure()
 
-drive.move(38, steering = -8, speed=70)#Fährt zu Popcorn
-yaw()
-drop_figure()
-drive.move(17)
+# Drives to Scene Switch and activates it
+drive.move(36, steering=8)
 yaw(-45)
-drive.move(15, speed=40)
+drive.move(19, speed=40)
+drive.move(-5)
+yaw(-45)
+
+# Drops spectator and activates Scene Switch if color-sensor senses yellow
 drop_figure()
-drive.move(-5.5)
-wait_for_seconds(2.5)
-drive.move(15, speed=40)
-drive.move(-8)
-yaw()
-drive.move(-13, speed=70)
-yaw(45)
-drive.move(38, steering=-2)
-drop_figure()
-drive.move(-18)
-yaw(90)
-drive.move(45)
-yaw(45)
-drive.move(24)
-yaw(90)
-action_back.run_for_rotations(8)
+if color.get_color() == 'yellow':
+    # yaw(-45)
+    drive.move(15, speed=40)
+    drive.move(-5)
+# else:
+#     drive.move(-4.5)
+
+# Moves towards skateboard and drops spectator
 drive.move(-3)
-action_back.run_for_rotations(-9)
+yaw(35)
+drive.move(15, steering=-40)
+yaw(85)
+drop_figure()
+
+# Moves towards Intensive Adventure while bringing yellow wall into position
+yaw(91)
+drive.move(40)
+yaw(70)
+drive.move(20)
+yaw(90)
+drive.move(-9)
+
+# Activates Intensive Adventure
+action_back.run_for_rotations(3)
+action_back.start(speed=-100)
+drive.move(10)
+
+# Moves towards Light Show and pushes it up, but still in yellow zone
 yaw()
-drive.move(15)
+drive.move(-25)
+action_back.stop()
+action_back.run_for_rotations(10)
+action_back.start(speed=-100)
+
+# Move towards museum and drop spectator while moving The Wall down again.
+drive.move(12, speed=40)
+yaw(20)
+drop_figure()
+
+# Move back to Light Show and push it up into blue zone
+yaw()
+drive.move(-15,speed=40)
+action_back.stop()
+action_back.run_for_rotations(10)
+
+# Move away, drop spectator next to Light Show and move towards AR
+action_back.start(speed=-100)
+drive.move(10)
+yaw(-90)
+drive.move(-30, steering=-20)
+drop_figure()
+action_back.stop()
+drive.move(-10)
