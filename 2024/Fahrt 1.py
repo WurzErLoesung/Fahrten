@@ -17,7 +17,7 @@ gyro.reset_yaw_angle()
 def yaw(target_yaw: int = 0):
     direction = min(1, max(-1, gyro.get_yaw_angle() - target_yaw))# Wählt für alle Gradzahlen unter dem target_yaw -1, für alle Zahlen darüber +1 aus
     steering = 100 * direction                                    # Volle Kanne nach links oder nach rechts (100 oder -100)
-    drive.start(steering, 10)                                    # Langsam, aber stark in Richtung drehen
+    drive.start(steering, 20)                                    # Langsam, aber stark in Richtung drehen
     wait_until(gyro.get_yaw_angle, equal_to, target_yaw)            # Wartet, bis die Richtung 0° ist
     drive.stop()
 
@@ -31,4 +31,12 @@ drive.move(-14, speed=30)
 drive.move(10, steering=100)
 action_front.run_for_rotations(-6, speed=100)
 drive.move(-10, steering=100)
-drive.move(-30, speed=100)
+drive.move(-28.5, speed=100)
+yaw(130)
+
+drive.move(1,"seconds", 0, -48)
+drive.move(1, "cm", 0, 15)
+relative_yaw(11)
+wait_for_seconds(0.3)
+relative_yaw(15)
+drive.move(2,"seconds", 20, 100)
