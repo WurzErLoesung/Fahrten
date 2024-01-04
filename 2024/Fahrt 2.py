@@ -129,8 +129,9 @@ action_back.run_for_rotations(10)
 # Move away, drop spectator next to Light Show and move towards AR
 action_back.start(speed=-100)
 drive.move(10)
-yaw(-45)
-
+yaw(-160)
+drive.move(12)
 drop_figure()
 action_back.stop()
+drive.move(-30, steering=25)
 drive.move(-10)
