@@ -5,9 +5,9 @@ from math import *
 
 #Ausrichtung 1 (Am Anfang von der Fahrt)
 #Rote Base
-#Gelbe Wand unten
+#Gelbe Wand oben
 #L eingehängt
-#Maxerl mit Rücken nach Oben und Kopf nach Süden in den Schacht einlegen
+#NPCs mit Rücken nach OBEN und Kopf nach SÜDEN
 #Schacht-Piston einmal ganz zurück ziehen
 #x-Achse West-Ost, y-Achse Süd-Nord
 #Räder nach Norden
@@ -18,7 +18,7 @@ from math import *
 #Rote Base
 #Gelbe Wand oben
 #L ausgehängt
-#Maxerl mit Kopf nach Oben und Osten in den Schacht einlegen
+#NPCs mit Rücken nach OBEN und Kopf nach SÜDEN
 #Schacht-Piston einmal ganz zurück ziehen
 #x-Achse West-Ost, y-Achse Süd-Nord
 #Räder nach Norden
@@ -58,9 +58,15 @@ drive.set_stop_action("hold")
 drive.set_default_speed(75) #Standard Schnelligkeit 75%
 
 # 3d Kino
-# drive.move(24,steering=36, speed=100) #Fährt zum Drachen
+# drive.move(26,steering=44, speed=100) #Fährt zum Drachen
 # drive.move(9, steering=-100, speed=80) #Löst den Drachen aus
 # drive.move(-15, speed=100)
+
+# Echtes 3d Kino
+# yaw(-22)
+# drive.move(24)
+# yaw(10)
+# drive.move(-30)
 
 
 # wait_for_seconds(5) #neu Ausrichten für 2. Teil
@@ -71,7 +77,7 @@ yaw()
 drop_figure()
 
 # Drives to Scene Switch and activates it
-drive.move(35, steering=8)
+drive.move(34, steering=8)
 yaw(-45)
 drive.move(7, speed=40)
 drive.move(-5)
@@ -96,11 +102,11 @@ action_back.start(speed=-100)
 
 # Moves towards Intensive Adventure
 yaw(95)
-drive.move(51, steering=2)
+drive.move(50, steering=2)
 yaw(38)
 action_back.stop()
-drive.move(18)
-yaw(90)
+drive.move(20)
+yaw(88)
 drive.move(-2)
 
 # Activates Intensive Adventure
@@ -115,33 +121,39 @@ action_back.stop()
 action_back.run_for_rotations(10)
 action_back.start(speed=-100)
 
-# Move towards museum and drop spectator while moving The Wall down again.
+# Moves towards museum and drops spectator
 drive.move(12, speed=40)
 yaw(20)
 drop_figure()
 
-# Move back to Light Show and push it up into blue zone
+# Moves back to Light Show and pushes it up into blue zone
 yaw(5)
 drive.move(-15,speed=40)
 action_back.stop()
 action_back.run_for_rotations(10)
 
-# Move away, drop spectator next to Light Show and move towards AR
-action_back.start(speed=-100)
+# Moves away, drops spectator next to Light Show and moves towards AR
 drive.move(10)
 yaw(-160)
 drive.move(12)
 drop_figure()
-action_back.stop()
 
-# Solve AR
-drive.move(-13)
+# Solves AR
+drive.move(-18)
 yaw(-90)
-drive.move(-16)
+drive.move(-8.5)
+yaw(-50)
+drive.move(2)
 yaw(-45)
+drive.move(-15)
+yaw(-90)
 
-
-#drive.move(-22, steering=41)
-#drive.move(-40, steering=-10)
-#yaw(-10)
-#drop_figure()
+# Drops last NPC and moves back to base
+drive.move(-35)
+yaw()
+drive.move(9)
+yaw(47)
+drive.move(2)
+drop_figure()
+yaw(-15)
+drive.move(-80, speed=100)
