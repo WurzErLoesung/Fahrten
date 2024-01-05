@@ -133,5 +133,15 @@ yaw(-160)
 drive.move(12)
 drop_figure()
 action_back.stop()
-drive.move(-30, steering=25)
-drive.move(-10)
+
+# Solve AR
+drive.move(-13)
+yaw(-90)
+drive.move(-16)
+yaw(-45)
+
+
+#drive.move(-22, steering=41)
+#drive.move(-40, steering=-10)
+#yaw(-10)
+#drop_figure()
