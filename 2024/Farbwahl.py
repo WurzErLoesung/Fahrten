@@ -18,8 +18,8 @@ DEBUG_MODE = False
 DEBUG_COLOR = None
 
 def BeforeFahrt():
-    drive.set_default_speed(100)
-    action_back.set_default_speed(100)
+    drive.set_default_speed(60)
+    action_back.set_default_speed(60)
 
 ###########
 # Fahrt 1 #
