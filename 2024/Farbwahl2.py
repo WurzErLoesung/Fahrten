@@ -17,8 +17,8 @@ timer = Timer()
 
 fahrten = {}
 def BeforeFahrt():
-    drive.set_default_speed(100)
-    action_back.set_default_speed(100)
+    drive.set_default_speed(60)
+    action_back.set_default_speed(60)
 
 def check_color(color):
     return color_sensor.get_color() == color
