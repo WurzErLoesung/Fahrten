@@ -64,7 +64,7 @@ def Fahrt1(col):
 ###########
 # Fahrt 2 #
 ###########
-def Fahrt2(col):
+def Fahrt2(col, orange_scene):
     if not play_countdown(5, col):
         return
     #Ausrichtung 1 (Am Anfang von der Fahrt)
@@ -138,7 +138,7 @@ def Fahrt2(col):
 
     # Drops spectator and activates Scene Switch if color-sensor senses yellow
     drop_figure()
-    if color_sensor.get_color() == 'yellow':
+    if orange_scene:
         # yaw(-45)
         drive.move(9, speed=40)
         drive.move(-5)
@@ -347,7 +347,10 @@ def start_fahrt(color):
         Fahrt1(color)
     elif color == "yellow":
         play_fahrt_found()
-        Fahrt2(color)
+        Fahrt2(color, True)
+    elif color == "violet":
+        play_fahrt_found()
+        Fahrt2(color, False)
     elif color == "green":
         play_fahrt_found()
         Fahrt3(color)
