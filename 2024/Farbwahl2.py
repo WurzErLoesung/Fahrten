@@ -99,7 +99,7 @@ def Fahrt1():
 # Fahrt 2 #
 ###########
 @Fahrt(color="yellow", countdown=5, debug=False, orange_scene=True)
-@Fahrt(color="red", countdown=5, debug=False, orange_scene=False)
+@Fahrt(color="violet", countdown=5, debug=False, orange_scene=False)
 def Fahrt2(orange_scene):
     #Ausrichtung 1 (Am Anfang von der Fahrt)
     #Rote Base
