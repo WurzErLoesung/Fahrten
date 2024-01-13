@@ -17,14 +17,18 @@ timer = Timer()
 
 fahrten = {}
 def BeforeFahrt():
-    drive.set_default_speed(60)
-    action_back.set_default_speed(60)
+    drive.set_default_speed(75)
+    action_back.set_default_speed(75)
+    action_front.set_default_speed(75)
 
 def check_color(color):
-    return color_sensor.get_color() == color
+    return color == None or color_sensor.get_color() == color
 
-def play_countdown(sec, color):
+def play_countdown(sec, color = None):
     timer.reset()
+    if sec == 0:
+        return check_color(color)
+
     while timer.now() < max(0, sec-3):
         if not check_color(color):
             return False
@@ -44,10 +48,13 @@ def play_countdown(sec, color):
 def Fahrt(color, countdown, debug, *args, **kwargs):
     def fahrt_decorator(original_fahrt):
         if debug:
-            original_fahrt()
+            original_fahrt(*args, **kwargs)
             exit()
-        def fahrt_wrapper():
-            if not play_countdown(countdown, color):
+        def fahrt_wrapper(override_countdown = None):
+            use_countdown = countdown
+            if override_countdown != None:
+                use_countdown = override_countdown
+            if not play_countdown(use_countdown, color):
                 return
             BeforeFahrt()
             original_fahrt(*args, **kwargs)
@@ -98,7 +105,7 @@ def Fahrt1():
 ###########
 # Fahrt 2 #
 ###########
-@Fahrt(color="yellow", countdown=5, debug=False, orange_scene=True)
+@Fahrt(color="yellow", countdown=5, debug=True, orange_scene=True)
 @Fahrt(color="violet", countdown=5, debug=False, orange_scene=False)
 def Fahrt2(orange_scene):
     #Ausrichtung 1 (Am Anfang von der Fahrt)
@@ -150,13 +157,14 @@ def Fahrt2(orange_scene):
     # drive.move(-15, speed=100)
 
     # Echtes 3d Kino
-    # yaw(-22)
-    # drive.move(24)
-    # yaw(10)
-    # drive.move(-30)
+    yaw(-22)
+    drive.move(23)
+    yaw(10)
+    drive.move(-30)
 
 
-    # wait_for_seconds(5) #neu Ausrichten für 2. Teil
+    play_countdown(8)
+    gyro.reset_yaw_angle()
 
     # Drives to Popcorn and drops spectator
     drive.move(30, steering = -8, speed=70)
@@ -232,8 +240,8 @@ def Fahrt2(orange_scene):
     yaw(-50)
     drive.move(2)
     yaw(-45)
-    drive.move(-15)
-    yaw(-90)
+    drive.move(-5)
+    yaw(-60)
 
     # Drops last NPC and moves back to base
     drive.move(-35)
@@ -358,15 +366,20 @@ def start_fahrt(color):
         fahrten[color]()
         play_fahrt_finished()
 
-
-active_color = None
+hub.right_button.wait_until_pressed()
+fahrt_active = True
+active_color = color_sensor.get_color()
+if active_color != None:
+    fahrten[active_color](0)
 while True:
     found_color = color_sensor.get_color()
     if found_color != active_color:
+        fahrt_active = False
         timer.reset()
         active_color = found_color
         continue
-    if timer.now() > 1:
+    if not fahrt_active and timer.now() > 1:
+        fahrt_active = True
         start_fahrt(found_color)
     else:
         wait_for_seconds(0.1)
