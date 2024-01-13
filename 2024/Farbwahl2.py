@@ -2,6 +2,7 @@ from spike import PrimeHub, LightMatrix, Button, StatusLight, ForceSensor, Motio
 from spike.control import wait_for_seconds, wait_until, Timer
 from spike.operator import *
 from math import *
+from sys import exit
 
 hub = PrimeHub()
 hub.speaker.set_volume(100)
@@ -14,10 +15,13 @@ gyro = hub.motion_sensor
 color_sensor = ColorSensor ("C")
 timer = Timer()
 
+# Bevorzugt Roboter BLAU
 
 fahrten = {}
 def BeforeFahrt():
+    gyro.reset_yaw_angle()
     drive.set_default_speed(75)
+    drive.set_stop_action("coast")
     action_back.set_default_speed(75)
     action_front.set_default_speed(75)
 
@@ -48,6 +52,7 @@ def play_countdown(sec, color = None):
 def Fahrt(color, countdown, debug, *args, **kwargs):
     def fahrt_decorator(original_fahrt):
         if debug:
+            BeforeFahrt()
             original_fahrt(*args, **kwargs)
             exit()
         def fahrt_wrapper(override_countdown = None):
@@ -72,7 +77,6 @@ def Fahrt1():
     # x = 9.5 Rechter Reifen Mitte
     # y = Bande
     # t = ~9-10sec
-    gyro = hub.motion_sensor
     gyro.reset_yaw_angle()
 
     def yaw(target_yaw: int = 0):
@@ -87,11 +91,11 @@ def Fahrt1():
         yaw(gyro.get_yaw_angle() + yaw_step)
     action_front = Motor('D')
 
-    drive.move(45, speed=65, steering=-6)
+    drive.move(45, speed=70, steering=-6)
     drive.move(-14, speed=30)
     drive.move(10, steering=100)
-    action_front.run_for_rotations(-6, speed=100)
-    drive.move(-10, steering=100)
+    action_front.run_for_seconds(0.5, speed=100)
+    drive.move(-10, steering=100, speed=100)
     drive.move(-28.5, speed=100)
     yaw(130)
 
@@ -105,7 +109,7 @@ def Fahrt1():
 ###########
 # Fahrt 2 #
 ###########
-@Fahrt(color="yellow", countdown=5, debug=True, orange_scene=True)
+@Fahrt(color="yellow", countdown=5, debug=False, orange_scene=True)
 @Fahrt(color="violet", countdown=5, debug=False, orange_scene=False)
 def Fahrt2(orange_scene):
     #Ausrichtung 1 (Am Anfang von der Fahrt)
@@ -130,10 +134,10 @@ def Fahrt2(orange_scene):
     #Mitte des rechten Rades: x = 14, y = 10.5
     #NPC-Yeeter 3000 mit Desinfektionsmittel einschmieren
 
-    def yaw(target_yaw: int = 0):
+    def yaw(target_yaw: int = 0, speed=15):
         direction = min(1, max(-1, (gyro.get_yaw_angle() - target_yaw + 180) % 360 - 180))# Wählt für alle Gradzahlen unter dem target_yaw -1, für alle Zahlen darüber +1 aus
         steering = 100*direction
-        drive.start(steering, speed=15)
+        drive.start(steering, speed=speed)
         wait_until(gyro.get_yaw_angle, equal_to, target_yaw)
         drive.stop()
 
@@ -167,12 +171,12 @@ def Fahrt2(orange_scene):
     gyro.reset_yaw_angle()
 
     # Drives to Popcorn and drops spectator
-    drive.move(30, steering = -8, speed=70)
+    drive.move(30, steering = -11, speed=70)
     yaw()
     drop_figure()
 
     # Drives to Scene Switch and activates it
-    drive.move(34, steering=8)
+    drive.move(34, steering=11)
     yaw(-45)
     drive.move(7, speed=40)
     drive.move(-5)
@@ -202,14 +206,14 @@ def Fahrt2(orange_scene):
     action_back.stop()
     drive.move(20)
     yaw(88)
-    drive.move(-2)
+    #drive.move(-2)
 
     # Activates Intensive Adventure
     action_back.run_for_rotations(8)
     action_back.start(speed=-100)
 
     # Moves towards Light Show and pushes it up, but still in yellow zone
-    drive.move(-2)
+    drive.move(-4)
     yaw()
     drive.move(-25, speed=50)
     action_back.stop()
@@ -236,15 +240,16 @@ def Fahrt2(orange_scene):
     # Solves AR
     drive.move(-18)
     yaw(-90)
-    drive.move(-8.5)
+    drive.move(-8)
     yaw(-50)
     drive.move(2)
     yaw(-45)
+    drive.move(-10, steering=-15)
     drive.move(-5)
-    yaw(-60)
+    yaw(-90)
 
     # Drops last NPC and moves back to base
-    drive.move(-35)
+    drive.move(-33)
     yaw()
     drive.move(9)
     yaw(47)
@@ -256,7 +261,7 @@ def Fahrt2(orange_scene):
 ###########
 # Fahrt 3 #
 ###########
-@Fahrt(color="green", countdown=5, debug=False)
+@Fahrt(color="green", countdown=3, debug=False)
 def Fahrt3():
     #Ausrichtung:
     # linke Ecke mit Aufsatz
@@ -325,7 +330,7 @@ def Fahrt4():
     drive.move(-18, speed=90)
     yaw(-43)
     drive.move(-30, steering=2, speed=80)
-    action_front.run_for_rotations(-3)
+    action_front.run_for_rotations(-2.75)
     drive.start()
     wait_for_seconds(0.1)
     action_front.run_for_rotations(1)
@@ -339,10 +344,12 @@ def Fahrt4():
     action_back.run_for_rotations(1)
     action_front.run_for_rotations(-2)
     drive.move(15)
+    action_front.start(75)
     relative_yaw(-30)
+    action_front.stop()
     drive.move(-13)
     drive.move(20, steering=50)
-    drive.move(-30, steering=-30)
+    drive.move(-30, steering=-35)
     yaw(-90)
     drive.move(-35)
     yaw(-45)
@@ -367,6 +374,7 @@ def start_fahrt(color):
         play_fahrt_finished()
 
 hub.right_button.wait_until_pressed()
+#wait_for_seconds(1)
 fahrt_active = True
 active_color = color_sensor.get_color()
 if active_color != None:
