@@ -176,8 +176,10 @@ def Fahrt2(orange_scene):
     yield True
 
     play_countdown(8)
-    gyro.reset_yaw_angle()
+    yield True
 
+    gyro.reset_yaw_angle()
+    
     # Drives to Popcorn and drops spectator
     drive.move(30, steering = -11, speed=70)
     yaw()
@@ -302,23 +304,30 @@ def Fahrt3():
 
     # Camera
     drive.move(-35, speed=100)
+    yield True
     drive.move(33, steering=50)
     yield True
 
     # Printer & Chicken
-    yaw(-135)
+    yaw(-134) # -135 before
+    yield True
     drive.move(45, speed=60)
+    yield True
     action_front.run_for_rotations(4, speed=100)
     drive.move(-2)
     yaw(120)
     yield True
 
     # Spectator & Returning to Home Zone
-    drive.move(31)
-    yaw(-17)
+    drive.move(29) # 31 before
+    yield True
+    yaw(-10) # -17 before
+    yield True
     drive.move(-30)
+    yield True
     drive.move(10)
     action_back.run_for_rotations(0.5)
+    yield True
     drive.move(75, speed=100)
     yield False
 
@@ -361,8 +370,10 @@ def Fahrt4():
     yield True
 
     yaw(-25)
-    action_front.run_for_rotations(2.3)
+    # action_front.run_for_rotations(2.3)
+    action_front.start(speed=100)
     drive.move(-33, speed=100)
+    action_front.stop()
     yaw(48)
     yield True
     drive.move(-25)
@@ -376,12 +387,13 @@ def Fahrt4():
     yield True
     drive.move(-13)
     drive.move(20, steering=50)
-    drive.move(-30, steering=-35)
+    drive.move(-30, steering=-30)
     yaw(-90)
     yield True
     drive.move(-35)
     yaw(-45)
-    drive.move(-16, steering=-5)
+    drive.move(-12, steering=-5)
+    drive.move(0.5)
     yield False
 
 
