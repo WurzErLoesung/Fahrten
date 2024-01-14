@@ -60,6 +60,7 @@ def Fahrt(color, countdown, debug, *args, **kwargs):
             if override_countdown != None:
                 use_countdown = override_countdown
             if not play_countdown(use_countdown, color):
+                yield False
                 return
             BeforeFahrt()
             for x in original_fahrt(*args, **kwargs):
@@ -352,7 +353,7 @@ def Fahrt4():
     drive.move(-18, speed=90)
     yaw(-43)
     drive.move(-30, steering=2, speed=80)
-    action_front.run_for_rotations(-2.75)
+    action_front.run_for_rotations(-3)
     drive.start()
     wait_for_seconds(0.1)
     action_front.run_for_rotations(1)
@@ -380,7 +381,7 @@ def Fahrt4():
     yield True
     drive.move(-35)
     yaw(-45)
-    drive.move(-13)
+    drive.move(-16, steering=-5)
     yield False
 
 
@@ -395,15 +396,14 @@ def play_fahrt_found():
     wait_for_seconds(0.1)
     hub.speaker.beep(90, 0.1)
 
-def start_fahrt(color):
-    print(fahrten)
+def start_fahrt(color, countdown = None):
     if color in fahrten:
         play_fahrt_found()
-        fahrt = fahrten[color]()
+        fahrt = fahrten[color](countdown)
         loop = True
         while loop:
             loop = next(fahrt)
-            if hub.left_button.is_pressed() or hub.right_button.is_pressed(): 
+            if color_sensor.get_color() != active_color: 
                 break
         play_fahrt_finished()
 
@@ -412,8 +412,7 @@ hub.right_button.wait_until_pressed()
 fahrt_active = True
 active_color = color_sensor.get_color()
 if active_color != None:
-    start_fahrt(active_color)
-    print("T1")
+    start_fahrt(active_color, 0)
 while True:
     found_color = color_sensor.get_color()
     if found_color != active_color:
