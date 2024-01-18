@@ -99,26 +99,27 @@ def Fahrt1():
     drive.move(10, steering=100)
     action_front.run_for_seconds(0.5, speed=100)
     yield True
-    drive.move(-10, steering=100, speed=100)
-    drive.move(-28.5, speed=100)
+    yaw(35)
+    # drive.move(-10, steering=100, speed=60)
+    drive.move(-31, speed=60) # -28.5 davor
     yaw(130)
     yield True
 
     drive.move(1,"seconds", 0, -48)
-    drive.move(1, "cm", 0, 15)
+    # drive.move(1, "cm", 0, 15)
     yield True
-    relative_yaw(11)
-    wait_for_seconds(0.3)
+    relative_yaw(5)
+    wait_for_seconds(0.1)
     yield True
-    relative_yaw(15)
+    relative_yaw(21)
     drive.move(2,"seconds", 20, 100)
     yield False
 
 ###########
 # Fahrt 2 #
 ###########
-@Fahrt(color="yellow", countdown=5, debug=False, orange_scene=True)
-@Fahrt(color="violet", countdown=5, debug=False, orange_scene=False)
+@Fahrt(color="yellow", countdown=3, debug=False, orange_scene=True)
+@Fahrt(color="violet", countdown=3, debug=False, orange_scene=False)
 def Fahrt2(orange_scene):
     #Ausrichtung 1 (Am Anfang von der Fahrt)
     #Rote Base
@@ -210,8 +211,8 @@ def Fahrt2(orange_scene):
     drive.move(13, steering=-40)
     yaw(89)
     drop_figure()
-    action_back.start(speed=-100)
     yield True
+    action_back.start(speed=-100)
 
     # Moves towards Intensive Adventure
     yaw(95)
@@ -225,8 +226,8 @@ def Fahrt2(orange_scene):
 
     # Activates Intensive Adventure
     action_back.run_for_rotations(8)
-    action_back.start(speed=-100)
     yield True
+    action_back.start(speed=-100)
 
     # Moves towards Light Show and pushes it up, but still in yellow zone
     drive.move(-4)
@@ -234,8 +235,8 @@ def Fahrt2(orange_scene):
     drive.move(-25, speed=50)
     action_back.stop()
     action_back.run_for_rotations(10)
-    action_back.start(speed=-100)
     yield True
+    action_back.start(speed=-100)
 
     # Moves towards museum and drops spectator
     drive.move(12, speed=40)
@@ -260,23 +261,30 @@ def Fahrt2(orange_scene):
     # Solves AR
     drive.move(-18)
     yaw(-90)
+    yield True
     drive.move(-8)
     yaw(-50)
+    yield True
     drive.move(2)
     yaw(-45)
+    yield True
     drive.move(-10, steering=-15)
-    drive.move(-5)
+    drive.move(-7)
     yaw(-90)
     yield True
 
     # Drops last NPC and moves back to base
-    drive.move(-33)
+    drive.move(-30) # -35 before
     yaw()
+    yield True
     drive.move(9)
     yaw(47)
+    yield True
     drive.move(2)
     drop_figure()
+    yield True
     yaw(-15)
+    yield True
     drive.move(-80, speed=100)
     yield False
 
@@ -305,13 +313,13 @@ def Fahrt3():
     # Camera
     drive.move(-35, speed=100)
     yield True
-    drive.move(33, steering=50)
+    drive.move(37, steering=50) # 35 before
     yield True
 
     # Printer & Chicken
-    yaw(-134) # -135 before
+    yaw(-134) # -134 before
     yield True
-    drive.move(45, speed=60)
+    drive.move(46, speed=60)
     yield True
     action_front.run_for_rotations(4, speed=100)
     drive.move(-2)
@@ -417,6 +425,9 @@ def start_fahrt(color, countdown = None):
             loop = next(fahrt)
             if color_sensor.get_color() != active_color: 
                 break
+        drive.stop()
+        action_back.stop()
+        action_front.stop()
         play_fahrt_finished()
 
 hub.right_button.wait_until_pressed()
