@@ -53,7 +53,10 @@ def Fahrt(color, countdown, debug, *args, **kwargs):
     def fahrt_decorator(original_fahrt):
         if debug:
             BeforeFahrt()
-            original_fahrt(*args, **kwargs)
+            fahrt = original_fahrt(*args, **kwargs)
+            loop = True
+            while loop:
+                loop = next(fahrt)
             exit()
         def fahrt_wrapper(override_countdown = None):
             use_countdown = countdown
@@ -105,7 +108,7 @@ def Fahrt1():
     yaw(130)
     yield True
 
-    drive.move(1,"seconds", 0, -48)
+    drive.move(1.2,"seconds", 0, -35)
     # drive.move(1, "cm", 0, 15)
     yield True
     relative_yaw(5)
@@ -313,25 +316,27 @@ def Fahrt3():
     # Camera
     drive.move(-35, speed=100)
     yield True
-    drive.move(37, steering=50) # 35 before
+    drive.move(29, steering=50) # 35 before
     yield True
 
     # Printer & Chicken
     yaw(-134) # -134 before
     yield True
     drive.move(46, speed=60)
+    drive.start(speed=2)
     yield True
-    action_front.run_for_rotations(4, speed=100)
+    action_front.run_for_rotations(-8, speed=100)
+    drive.stop()
     drive.move(-2)
     yaw(120)
     yield True
 
     # Spectator & Returning to Home Zone
-    drive.move(29) # 31 before
+    drive.move(31) # 31 before
     yield True
-    yaw(-10) # -17 before
+    yaw(-19) # -17 before
     yield True
-    drive.move(-30)
+    drive.move(-27)
     yield True
     drive.move(10)
     action_back.run_for_rotations(0.5)
@@ -423,7 +428,7 @@ def start_fahrt(color, countdown = None):
         loop = True
         while loop:
             loop = next(fahrt)
-            if color_sensor.get_color() != active_color: 
+            if color_sensor.get_color() != active_color:
                 break
         drive.stop()
         action_back.stop()
