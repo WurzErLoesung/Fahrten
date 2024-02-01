@@ -122,7 +122,7 @@ def Fahrt1():
 # Fahrt 2 #
 ###########
 @Fahrt(color="yellow", countdown=3, debug=False, orange_scene=True)
-@Fahrt(color="violet", countdown=3, debug=False, orange_scene=False)
+@Fahrt(color="red", countdown=3, debug=False, orange_scene=False)
 def Fahrt2(orange_scene):
     #Ausrichtung 1 (Am Anfang von der Fahrt)
     #Rote Base
@@ -183,7 +183,7 @@ def Fahrt2(orange_scene):
     yield True
 
     gyro.reset_yaw_angle()
-    
+
     # Drives to Popcorn and drops spectator
     drive.move(30, steering = -11, speed=70)
     yaw()
@@ -193,8 +193,8 @@ def Fahrt2(orange_scene):
     # Drives to Scene Switch and activates it
     drive.move(34, steering=11)
     yaw(-45)
-    drive.move(7, speed=40)
-    drive.move(-5)
+    drive.move(9, speed=40)
+    drive.move(-6)
     yaw(-45)
     yield True
 
@@ -235,7 +235,7 @@ def Fahrt2(orange_scene):
     # Moves towards Light Show and pushes it up, but still in yellow zone
     drive.move(-4)
     yaw()
-    drive.move(-25, speed=50)
+    drive.move(-24, speed=50)
     action_back.stop()
     action_back.run_for_rotations(10)
     yield True
@@ -249,8 +249,8 @@ def Fahrt2(orange_scene):
 
     # Moves back to Light Show and pushes it up into blue zone
     yaw(5)
-    drive.move(-15,speed=40)
     action_back.stop()
+    drive.move(-15,speed=40)
     action_back.run_for_rotations(10)
     yield True
 
@@ -281,7 +281,7 @@ def Fahrt2(orange_scene):
     yaw()
     yield True
     drive.move(9)
-    yaw(47)
+    yaw(45)
     yield True
     drive.move(2)
     drop_figure()
@@ -373,23 +373,23 @@ def Fahrt4():
 
 
     drive.move(-18, speed=90)
-    yaw(-43)
-    drive.move(-30, steering=2, speed=80)
-    action_front.run_for_rotations(-3)
-    drive.start()
-    wait_for_seconds(0.1)
-    action_front.run_for_rotations(1)
-    drive.stop()
+    yaw(-42) # 43 before
+    drive.move(-27, steering=2, speed=80)
+    action_front.run_for_rotations(-3.1)
+    drive.move(2)
+    action_front.start()
+    drive.move(25)
+    action_front.stop()
     yield True
 
-    yaw(-25)
+    yaw(-26)
     # action_front.run_for_rotations(2.3)
     action_front.start(speed=100)
-    drive.move(-33, speed=100)
+    drive.move(-37, speed=100)
     action_front.stop()
     yaw(48)
     yield True
-    drive.move(-25)
+    drive.move(-28)
     action_back.run_for_rotations(1)
     action_front.run_for_rotations(-2)
     drive.move(15)
@@ -405,7 +405,7 @@ def Fahrt4():
     yield True
     drive.move(-35)
     yaw(-45)
-    drive.move(-12, steering=-5)
+    drive.move(-16, steering=-5)
     drive.move(0.5)
     yield False
 
