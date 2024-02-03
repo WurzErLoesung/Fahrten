@@ -179,7 +179,7 @@ def Fahrt2(orange_scene):
     drive.move(-30)
     yield True
 
-    play_countdown(8)
+    play_countdown(4)
     yield True
 
     gyro.reset_yaw_angle()
@@ -222,7 +222,7 @@ def Fahrt2(orange_scene):
     drive.move(50, steering=2)
     yaw(38)
     action_back.stop()
-    drive.move(20)
+    drive.move(19)
     yaw(88)
     #drive.move(-2)
     yield True
@@ -233,7 +233,7 @@ def Fahrt2(orange_scene):
     action_back.start(speed=-100)
 
     # Moves towards Light Show and pushes it up, but still in yellow zone
-    drive.move(-4)
+    drive.move(-3, speed=50)
     yaw()
     drive.move(-24, speed=50)
     action_back.stop()
@@ -376,22 +376,23 @@ def Fahrt4():
     yaw(-42) # 43 before
     drive.move(-27, steering=2, speed=80)
     action_front.run_for_rotations(-3.1)
-    drive.move(2)
-    action_front.start()
-    drive.move(25)
+    drive.move(5, speed=50)
+    action_front.start(speed=60)
+    wait_for_seconds(0.1)
+    drive.move(22)
     action_front.stop()
     yield True
 
-    yaw(-26)
+    yaw(-24)
     # action_front.run_for_rotations(2.3)
-    action_front.start(speed=100)
-    drive.move(-37, speed=100)
+    action_front.start(speed=70)
+    drive.move(-37, speed=80)
     action_front.stop()
     yaw(48)
     yield True
     drive.move(-28)
     action_back.run_for_rotations(1)
-    action_front.run_for_rotations(-2)
+    action_front.run_for_rotations(-2.25)
     drive.move(15)
     yield True
     action_front.start(75)
@@ -400,7 +401,8 @@ def Fahrt4():
     yield True
     drive.move(-13)
     drive.move(20, steering=50)
-    drive.move(-30, steering=-30)
+    drive.move(-30, steering=-20)
+    yield True
     yaw(-90)
     yield True
     drive.move(-35)
@@ -435,13 +437,24 @@ def start_fahrt(color, countdown = None):
         action_front.stop()
         play_fahrt_finished()
 
-hub.right_button.wait_until_pressed()
+hub.status_light.on('red')
+
 #wait_for_seconds(1)
 fahrt_active = True
-active_color = color_sensor.get_color()
-if active_color != None:
-    start_fahrt(active_color, 0)
+wait = True
 while True:
+    if hub.right_button.was_pressed():
+        wait = not wait
+        if not wait:
+            hub.status_light.on('green')
+            active_color = color_sensor.get_color()
+            if active_color != None:
+                start_fahrt(active_color, 0)
+        else:
+            hub.status_light.on('red')
+    if wait:
+        wait_for_seconds(0.1)
+        continue
     found_color = color_sensor.get_color()
     if found_color != active_color:
         fahrt_active = False
