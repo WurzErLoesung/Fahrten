@@ -294,11 +294,8 @@ def Fahrt2(orange_scene):
 ###########
 # Fahrt 3 #
 ###########
-@Fahrt(color="green", countdown=3, debug=False)
+@Fahrt(color="green", countdown=5, debug=False)
 def Fahrt3():
-    #Ausrichtung:
-    # linke Ecke mit Aufsatz
-    # Zeit= ~18 sec.
 
     gyro.reset_yaw_angle()
 
@@ -313,35 +310,43 @@ def Fahrt3():
         yaw((gyro.get_yaw_angle() + yaw_step + 180) % 360 - 180)
     action_front = Motor('D')
 
-    # Camera
-    drive.move(-35, speed=100)
     yield True
-    drive.move(29, steering=50) # 35 before
-    yield True
-
-    # Printer & Chicken
-    yaw(-134) # -134 before
-    yield True
-    drive.move(46, speed=60)
-    drive.start(speed=2)
+    drive.move(42, speed=60)
+    drive.start(speed=5, steering=-50)
     yield True
     action_front.run_for_rotations(-8, speed=100)
     drive.stop()
-    drive.move(-2)
-    yaw(120)
     yield True
-
-    # Spectator & Returning to Home Zone
-    drive.move(31) # 31 before
+    drive.move(-20, speed=30)
     yield True
-    yaw(-19) # -17 before
+    yaw(115)
     yield True
-    drive.move(-27)
+    drive.move(-35)
     yield True
+    yaw(135)
+    yield True
+    drive.move(-25)
     drive.move(10)
+    yield True
+    yaw(130)
     action_back.run_for_rotations(0.5)
     yield True
-    drive.move(75, speed=100)
+    yaw(135)
+    yield True
+    drive.move(75, speed=100, steering=-5)
+    yield True
+
+    #Ausrichtung:
+    # linke Ecke mit Aufsatz
+    # Zeit= ~18 sec.
+
+    play_countdown(2)
+
+    gyro.reset_yaw_angle()
+    # Camera
+    drive.move(-35, speed=100)
+    yield True
+    drive.move(35, speed=100, steering=50)    
     yield False
 
 ###########
@@ -369,48 +374,32 @@ def Fahrt4():
     gyro.reset_yaw_angle()
 
     action_front.set_default_speed(100)
+    action_front.start()
     drive.set_stop_action("brake")
 
 
-    drive.move(-18, speed=90)
-    yaw(-42) # 43 before
-    drive.move(-27, steering=2, speed=80)
-    action_front.run_for_rotations(-3.1)
-    drive.move(5, speed=50)
-    action_front.start(speed=60)
-    wait_for_seconds(0.1)
-    drive.move(22)
-    action_front.stop()
+    drive.move(-66, speed=60)
     yield True
-
-    yaw(-24)
-    # action_front.run_for_rotations(2.3)
-    action_front.start(speed=70)
-    drive.move(-37, speed=80)
-    action_front.stop()
-    yaw(48)
+    yaw(41)
     yield True
-    drive.move(-28)
+    drive.move(-8, speed=60)
     action_back.run_for_rotations(1)
-    action_front.run_for_rotations(-2.25)
-    drive.move(15)
+    drive.move(25, speed=60)
     yield True
-    action_front.start(75)
-    relative_yaw(-30)
-    action_front.stop()
+    yaw()
     yield True
-    drive.move(-13)
-    drive.move(20, steering=50)
-    drive.move(-30, steering=-20)
+    drive.move(-35, speed=100)
+    drive.move(22, steering=50)
+    drive.move(-25, steering=-20)
     yield True
     yaw(-90)
+    drive.move(-30)
+    yaw(-65)
     yield True
-    drive.move(-35)
-    yaw(-45)
-    drive.move(-16, steering=-5)
+    drive.move(-30)
     drive.move(0.5)
+    action_front.start()
     yield False
-
 
 def play_fahrt_finished():
     hub.speaker.beep(90, 0.1)
