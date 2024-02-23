@@ -58,6 +58,8 @@ def Fahrt(color, countdown, debug, *args, **kwargs):
             while loop:
                 loop = next(fahrt)
             exit()
+        # Diva Ansprüche
+        # Idiotensicher
         def fahrt_wrapper(override_countdown = None):
             use_countdown = countdown
             if override_countdown != None:
@@ -121,8 +123,8 @@ def Fahrt1():
 ###########
 # Fahrt 2 #
 ###########
-@Fahrt(color="yellow", countdown=3, debug=False, orange_scene=True)
-@Fahrt(color="red", countdown=3, debug=False, orange_scene=False)
+@Fahrt(color="yellow", countdown=4, debug=False, orange_scene=True)
+@Fahrt(color="red", countdown=4, debug=False, orange_scene=False)
 def Fahrt2(orange_scene):
     #Ausrichtung 1 (Am Anfang von der Fahrt)
     #Rote Base
@@ -173,14 +175,14 @@ def Fahrt2(orange_scene):
     # drive.move(-15, speed=100)
 
     # Echtes 3d Kino
-    yaw(-22)
-    drive.move(23)
-    yaw(10)
-    drive.move(-30)
-    yield True
+    #yaw(-22)
+    #drive.move(23)
+    #yaw(10)
+    #drive.move(-30)
+    #yield True
 
-    play_countdown(4)
-    yield True
+    #play_countdown(4)
+    #yield True
 
     gyro.reset_yaw_angle()
 
@@ -311,30 +313,36 @@ def Fahrt3():
     action_front = Motor('D')
 
     yield True
+    # Drive to chicken and printer
     drive.move(42, speed=60)
     drive.start(speed=5, steering=-50)
     yield True
+    # Rotate chicken
     action_front.run_for_rotations(-8, speed=100)
     drive.stop()
     yield True
+    # Drive back, solving printer
     drive.move(-20, speed=30)
     yield True
+    # Drive to boat
     yaw(115)
     yield True
     drive.move(-35)
     yield True
     yaw(135)
     yield True
+    # Push boat
     drive.move(-25)
     drive.move(10)
     yield True
+    # Drop spectator
     yaw(130)
     action_back.run_for_rotations(0.5)
     yield True
+    # Drive back to base
     yaw(135)
     yield True
     drive.move(75, speed=100, steering=-5)
-    yield True
 
     #Ausrichtung:
     # linke Ecke mit Aufsatz
@@ -345,8 +353,7 @@ def Fahrt3():
     gyro.reset_yaw_angle()
     # Camera
     drive.move(-35, speed=100)
-    yield True
-    drive.move(35, speed=100, steering=50)    
+    drive.move(35, speed=100, steering=50)
     yield False
 
 ###########
@@ -374,7 +381,7 @@ def Fahrt4():
     gyro.reset_yaw_angle()
 
     action_front.set_default_speed(100)
-    action_front.start()
+    action_front.start(speed=20)
     drive.set_stop_action("brake")
 
 
@@ -382,7 +389,7 @@ def Fahrt4():
     yield True
     yaw(41)
     yield True
-    drive.move(-8, speed=60)
+    drive.move(-8, speed=100)
     action_back.run_for_rotations(1)
     drive.move(25, speed=60)
     yield True
@@ -394,11 +401,10 @@ def Fahrt4():
     yield True
     yaw(-90)
     drive.move(-30)
-    yaw(-65)
+    yaw(-70)
     yield True
-    drive.move(-30)
+    drive.move(-20, speed=100)
     drive.move(0.5)
-    action_front.start()
     yield False
 
 def play_fahrt_finished():
