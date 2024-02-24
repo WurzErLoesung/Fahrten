@@ -193,10 +193,12 @@ def Fahrt2(orange_scene):
     yield True
 
     # Drives to Scene Switch and activates it
-    drive.move(34, steering=11)
+    drive.move(34, steering=9) # 11 before
     yaw(-45)
+    yield True
     drive.move(9, speed=40)
     drive.move(-6)
+    yield True
     yaw(-45)
     yield True
 
@@ -213,6 +215,7 @@ def Fahrt2(orange_scene):
     # Moves towards skateboard and drops spectator
     drive.move(-3)
     yaw(35)
+    yield True
     drive.move(13, steering=-40)
     yaw(89)
     drop_figure()
@@ -221,10 +224,13 @@ def Fahrt2(orange_scene):
 
     # Moves towards Intensive Adventure
     yaw(95)
-    drive.move(50, steering=2)
+    yield True
+    drive.move(52, steering=2) # 50 before
     yaw(38)
+    yield True
     action_back.stop()
     drive.move(19)
+    yield True
     yaw(88)
     #drive.move(-2)
     yield True
@@ -237,6 +243,7 @@ def Fahrt2(orange_scene):
     # Moves towards Light Show and pushes it up, but still in yellow zone
     drive.move(-3, speed=50)
     yaw()
+    yield True
     drive.move(-24, speed=50)
     action_back.stop()
     action_back.run_for_rotations(10)
@@ -252,6 +259,7 @@ def Fahrt2(orange_scene):
     # Moves back to Light Show and pushes it up into blue zone
     yaw(5)
     action_back.stop()
+    yield True
     drive.move(-15,speed=40)
     action_back.run_for_rotations(10)
     yield True
@@ -259,6 +267,7 @@ def Fahrt2(orange_scene):
     # Moves away, drops spectator next to Light Show and moves towards AR
     drive.move(10)
     yaw(-160)
+    yield True
     drive.move(12)
     drop_figure()
     yield True
@@ -384,26 +393,33 @@ def Fahrt4():
     action_front.start(speed=20)
     drive.set_stop_action("brake")
 
-
+    # Move to stage and activate speakers
     drive.move(-66, speed=60)
     yield True
     yaw(41)
     yield True
     drive.move(-8, speed=100)
     action_back.run_for_rotations(1)
+    yield True
+
+    # Move away, activate Lightshow and push Stage
     drive.move(25, speed=60)
     yield True
-    yaw()
+    yaw(7) # 0 before
     yield True
-    drive.move(-35, speed=100)
+    drive.move(-35, speed=80)
+    yield True
     drive.move(22, steering=50)
+    yaw(-45) # not here before
+    yield True
     drive.move(-25, steering=-20)
     yield True
     yaw(-90)
     drive.move(-30)
+    yield True
     yaw(-70)
     yield True
-    drive.move(-20, speed=100)
+    drive.move(-25, speed=100)
     drive.move(0.5)
     yield False
 
