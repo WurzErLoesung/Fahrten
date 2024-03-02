@@ -123,8 +123,8 @@ def Fahrt1():
 ###########
 # Fahrt 2 #
 ###########
-@Fahrt(color="yellow", countdown=4, debug=False, orange_scene=True)
-@Fahrt(color="red", countdown=4, debug=False, orange_scene=False)
+@Fahrt(color="yellow", countdown=5, debug=False, orange_scene=True)
+@Fahrt(color="red", countdown=5, debug=False, orange_scene=False)
 def Fahrt2(orange_scene):
     #Ausrichtung 1 (Am Anfang von der Fahrt)
     #Rote Base
@@ -225,7 +225,7 @@ def Fahrt2(orange_scene):
     # Moves towards Intensive Adventure
     yaw(95)
     yield True
-    drive.move(52, steering=2) # 50 before
+    drive.move(49.5, steering=2) # 50 before
     yaw(38)
     yield True
     action_back.stop()
@@ -405,21 +405,21 @@ def Fahrt4():
     # Move away, activate Lightshow and push Stage
     drive.move(25, speed=60)
     yield True
-    yaw(7) # 0 before
+    yaw(10) # 0 before
     yield True
     drive.move(-35, speed=80)
     yield True
     drive.move(22, steering=50)
     yaw(-45) # not here before
     yield True
-    drive.move(-25, steering=-20)
+    drive.move(-30, steering=-15)
     yield True
     yaw(-90)
     drive.move(-30)
     yield True
     yaw(-70)
     yield True
-    drive.move(-25, speed=100)
+    drive.move(-18, speed=100)
     drive.move(0.5)
     yield False
 
