@@ -185,6 +185,9 @@ def Fahrt2(orange_scene):
     #yield True
 
     gyro.reset_yaw_angle()
+    
+    # Drive against wall for consistent start
+    drive.move(0.5, "seconds", speed=-20)
 
     # Drives to Popcorn and drops spectator
     drive.move(30, steering = -11, speed=70)
@@ -193,7 +196,7 @@ def Fahrt2(orange_scene):
     yield True
 
     # Drives to Scene Switch and activates it
-    drive.move(34, steering=9) # 11 before
+    drive.move(34, steering=11)
     yaw(-45)
     yield True
     drive.move(9, speed=40)
@@ -225,12 +228,13 @@ def Fahrt2(orange_scene):
     # Moves towards Intensive Adventure
     yaw(95)
     yield True
-    drive.move(49.5, steering=2) # 50 before
+    drive.move(50, steering=2)
     yaw(38)
     yield True
     action_back.stop()
     drive.move(19)
     yield True
+    drop_figure()
     yaw(88)
     #drive.move(-2)
     yield True
@@ -252,16 +256,13 @@ def Fahrt2(orange_scene):
 
     # Moves towards museum and drops spectator
     drive.move(12, speed=40)
-    yaw(20)
-    drop_figure()
     yield True
 
     # Moves back to Light Show and pushes it up into blue zone
-    yaw(5)
+    wait_for_seconds(2)
     action_back.stop()
-    yield True
     drive.move(-15,speed=40)
-    action_back.run_for_rotations(10)
+    action_back.run_for_rotations(8)
     yield True
 
     # Moves away, drops spectator next to Light Show and moves towards AR
