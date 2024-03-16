@@ -130,7 +130,7 @@ def Fahrt2(orange_scene):
     #Rote Base
     #Gelbe Wand oben
     #L eingehängt
-    #NPCs mit Rücken nach OBEN und Kopf nach SÜDEN
+    #NPCs mit Rücken nach OBEN und Kopf nach NORDEN
     #Schacht-Piston einmal ganz zurück ziehen
     #x-Achse West-Ost, y-Achse Süd-Nord
     #Räder nach Norden
@@ -141,7 +141,7 @@ def Fahrt2(orange_scene):
     #Rote Base
     #Gelbe Wand oben
     #L ausgehängt
-    #NPCs mit Rücken nach OBEN und Kopf nach SÜDEN
+    #NPCs mit Rücken nach OBEN und Kopf nach NORDEN
     #Schacht-Piston einmal ganz zurück ziehen
     #x-Achse West-Ost, y-Achse Süd-Nord
     #Räder nach Norden
@@ -200,13 +200,16 @@ def Fahrt2(orange_scene):
     yaw(-45)
     yield True
     drive.move(9, speed=40)
-    drive.move(-6)
+    # Before: drive.move(-6), no figure
+    drive.move(-3)
+    drop_figure()
+    drive.move(-3)
     yield True
     yaw(-45)
     yield True
 
     # Drops spectator and activates Scene Switch if orange scene should be activated
-    drop_figure()
+    # before: drop_figure()
     if orange_scene:
         # yaw(-45)
         drive.move(9, speed=40)
@@ -234,7 +237,7 @@ def Fahrt2(orange_scene):
     action_back.stop()
     drive.move(19)
     yield True
-    drop_figure()
+    #drop_figure() was there
     yaw(88)
     #drive.move(-2)
     yield True
@@ -279,26 +282,33 @@ def Fahrt2(orange_scene):
     drive.move(-8)
     yaw(-50)
     action_back.stop()
+    yaw(-10) # was not before
+    drop_figure() #was not here before
+    yaw(-50) # was not here before
     yield True
-    drive.move(2)
-    yaw(-45)
+    # drive.move(2) was here before
+    # yaw(-45) was here before
     yield True
-    drive.move(-10, steering=-15)
-    drive.move(-7)
+    #drive.move(-10, steering=-15) was here before
+    drive.move(-4) # 7 before, no speed
+    yaw(-40)
+    drive.move(-8)
     yaw(-90)
     yield True
 
     # Drops last NPC and moves back to base
-    drive.move(-29) # -30 before
+    drive.move(-35) # -29 before, -30 even more before
     yaw()
     yield True
-    drive.move(9)
+    drive.move(12) # 9 before
     yaw(45)
     yield True
-    drive.move(2)
+    drive.move(1) # 2 before
     drop_figure()
     yield True
-    yaw(80)
+    yaw(15) # not here before
+    drive.move(4) # not here before (change to 4?)
+    yaw(60) # 80 before
     yaw(-15)
     yield True
     drive.move(-80, speed=100)
