@@ -289,7 +289,7 @@ def Fahrt2(orange_scene):
     yield True
 
     # Drops last NPC and moves back to base
-    drive.move(-28) # -30 before
+    drive.move(-29) # -30 before
     yaw()
     yield True
     drive.move(9)
