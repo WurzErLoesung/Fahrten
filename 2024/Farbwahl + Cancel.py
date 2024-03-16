@@ -240,7 +240,7 @@ def Fahrt2(orange_scene):
     yield True
 
     # Activates Intensive Adventure
-    action_back.run_for_rotations(8.5)
+    action_back.run_for_rotations(8)
     yield True
     action_back.start(speed=-100)
 
@@ -257,7 +257,7 @@ def Fahrt2(orange_scene):
     yield True
 
     # Moves back to Light Show and pushes it up into blue zone
-    wait_for_seconds(4)
+    wait_for_seconds(3)
     action_back.stop()
     drive.move(-8,speed=40)
     action_back.run_for_rotations(8.5)
