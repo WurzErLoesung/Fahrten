@@ -240,7 +240,7 @@ def Fahrt2(orange_scene):
     yield True
 
     # Activates Intensive Adventure
-    action_back.run_for_rotations(8)
+    action_back.run_for_rotations(8.5)
     yield True
     action_back.start(speed=-100)
 
@@ -260,7 +260,7 @@ def Fahrt2(orange_scene):
     wait_for_seconds(4)
     action_back.stop()
     drive.move(-8,speed=40)
-    action_back.run_for_rotations(8)
+    action_back.run_for_rotations(8.5)
     yield True
 
     # Moves away, drops spectator next to Light Show and moves towards AR
