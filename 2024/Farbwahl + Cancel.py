@@ -253,15 +253,13 @@ def Fahrt2(orange_scene):
     action_back.run_for_rotations(10)
     yield True
     action_back.start(speed=-100)
-
-    # Moves towards museum and drops spectator
-    drive.move(12, speed=40)
+    drive.move(6, speed=40)
     yield True
 
     # Moves back to Light Show and pushes it up into blue zone
-    wait_for_seconds(2)
+    wait_for_seconds(4)
     action_back.stop()
-    drive.move(-15,speed=40)
+    drive.move(-8,speed=40)
     action_back.run_for_rotations(8)
     yield True
 
