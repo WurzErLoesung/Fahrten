@@ -185,7 +185,7 @@ def Fahrt2(orange_scene):
     #yield True
 
     gyro.reset_yaw_angle()
-    
+
     # Drive against wall for consistent start
     drive.move(0.5, "seconds", speed=-20)
 
@@ -274,11 +274,13 @@ def Fahrt2(orange_scene):
     yield True
 
     # Solves AR
+    action_back.start(speed=-100)
     drive.move(-18)
     yaw(-90)
     yield True
     drive.move(-8)
     yaw(-50)
+    action_back.stop()
     yield True
     drive.move(2)
     yaw(-45)
@@ -289,7 +291,7 @@ def Fahrt2(orange_scene):
     yield True
 
     # Drops last NPC and moves back to base
-    drive.move(-30) # -35 before
+    drive.move(-28) # -30 before
     yaw()
     yield True
     drive.move(9)
@@ -298,6 +300,7 @@ def Fahrt2(orange_scene):
     drive.move(2)
     drop_figure()
     yield True
+    yaw(80)
     yaw(-15)
     yield True
     drive.move(-80, speed=100)
