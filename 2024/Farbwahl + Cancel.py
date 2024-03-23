@@ -284,20 +284,21 @@ def Fahrt2(orange_scene):
     action_back.stop()
     yaw(-10) # was not before
     drop_figure() #was not here before
+    action_back.run_for_rotations(0.8)
     yaw(-50) # was not here before
     yield True
     # drive.move(2) was here before
     # yaw(-45) was here before
-    yield True
+    # yield True
     #drive.move(-10, steering=-15) was here before
     drive.move(-4) # 7 before, no speed
     yaw(-40)
-    drive.move(-8)
+    drive.move(-7)
     yaw(-90)
     yield True
 
     # Drops last NPC and moves back to base
-    drive.move(-35) # -29 before, -30 even more before
+    drive.move(-35) # -35 before, -29 even more before,-30 even more more before
     yaw()
     yield True
     drive.move(12) # 9 before
@@ -307,8 +308,8 @@ def Fahrt2(orange_scene):
     drop_figure()
     yield True
     yaw(15) # not here before
-    drive.move(4) # not here before (change to 4?)
-    yaw(60) # 80 before
+    drive.move(6) # not here before (change to 4?)
+    yaw(70) # 80 before
     yaw(-15)
     yield True
     drive.move(-80, speed=100)
