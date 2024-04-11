@@ -14,6 +14,9 @@ action_back = Motor('B')
 gyro = hub.motion_sensor
 color_sensor = ColorSensor ("C")
 timer = Timer()
+global global_timer
+global_timer = Timer()
+fahrt_1_started = False
 
 # Bevorzugt Roboter BLAU
 
@@ -80,6 +83,9 @@ def Fahrt(color, countdown, debug, *args, **kwargs):
 ###########
 @Fahrt(color="white", countdown=5, debug=False)
 def Fahrt1():
+    global_timer.reset()
+    global fahrt_1_started
+    fahrt_1_started = True
     #Ausrichtung:
     # x = 9.5 Rechter Reifen Mitte
     # y = Bande
@@ -320,7 +326,7 @@ def Fahrt2(orange_scene):
 ###########
 @Fahrt(color="green", countdown=5, debug=False)
 def Fahrt3():
-
+    global fahrt_1_started
     gyro.reset_yaw_angle()
 
     def yaw(target_yaw: int = 0):
@@ -334,7 +340,12 @@ def Fahrt3():
         yaw((gyro.get_yaw_angle() + yaw_step + 180) % 360 - 180)
     action_front = Motor('D')
 
+    drive.set_stop_action("hold")
+
     yield True
+    # Drive against wall for consistent start
+    #drive.move(0.5, "seconds", speed=-20)
+
     # Drive to chicken and printer
     drive.move(42, speed=60)
     drive.start(speed=5, steering=-50)
@@ -346,25 +357,33 @@ def Fahrt3():
     # Drive back, solving printer
     drive.move(-20, speed=30)
     yield True
-    # Drive to boat
-    yaw(115)
-    yield True
-    drive.move(-35)
-    yield True
-    yaw(135)
-    yield True
-    # Push boat
-    drive.move(-25)
-    drive.move(10)
-    yield True
-    # Drop spectator
-    yaw(130)
-    action_back.run_for_rotations(0.5)
-    yield True
-    # Drive back to base
-    yaw(135)
-    yield True
-    drive.move(75, speed=100, steering=-5)
+
+    remaining_time = 150 - global_timer.now()
+    print("Boat remaining Time: " + str(remaining_time))
+    print(fahrt_1_started)
+    do_boat = (not fahrt_1_started) or remaining_time < 20 or remaining_time > 40
+    if(do_boat):
+        # Drive to boat
+        yaw(115)
+        yield True
+        drive.move(-38) #38 before
+        yield True
+        yaw(135)
+        yield True
+        # Push boat
+        drive.move(-25)
+        drive.move(10)
+        yield True
+        # Drop spectator
+        yaw(130)
+        action_back.run_for_rotations(0.5)
+        yield True
+        # Drive back to base
+        yaw(115) #135 before
+        yield True
+        drive.move(80, speed=100, steering=-8)
+    else:
+        drive.move(-40, speed=70)
 
     #Ausrichtung:
     # linke Ecke mit Aufsatz
@@ -375,7 +394,7 @@ def Fahrt3():
     gyro.reset_yaw_angle()
     # Camera
     drive.move(-35, speed=100)
-    drive.move(35, speed=100, steering=50)
+    drive.move(30, speed=100, steering=35) #35, 50 before
     yield False
 
 ###########
@@ -406,6 +425,9 @@ def Fahrt4():
     action_front.start(speed=20)
     drive.set_stop_action("brake")
 
+    # Drive against wall for consistent start
+    drive.move(0.5, "seconds", speed=20)
+
     # Move to stage and activate speakers
     drive.move(-66, speed=60)
     yield True
@@ -432,8 +454,9 @@ def Fahrt4():
     yield True
     yaw(-70)
     yield True
-    drive.move(-18, speed=100)
-    drive.move(0.5)
+    drive.move(-25, speed=100)
+    drive.move(2)
+    drive.move(-0.5)
     yield False
 
 def play_fahrt_finished():
