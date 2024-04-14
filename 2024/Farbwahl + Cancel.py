@@ -304,7 +304,7 @@ def Fahrt2(orange_scene):
     yield True
 
     # Drops last NPC and moves back to base
-    drive.move(-35) # -35 before, -29 even more before,-30 even more more before
+    drive.move(-36) # -35 before, -29 even more before,-30 even more more before
     yaw()
     yield True
     drive.move(12) # 9 before
@@ -312,9 +312,10 @@ def Fahrt2(orange_scene):
     yield True
     drive.move(1) # 2 before
     drop_figure()
+    drive.move(-2)
     yield True
     yaw(15) # not here before
-    drive.move(6) # not here before (change to 4?)
+    drive.move(6.5) # not here before (change to 4?)
     yaw(70) # 80 before
     yaw(-15)
     yield True
