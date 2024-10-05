@@ -25,43 +25,50 @@ drive_base.settings(straight_speed=900, straight_acceleration=500)
 
 hub.speaker.beep()
 
-drive_base.settings(300)
+drive_base.settings(270)
 
 # zu unbekanntem Wesen
-drive_base.straight(600)
+drive_base.straight(590)
 drive_base.settings(900)
 action_back.run_angle(200, -170)
 
-#zu 1. & 2. Schrims
+#zu 1. Schrimm & Koralle
 drive_base.straight(-200)
 drive_base.turn(75)
 drive_base.straight(200)
 
-#3. Schrims
+#2. Schrims
 drive_base.turn(-30)
-drive_base.straight(200)
-drive_base.turn(50)
+drive_base.straight(180)
+drive_base.turn(35)
 drive_base.straight(70)
 
 #zu Algenprobe
-drive_base.turn(-135)
-drive_base.straight(200)
+drive_base.turn(-120)
+drive_base.straight(120)
 action_back.run_angle(200, 190)
-drive_base.straight(-130)
+drive_base.straight(-55)
 action_back.run_angle(200, -70)
 drive_base.straight(200)
 action_back.run_angle(200, -100)
 
 #zu Anglerfisch
-drive_base.straight(500)
+drive_base.turn(-10)
+drive_base.straight(435)
 
-#eingesammelte Sachen abstellen
-drive_base.turn(30)
-drive_base.straight(100)
-drive_base.turn(-20)
-drive_base.straight(350)
+# eingesammelte Sachen abstellen
+drive_base.turn(15)
+drive_base.straight(300)
+drive_base.turn(-15)
+drive_base.straight(210)
+drive_base.turn(-22)
+action_back.run_angle(300, 70)
+# drive_base.straight(-180)
+# action_back.run_angle(300, -60)
+# drive_base.straight(300)
+# drive_base.turn(-30)
 
-#zu Meeresbodenprobe
-action_back.run_angle(200, 70)
-drive_base.turn(-35)
-drive_base.straight(-300)
+# #zu Meeresbodenprobe
+# action_back.run_angle(200, 70)
+# drive_base.turn(-35)
+# drive_base.straight(-300)
