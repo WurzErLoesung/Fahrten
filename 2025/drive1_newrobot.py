@@ -4,7 +4,6 @@ from pybricks.parameters import Button, Color, Direction, Port, Side, Stop
 from pybricks.robotics import DriveBase
 from pybricks.tools import wait, StopWatch, run_task
 
-
 hub = PrimeHub()
 # Motoren initialisieren
 left_motor = Motor(Port.B, positive_direction=Direction.COUNTERCLOCKWISE)
@@ -21,15 +20,14 @@ wheel_diameter = 56
 axle_track = 113 
 drive_base = DriveBase(left_motor, right_motor, wheel_diameter, axle_track)
 drive_base.use_gyro(True) 
-drive_base.settings(straight_speed=900, straight_acceleration=500)
 
 hub.speaker.beep()
 
-drive_base.settings(270)
+drive_base.settings(250)
 
-# zu unbekanntem Wesen
+# zu der/die/dsys.exit()as Kaktus
 drive_base.straight(590)
-drive_base.settings(900)
+drive_base.settings(950)
 action_back.run_angle(200, -170)
 
 #zu 1. Schrimm & Koralle
@@ -43,7 +41,7 @@ drive_base.straight(180)
 drive_base.turn(35)
 drive_base.straight(70)
 
-#zu Algenprobe
+#zu Karotte
 drive_base.turn(-120)
 drive_base.straight(120)
 action_back.run_angle(200, 190)
@@ -53,21 +51,42 @@ drive_base.straight(200)
 action_back.run_angle(200, -100)
 
 #zu Anglerfisch
-drive_base.turn(-10)
-drive_base.straight(435)
+drive_base.turn(-11)
+drive_base.straight(440)
 
 # eingesammelte Sachen abstellen
 drive_base.turn(15)
 drive_base.straight(300)
 drive_base.turn(-15)
 drive_base.straight(210)
-drive_base.turn(-28)
-action_back.run_angle(300, 80)
+
+#zu Bodenprobe
+drive_base.turn(-25)
+action_back.run_angle(300, 88)
 drive_base.straight(-210)
 action_back.run_angle(200, -90)
 drive_base.straight(300)
-drive_base.turn(-30)
+drive_base.turn(-32)
 
+#zurück in rote Base
 drive_base.straight(500)
-drive_base.turn(20)
+drive_base.turn(23)
 drive_base.straight(300)
+hub.speaker.beep()
+
+melody = [
+    (392, 500),  # G4 for 500 ms
+    (440, 500),  # A4 for 500 ms
+    (523, 500),  # C5 for 500 ms
+    (587, 500),  # D5 for 500 ms
+    (659, 500),  # E5 for 500 ms
+    (659, 500),  # E5 for 500 ms
+    (659, 500),  # E5 for 500 ms
+    (587, 500),  # D5 for 500 ms
+]
+
+
+# Play each note in the melody
+for frequency, duration in melody:
+    hub.speaker.beep(frequency, duration)
+    wait(100)
