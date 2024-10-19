@@ -63,15 +63,15 @@ drive_base.straight(210)
 #zu Bodenprobe
 drive_base.turn(-25)
 
-action_back.run_angle(300, 90)
+action_back.run_angle(300, 83)
 
 drive_base.straight(-210)
 action_back.run_angle(200, -90)
-drive_base.straight(300)
+drive_base.straight(310)
 drive_base.turn(-32)
 
 #zurück in rote Base
-drive_base.straight(500)
+drive_base.straight(510)
 drive_base.turn(23)
 drive_base.straight(300)
 hub.speaker.beep()
