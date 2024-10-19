@@ -61,8 +61,10 @@ drive_base.turn(-15)
 drive_base.straight(210)
 
 #zu Bodenprobe
-drive_base.turn(-23)
-action_back.run_angle(300, 85)
+drive_base.turn(-25)
+
+action_back.run_angle(300, 80)
+
 drive_base.straight(-210)
 action_back.run_angle(200, -90)
 drive_base.straight(300)
