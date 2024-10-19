@@ -52,7 +52,7 @@ action_back.run_angle(200, -100)
 
 #zu Anglerfisch
 drive_base.turn(-11)
-drive_base.straight(445)
+drive_base.straight(443)
 
 # eingesammelte Sachen abstellen
 drive_base.turn(15)
@@ -61,7 +61,7 @@ drive_base.turn(-15)
 drive_base.straight(210)
 
 #zu Bodenprobe
-drive_base.turn(-25)
+drive_base.turn(-26)
 
 action_back.run_angle(300, 83)
 
