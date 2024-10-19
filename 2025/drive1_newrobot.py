@@ -75,5 +75,3 @@ drive_base.straight(510)
 drive_base.turn(23)
 drive_base.straight(300)
 hub.speaker.beep()
-
-
