@@ -58,24 +58,24 @@ drive_base.turn(-10) # before 11
 drive_base.straight(441) #before 445
 
 # eingesammelte Sachen abstellen
-drive_base.turn(15)
+drive_base.turn(15) 
 drive_base.straight(300)
 drive_base.turn(-15)
 drive_base.straight(210)
 
 #zu Bodenprobe
-drive_base.turn(-26) #before 26.2
+drive_base.turn(-26.3) #before 26
 
-action_back.run_angle(300, 85) #before 83
+action_back.run_angle(300, 85) #before 84.7
 
 drive_base.straight(-215) #before -214
 action_back.run_angle(200, -90)
 drive_base.straight(310)
-drive_base.turn(-34.1) #before 33
+drive_base.turn(-34.4) #before 34.1
 
 #zurück in rote Base
 drive_base.straight(513) #before 510
-drive_base.turn(25)
+drive_base.turn(26) #before 25
 drive_base.straight(350)
 hub.speaker.beep()
 
