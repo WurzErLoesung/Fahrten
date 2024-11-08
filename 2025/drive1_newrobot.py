@@ -71,7 +71,7 @@ action_back.run_angle(300, 85) #before 84.7
 drive_base.straight(-215) #before -214
 action_back.run_angle(200, -90)
 drive_base.straight(310)
-drive_base.turn(-34.4) #before 34.1
+drive_base.turn(-34.6) #before 34.1
 
 #zurück in rote Base
 drive_base.straight(513) #before 510
