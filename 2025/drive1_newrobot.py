@@ -64,14 +64,14 @@ drive_base.turn(-15)
 drive_base.straight(210)
 
 #zu Bodenprobe
-drive_base.turn(-27.7) #before 27
+drive_base.turn(-26) #before 26.2
 
-action_back.run_angle(300, 90) #before 83
+action_back.run_angle(300, 85) #before 83
 
-drive_base.straight(-214) #before -210
+drive_base.straight(-215) #before -214
 action_back.run_angle(200, -90)
 drive_base.straight(310)
-drive_base.turn(-33.5) #before 33
+drive_base.turn(-34.1) #before 33
 
 #zurück in rote Base
 drive_base.straight(513) #before 510
