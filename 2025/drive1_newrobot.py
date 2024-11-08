@@ -29,7 +29,7 @@ hub.speaker.beep()
 drive_base.settings(250)
 
 # zu der/die/das Kaktus
-drive_base.turn(-4)
+drive_base.turn(-3.8) #before 4
 drive_base.straight(590)
 drive_base.settings(950)
 action_back.run_angle(200, -170)
@@ -56,7 +56,7 @@ action_back.run_angle(200, -100)
 
 #zu Anglerfisch
 drive_base.turn(-9.9) # before 10
-drive_base.straight(441.4) #before 441
+drive_base.straight(441.35) #before 441.4
 
 # eingesammelte Sachen abstellen
 drive_base.turn(15) 
