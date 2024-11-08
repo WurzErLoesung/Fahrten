@@ -54,7 +54,7 @@ drive_base.straight(200)
 action_back.run_angle(200, -100)
 
 #zu Anglerfisch
-drive_base.turn(-10) # before 11
+drive_base.turn(-9.9) # before 10
 drive_base.straight(441) #before 445
 
 # eingesammelte Sachen abstellen
