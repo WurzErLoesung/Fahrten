@@ -29,6 +29,7 @@ hub.speaker.beep()
 drive_base.settings(250)
 
 # zu der/die/das Kaktus
+drive_base.turn(-4)
 drive_base.straight(590)
 drive_base.settings(950)
 action_back.run_angle(200, -170)
@@ -64,7 +65,7 @@ drive_base.turn(-15)
 drive_base.straight(210)
 
 #zu Bodenprobe
-drive_base.turn(-26) #before 26.1
+drive_base.turn(-26.3) #before 26.3
 
 action_back.run_angle(300, 85) #before 84.7
 
