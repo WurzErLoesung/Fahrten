@@ -55,7 +55,7 @@ action_back.run_angle(200, -100)
 
 #zu Anglerfisch
 drive_base.turn(-9.9) # before 10
-drive_base.straight(441) #before 445
+drive_base.straight(441.35) #before 441
 
 # eingesammelte Sachen abstellen
 drive_base.turn(15) 
@@ -64,7 +64,7 @@ drive_base.turn(-15)
 drive_base.straight(210)
 
 #zu Bodenprobe
-drive_base.turn(-26.3) #before 26
+drive_base.turn(-26) #before 26.1
 
 action_back.run_angle(300, 85) #before 84.7
 
