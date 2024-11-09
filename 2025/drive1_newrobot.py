@@ -62,12 +62,12 @@ drive_base.straight(-20) # bleibt somit nicht mehr hengen beim Anglerfisch
 
 # eingesammelte Sachen abstellen
 drive_base.turn(15) 
-drive_base.straight(317) #300
+drive_base.straight(313) #300
 drive_base.turn(-15)
 drive_base.straight(210)
 
 #zu Bodenprobe
-drive_base.turn(-26.28) #before 26.3 
+drive_base.turn(-26.3) #before 26.28
 
 action_back.run_angle(300, 85) #before 85
 
