@@ -58,26 +58,28 @@ action_back.run_angle(200, -100)
 drive_base.turn(-9.85) # before 10
 drive_base.straight(441.35) #before 441.4
 
+drive_base.straight(-20) # bleibt somit nicht mehr hengen beim Anglerfisch
+
 # eingesammelte Sachen abstellen
 drive_base.turn(15) 
-drive_base.straight(300)
+drive_base.straight(317) #300
 drive_base.turn(-15)
 drive_base.straight(210)
 
 #zu Bodenprobe
-drive_base.turn(-26.3) #before 26.3 
+drive_base.turn(-26.28) #before 26.3 
 
 action_back.run_angle(300, 85) #before 85
 
 drive_base.straight(-215) #before -214
 action_back.run_angle(200, -90)
 drive_base.straight(310)
-drive_base.turn(-34.65) #before 34.6
+drive_base.turn(-34.67) #before 34.65
 
 #zurück in rote Base
 drive_base.straight(513) #before 510
-drive_base.turn(26.2) #before 26
-drive_base.straight(300)
+drive_base.turn(26.4) #before 26.2
+drive_base.straight(290)
 hub.speaker.beep()
 
 print("Fahrt 1 hat " + str(watch.time()/1000) + " Sekunden gedauert.")
