@@ -1,4 +1,3 @@
-import time
 from pybricks.hubs import PrimeHub
 from pybricks.pupdevices import Motor, ColorSensor, UltrasonicSensor, ForceSensor
 from pybricks.parameters import Button, Color, Direction, Port, Side, Stop
@@ -21,15 +20,10 @@ color = ColorSensor(Port.D)
 wheel_diameter = 56 
 axle_track = 113 
 drive_base = DriveBase(left_motor, right_motor, wheel_diameter, axle_track)
-<<<<<<< HEAD
-drive_base.use_gyro(True) 
-start_time = time.time()
-=======
 drive_base.use_gyro(True)
 
 watch = StopWatch()
 
->>>>>>> a87ae81ac294f4599b565e8035745f887f501305
 hub.speaker.beep()
 
 drive_base.settings(250)
@@ -61,15 +55,10 @@ drive_base.straight(200)
 action_back.run_angle(200, -100)
 
 #zu Anglerfisch
-<<<<<<< HEAD
-drive_base.turn(-9) # before 11
-drive_base.straight(441) #before 445
-=======
 drive_base.turn(-9.85) # before 10
 drive_base.straight(441.35) #before 441.4
 
 drive_base.straight(-20) # bleibt somit nicht mehr hengen beim Anglerfisch
->>>>>>> a87ae81ac294f4599b565e8035745f887f501305
 
 # eingesammelte Sachen abstellen
 drive_base.turn(15) 
@@ -92,12 +81,6 @@ drive_base.straight(513) #before 510
 drive_base.turn(26.4) #before 26.2
 drive_base.straight(290)
 hub.speaker.beep()
-<<<<<<< HEAD
-end_time = time.time()
-elapsed_time = end_time - start_time
-print(elapsed_time)
-=======
 
 print("Fahrt 1 hat " + str(watch.time()/1000) + " Sekunden gedauert.")
 watch.reset()
->>>>>>> a87ae81ac294f4599b565e8035745f887f501305
