@@ -1,3 +1,4 @@
+import time
 from pybricks.hubs import PrimeHub
 from pybricks.pupdevices import Motor, ColorSensor, UltrasonicSensor, ForceSensor
 from pybricks.parameters import Button, Color, Direction, Port, Side, Stop
@@ -20,7 +21,7 @@ wheel_diameter = 56
 axle_track = 113 
 drive_base = DriveBase(left_motor, right_motor, wheel_diameter, axle_track)
 drive_base.use_gyro(True) 
-
+start_time = time.time()
 hub.speaker.beep()
 
 drive_base.settings(250)
@@ -51,7 +52,7 @@ drive_base.straight(200)
 action_back.run_angle(200, -100)
 
 #zu Anglerfisch
-drive_base.turn(-10.5) # before 11
+drive_base.turn(-9) # before 11
 drive_base.straight(441) #before 445
 
 # eingesammelte Sachen abstellen
@@ -75,3 +76,6 @@ drive_base.straight(513) #before 510
 drive_base.turn(23)
 drive_base.straight(300)
 hub.speaker.beep()
+end_time = time.time()
+elapsed_time = end_time - start_time
+print(elapsed_time)
