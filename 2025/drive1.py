@@ -11,6 +11,11 @@ left_motor = Motor(Port.E, positive_direction=Direction.CLOCKWISE)
 right_motor = Motor(Port.A, positive_direction=Direction.COUNTERCLOCKWISE)
 
 action_front = Motor(Port.D)
+action_back = Motor(Port.A)
+
+ultra = UltrasonicSensor(Port.E)
+color = ColorSensor(Port.D)
+
 
 #DriveBase initialisieren
 wheel_diameter = 56 
