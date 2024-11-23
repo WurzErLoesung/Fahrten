@@ -7,10 +7,10 @@ from pybricks.tools import wait, StopWatch, run_task, multitask
 
 hub = PrimeHub()
 # Motoren initialisieren 
-left_motor = Motor(Port.E, positive_direction=Direction.CLOCKWISE) 
-right_motor = Motor(Port.A, positive_direction=Direction.COUNTERCLOCKWISE)
+left_motor = Motor(Port.B, positive_direction=Direction.CLOCKWISE) 
+right_motor = Motor(Port.F, positive_direction=Direction.COUNTERCLOCKWISE)
 
-action_front = Motor(Port.D)
+action_front = Motor(Port.C)
 action_back = Motor(Port.A)
 
 ultra = UltrasonicSensor(Port.E)
@@ -22,24 +22,21 @@ color = ColorSensor(Port.D)
 wheel_diameter = 56 
 axle_track = 113 
 drive_base = DriveBase(left_motor, right_motor, wheel_diameter, axle_track)
-drive_base.use_gyro(True) 
+drive_base.use_gyro(False) 
 drive_base.settings(straight_speed=900, straight_acceleration=500)
 
-hub.speaker.beep()
+#hub.speaker.beep()
 
-drive_base.settings(900)
+drive_base.settings(300)
 
-async def drive_forward():
-    await drive_base.straight(250)
+async def drive_forward(n):
+    await drive_base.straight(n)
 
-async def action(degree, speed):
+async def action(speed,degree):
+    await wait(530)
     await action_back.run_angle(speed, degree)
-
-# async def main1():
-#     await multitask( drive_forward(), action(360, 500))
-# run_task(main1())
-#
-
-
-multitask( drive_forward(), action(360, 500))
+    
+async def main1():
+    await multitask(drive_forward(650), action(900, -1000), race=False)
+run_task(main1())
 
