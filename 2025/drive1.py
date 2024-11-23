@@ -6,8 +6,8 @@ from pybricks.tools import wait, StopWatch, run_task
 
 
 hub = PrimeHub()
-# Motoren initialisieren
-left_motor = Motor(Port.E, positive_direction=Direction.CLOCKWISE)
+# Motoren initialisieren 
+left_motor = Motor(Port.E, positive_direction=Direction.CLOCKWISE) 
 right_motor = Motor(Port.A, positive_direction=Direction.COUNTERCLOCKWISE)
 
 action_front = Motor(Port.D)
