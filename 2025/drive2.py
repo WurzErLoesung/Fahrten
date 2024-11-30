@@ -27,16 +27,18 @@ drive_base.settings(straight_speed=900, straight_acceleration=500)
 
 #hub.speaker.beep()
 
-drive_base.settings(300)
+drive_base.settings(190)
 
 async def drive_forward(n):
     await drive_base.straight(n)
 
 async def action(speed,degree):
-    await wait(530)
+    await wait(1040)
     await action_back.run_angle(speed, degree)
     
 async def main1():
-    await multitask(drive_forward(650), action(900, -1000), race=False)
+    await multitask(drive_forward(440), action(1250, -5000), race=False)
 run_task(main1())
 
+
+drive_base.straight(-200)
