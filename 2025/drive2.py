@@ -24,21 +24,20 @@ axle_track = 113
 drive_base = DriveBase(left_motor, right_motor, wheel_diameter, axle_track)
 drive_base.use_gyro(False) 
 drive_base.settings(straight_speed=900, straight_acceleration=500)
-
+StopWatch = watch
 #hub.speaker.beep()
 
-drive_base.settings(190)
+drive_base.settings(150)
 
-async def drive_forward(n):
-    await drive_base.straight(n)
-
-async def action(speed,degree):
-    await wait(1040)
-    await action_back.run_angle(speed, degree)
-    
-async def main1():
-    await multitask(drive_forward(440), action(1250, -5000), race=False)
-run_task(main1())
-
-
+drive_base.straight(230)
+action_back.run_angle(1250, -1000)
+drive_base.straight(90)
+action_back.run_angle(1250, -600)
+drive_base.straight(40)
+action_back.run_angle(1250, -350)
+drive_base.straight(60)
+action_back.run_angle(1250, 400)
 drive_base.straight(-200)
+
+print("Fahrt 1 hat " + str(watch.time()/1000) + " Sekunden gedauert.")
+watch.reset()
