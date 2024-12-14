@@ -39,7 +39,7 @@ def action_arc(drive_base, direction: int, action_motor, action_distance_per_rot
         
         # Calculate expected x and y for that angle to calculate delta x and y afterwards
         x, y = radius * cos(starting_angle + phi), radius * sin(starting_angle + phi)
-        dt = (t - t_prev) / 1000
+        dt = (t - t_prev) / 1000 + (0.00001 if t - t_prev == 0 else 0)
         dx = (x - x_prev) / dt
         dy = (y - y_prev) / dt
         
