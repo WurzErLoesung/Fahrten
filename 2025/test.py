@@ -1,3 +1,4 @@
+
 from pybricks.hubs import PrimeHub
 from pybricks.pupdevices import Motor, ColorSensor, UltrasonicSensor, ForceSensor
 from pybricks.parameters import Button, Color, Direction, Port, Side, Stop
@@ -22,31 +23,19 @@ wheel_diameter = 56
 axle_track = 113
 drive_base = DriveBase(left_motor, right_motor, wheel_diameter, axle_track)
 drive_base.use_gyro(False)
-drive_base.settings(straight_speed=900, straight_acceleration=500)
+drive_base.settings(straight_speed=900, straight_acceleration=1000)
 StopWatch = watch
 hub.speaker.beep()
 
-drive_base.straight(207)
-action_back.run_angle(500, 250)
-action_arc(drive_base, -1, action_back, 20, 182, 90, 30, 20)
-action_back.run_angle(500, -430)
-drive_base.straight(-100)
+def turn(back: bool = False):
+    if back:
+        action_front.run_angle(1600, 12*360)
+        action_front.run_angle(1600, -7*360)
+    else:
+        action_front.run_angle(1600, 7*360)
+        action_front.run_angle(1600, -12*360)
 
-drive_base.turn(150)
-drive_base.straight(-292)
-drive_base.turn(-64)
-drive_base.settings(100)
-drive_base.straight(-330)
-
-drive_base.settings(900)
-drive_base.straight(120)
-drive_base.turn(-7)
-drive_base.straight(150)
-
-drive_base.straight(-80)
-drive_base.turn(-50)
-action_back.run_angle(500, -250)
-
-print("Fahrt 2 hat " + str(watch.time()/1000) + " Sekunden gedauert.")
-watch.reset()
+turn()
+wait(2000)
+turn(True)
 
