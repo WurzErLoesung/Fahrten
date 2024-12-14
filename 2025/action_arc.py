@@ -63,12 +63,13 @@ if __name__ == "__main__":
     mleft = Motor(Port.B)
     mright = Motor(Port.F, positive_direction=Direction.COUNTERCLOCKWISE)
     drive_base = DriveBase(mleft, mright, 56, 113)
+
+    drive_base.straight(207)
     
     action_motor.run_angle(500, 250)
     
     # action_arc(280, 70, 30)
     action_arc(drive_base, -1, action_motor, 20, 182, 90, 30, 20)    
 
-    action_motor.run_angle(500, -460)
-
-
+    action_motor.run_angle(500, -430)
+    drive_base.straight(-200)
