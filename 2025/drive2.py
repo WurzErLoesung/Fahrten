@@ -3,6 +3,7 @@ from pybricks.pupdevices import Motor, ColorSensor, UltrasonicSensor, ForceSenso
 from pybricks.parameters import Button, Color, Direction, Port, Side, Stop
 from pybricks.robotics import DriveBase
 from pybricks.tools import wait, StopWatch, run_task, multitask
+from arc import action_arc
 
 
 hub = PrimeHub()
@@ -33,12 +34,13 @@ drive_base.straight(230)
 action_back.run_angle(1250, -1000)
 drive_base.straight(90)
 action_back.run_angle(1250, -650)
-drive_base.straight(40)
-action_back.run_angle(1250, -540)
-drive_base.straight(80)
-action_back.run_angle(1250, 400)
+drive_base.straight(45)
+action_back.run_angle(1250, -515)
+drive_base.turn(-5)
+drive_base.straight(60)
+action_back.run_angle(1250, 500)
 drive_base.straight(-200)
-action_back.run_angle(1250, 1800)
+action_back.run_angle(1250, 1750)
 
 print("Fahrt 1 hat " + str(watch.time()/1000) + " Sekunden gedauert.")
 watch.reset()
