@@ -7,7 +7,7 @@ motor_pair.pair(motor_pair.PAIR_1, port.A, port.E)
 hub.motion_sensor.reset_yaw(0)
 
 
-async def yaw(deg):
+async def yaw(deg, min_velocity: int = 300, max_velocity: int = 20):
     deg = deg % 360
     time_limit = 3000
     start = time.ticks_ms()
