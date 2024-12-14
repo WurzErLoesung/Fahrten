@@ -15,7 +15,7 @@ action_back = Motor(Port.A)
 
 ultra = UltrasonicSensor(Port.E)
 color = ColorSensor(Port.D)
-
+watch = StopWatch()
 
 
 #DriveBase initialisieren
@@ -25,19 +25,20 @@ drive_base = DriveBase(left_motor, right_motor, wheel_diameter, axle_track)
 drive_base.use_gyro(False) 
 drive_base.settings(straight_speed=900, straight_acceleration=500)
 StopWatch = watch
-#hub.speaker.beep()
+hub.speaker.beep()
 
 drive_base.settings(150)
 
 drive_base.straight(230)
 action_back.run_angle(1250, -1000)
 drive_base.straight(90)
-action_back.run_angle(1250, -600)
+action_back.run_angle(1250, -650)
 drive_base.straight(40)
-action_back.run_angle(1250, -350)
-drive_base.straight(60)
+action_back.run_angle(1250, -540)
+drive_base.straight(80)
 action_back.run_angle(1250, 400)
 drive_base.straight(-200)
+action_back.run_angle(1250, 1800)
 
 print("Fahrt 1 hat " + str(watch.time()/1000) + " Sekunden gedauert.")
 watch.reset()
