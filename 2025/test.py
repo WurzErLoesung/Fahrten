@@ -26,20 +26,4 @@ drive_base.settings(straight_speed=900, straight_acceleration=500)
 StopWatch = watch
 hub.speaker.beep()
 
-drive_base.straight(207)
-action_back.run_angle(500, 250)
-#action_arc(drive_base, -1, action_back, 27, 200, 90, 30, 15)
-action_arc(drive_base, -1, action_back, 20, 182, 90, 30, 20)
-action_back.run_angle(500, -430)
-drive_base.straight(-100)
-
-drive_base.turn(150)
-drive_base.straight(-290)
-drive_base.turn(-64)
-drive_base.settings(400)
-drive_base.straight(-280)
-drive_base.settings(900)
-
-print("Fahrt 1 hat " + str(watch.time()/1000) + " Sekunden gedauert.")
-watch.reset()
-
+action_back.run_angle(1250,360)
