@@ -26,7 +26,7 @@ drive_base.settings(straight_speed=900, straight_acceleration=500)
 StopWatch = watch
 hub.speaker.beep()
 
-drive_base.straight(207)
+drive_base.straight(206)
 action_back.run_angle(500, 250)
 #action_arc(drive_base, -1, action_back, 27, 200, 90, 30, 15)
 action_arc(drive_base, -1, action_back, 20, 182, 90, 30, 20)

@@ -57,7 +57,7 @@ def action_arc(drive_base, direction: int, action_motor, action_distance_per_rot
     drive_base.stop()
     action_motor.stop()
 
-def action_arc_new(drive_base, direction: int, action_motor, action_distance_per_rotation: int,  radius: int, angle: int, velocity: int, starting_angle: int = 0)
+def action_arc_new(drive_base, direction: int, action_motor, action_distance_per_rotation: int,  radius: int, angle: int, velocity: int, starting_angle: int = 0):
     """
     Moves any forklift like structure in an arc like motion
     
