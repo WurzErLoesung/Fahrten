@@ -8,7 +8,6 @@ from umath import sin, cos, pi
 hub = PrimeHub()
 
 def action_arc(drive_base, direction: int, action_motor, action_distance_per_rotation: int,  radius: int, angle: int, velocity: int, starting_angle: int = 0):
-
     """
     Moves any forklift like structure in an arc like motion
     
@@ -57,6 +56,24 @@ def action_arc(drive_base, direction: int, action_motor, action_distance_per_rot
 
     drive_base.stop()
     action_motor.stop()
+
+def action_arc_new(drive_base, direction: int, action_motor, action_distance_per_rotation: int,  radius: int, angle: int, velocity: int, starting_angle: int = 0)
+    """
+    Moves any forklift like structure in an arc like motion
+    
+    :param drive_base: An drive base object using Spike Prime Drivebase (distances in mm)
+    :param direction: 1 for forward and -1 for backward (regarding the drive base)
+    :param action_motor: The action motor used for powering the forklift structure
+    :param action_distance_per_rotation: The distance the forklift moves per rotation of action motor (negative values for negative rotation)
+    :param radius: The radius of the arc in mm
+    :param angle: The final angle of the arc motion
+    :param velocity: Velocity in cm/s
+    :param starting_angle: The angle the arc motion starts at
+    """
+
+    pass
+
+    
         
 if __name__ == "__main__":
     action_motor = Motor(Port.A, positive_direction=Direction.COUNTERCLOCKWISE)
