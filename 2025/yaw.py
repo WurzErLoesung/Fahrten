@@ -18,7 +18,7 @@ class Yaw:
         s = StopWatch()
         start = s.time()
         while True:
-            current_yaw = (hub.imu.heading()) % 360
+            current_yaw = (self.hub.imu.heading()) % 360
             if current_yaw < 0: current_yaw = 360 - current_yaw
             difference = deg - current_yaw
     
