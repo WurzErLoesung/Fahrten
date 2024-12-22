@@ -26,28 +26,35 @@ drive_base.settings(straight_speed=900, straight_acceleration=500)
 StopWatch = watch
 hub.speaker.beep()
 
-drive_base.straight(206)
+#Korallenbaum
+drive_base.straight(197)
 action_back.run_angle(500, 250)
 #action_arc(drive_base, -1, action_back, 27, 200, 90, 30, 15)
 action_arc(drive_base, -1, action_back, 20, 182, 90, 30, 20)
 action_back.run_angle(500, -430)
 drive_base.straight(-100)
 
+#zu Schiffwrack
 drive_base.turn(150)
-drive_base.straight(-292)
-drive_base.turn(-64)
+drive_base.straight(-300.3)
+drive_base.turn(-60)
 drive_base.settings(100)
-drive_base.straight(-330)
-
+drive_base.straight(-190)
+action_front.run_angle(1000, 50)
+drive_base.straight(-70)
+action_front.run_angle(1000, -50)
+drive_base.straight(-300)
+"""
 drive_base.settings(900)
 drive_base.straight(120)
+
+#Korallenbaum Teil 2
 drive_base.turn(-7)
 drive_base.straight(150)
-
 drive_base.straight(-80)
 drive_base.turn(-50)
 action_back.run_angle(500, -250)
-
+"""
 print("Fahrt 2 hat " + str(watch.time()/1000) + " Sekunden gedauert.")
 watch.reset()
 
