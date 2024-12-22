@@ -7,20 +7,23 @@ motor_pair.pair(motor_pair.PAIR_1, port.A, port.E)
 hub.motion_sensor.reset_yaw(0)
 
 
-async def yaw(deg, min_velocity: int = 300, max_velocity: int = 20):
+async def yaw(hub, ml, mr, deg, min_velocity: int = 300, max_velocity: int = 20):
     deg = deg % 360
     time_limit = 3000
-    start = time.ticks_ms()
+    s = StopWatch()
+    start = s.time()
     while True:
-        current_yaw = (hub.motion_sensor.tilt_angles()[0]/10) % 360
+        current_yaw = (hub.imu.heading()) % 360
+        if current_yaw < 0: current_yaw = 360 - current_yaw
         difference = deg - current_yaw
 
 
         if abs(difference) < 0.1:
-            motor_pair.stop(motor_pair.PAIR_1)
+            ml.stop()
+            mr.stop()
             break
 
-        if time.ticks_ms() - start > time_limit:
+        if s.time() - start > time_limit:
             print("Timeout")
             break
 
@@ -38,11 +41,12 @@ async def yaw(deg, min_velocity: int = 300, max_velocity: int = 20):
 
         velocity = round(min_velocity + (max_velocity - min_velocity) * (abs(difference) / 180) ** (1 / speed_potency))
 
+        ml.run(-velocity * direction)
+        mr.run(velocity * direction)
 
-        motor_pair.move_tank(motor_pair.PAIR_1, velocity * direction, velocity * direction * -1)
-    motor_pair.stop(motor_pair.PAIR_1)
-    print("Gyro-Sensor: " + str(hub.motion_sensor.tilt_angles()[0]/10))
-
+    ml.stop()
+    mr.stop()
+    print("Gyro-Sensor: " + str(hub.imu.heading()))
 
 yaw(-90)
 yaw(123)
