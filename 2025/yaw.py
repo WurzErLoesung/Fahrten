@@ -1,13 +1,16 @@
-import motor_pair
-import hub
-from hub import port
-import time
+from pybricks.hubs import PrimeHub
+from pybricks.pupdevices import Motor, ColorDistanceSensor
+from pybricks.parameters import Button, Color, Direction, Port, Side, Stop
+from pybricks.robotics import DriveBase
+from pybricks.tools import wait, StopWatch, run_task, multitask
+import umath as math
 
-motor_pair.pair(motor_pair.PAIR_1, port.A, port.E)
-hub.motion_sensor.reset_yaw(0)
+hub = PrimeHub()
+ml = Motor(Port.B)
+mr = Motor(Port.F, positive_direction=Direction.COUNTERCLOCKWISE)
+ma = Motor(Port.A)
 
-
-async def yaw(hub, ml, mr, deg, min_velocity: int = 300, max_velocity: int = 20):
+async def yaw(deg, min_velocity: int = 300, max_velocity: int = 20):
     deg = deg % 360
     time_limit = 3000
     s = StopWatch()
