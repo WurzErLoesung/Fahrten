@@ -44,6 +44,7 @@ drive_base.settings(900)
 yaw(-30)
 drive_base.straight(-50)
 action_front.run_angle(1250, 850) #Schieber abwerfen
+drive_base.settings(800)
 drive_base.straight(350)
 yaw(5)
 drive_base.straight(900)
