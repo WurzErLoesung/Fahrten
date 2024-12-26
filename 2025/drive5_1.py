@@ -22,10 +22,10 @@ wheel_diameter = 56
 axle_track = 113 
 drive_base = DriveBase(left_motor, right_motor, wheel_diameter, axle_track)
 drive_base.use_gyro(False) 
-drive_base.settings(straight_speed=400, straight_acceleration=500)
+drive_base.settings(straight_speed=200, straight_acceleration=500)
 StopWatch = watch
 hub.speaker.beep()
 
-drive_base.straight(130)
-drive_base.straight(-105)
-
+drive_base.straight(115)
+drive_base.settings(400)
+drive_base.straight(-125)
