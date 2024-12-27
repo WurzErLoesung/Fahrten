@@ -5,26 +5,18 @@ from pybricks.robotics import DriveBase
 from pybricks.tools import wait, StopWatch, run_task, multitask
 from action_arc import action_arc
 from yaw import Yaw
+from pupdevices import PupDevices
 
 hub = PrimeHub()
-# Motoren initialisieren
-left_motor = Motor(Port.B, positive_direction=Direction.CLOCKWISE) 
-right_motor = Motor(Port.F, positive_direction=Direction.COUNTERCLOCKWISE)
 
-action_front = Motor(Port.C)
-action_back = Motor(Port.A, positive_direction=Direction.COUNTERCLOCKWISE)
-
-ultra = UltrasonicSensor(Port.E)
-color = ColorSensor(Port.D)
-
-yaw = Yaw(hub, left_motor, right_motor)
+yaw = Yaw(hub, pd.left_motor, pd.right_motor)
 
 watch = StopWatch()
 
 #DriveBase initialisieren
 wheel_diameter = 56
 axle_track = 113
-drive_base = DriveBase(left_motor, right_motor, wheel_diameter, axle_track)
+drive_base = DriveBase(pd.left_motor, pd.right_motor, wheel_diameter, axle_track)
 drive_base.use_gyro(False)
 drive_base.settings(straight_speed=900, straight_acceleration=500)
 StopWatch = watch
@@ -35,12 +27,12 @@ def drive2():
     # Korallenbaum
     drive_base.straight(190)
     yield True
-    action_back.run_angle(500, 250)
+    pd.action_back.run_angle(500, 250)
     yield True
-    # action_arc(drive_base, -1, action_back, 27, 200, 90, 30, 15)
-    action_arc(drive_base, -1, action_back, 20, 182, 92, 30, 20)
+    # action_arc(drive_base, -1, pd.action_back, 27, 200, 90, 30, 15)
+    action_arc(drive_base, -1, pd.action_back, 20, 182, 92, 30, 20)
     yield True
-    action_back.run_angle(500, -430)
+    pd.action_back.run_angle(500, -430)
     yield True
     drive_base.straight(-95)
     yield True
@@ -57,12 +49,12 @@ def drive2():
     drive_base.settings(100)
     drive_base.straight(-150)
     yield True
-    action_front.run_angle(1000, 70)
+    pd.action_front.run_angle(1000, 70)
     yield True
     drive_base.settings(50)
     drive_base.straight(-65)  # -57
     yield True
-    action_front.run_angle(1000, -80)  # 1000 -90
+    pd.action_front.run_angle(1000, -80)  # 1000 -90
     yield True
     drive_base.straight(150)
     yield True
@@ -83,11 +75,11 @@ def drive2():
     yield True
     yaw(-80)  # -82
     yield True
-    action_back.run_angle(1250, -210)
+    pd.action_back.run_angle(1250, -210)
     yield True
     drive_base.straight(140)  # 130
     yield True
-    action_back.run_angle(1250, 450)
+    pd.action_back.run_angle(1250, 450)
     yield True
 
     # Korallenriff + Taucherin abliefern
@@ -101,7 +93,7 @@ def drive2():
     yield True
     drive_base.straight(180)
     yield True
-    action_back.run_angle(1250, -800)
+    pd.action_back.run_angle(1250, -800)
     yield True
     drive_base.straight(-800)
     yield False

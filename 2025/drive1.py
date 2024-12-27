@@ -3,26 +3,19 @@ from pybricks.pupdevices import Motor, ColorSensor, UltrasonicSensor, ForceSenso
 from pybricks.parameters import Button, Color, Direction, Port, Side, Stop
 from pybricks.robotics import DriveBase
 from pybricks.tools import wait, StopWatch, run_task
+from pupdevices import PupDevices
+
+pd = PupDevices()
 
 
 hub = PrimeHub()
 
 print(f"{hub.battery.voltage()/1000} Volt")
 
-# Motoren initialisieren
-left_motor = Motor(Port.B, positive_direction=Direction.COUNTERCLOCKWISE)
-right_motor = Motor(Port.F, positive_direction=Direction.CLOCKWISE)
-
-action_front = Motor(Port.C)
-action_back = Motor(Port.A)
-
-ultra = UltrasonicSensor(Port.E)
-color = ColorSensor(Port.D)
-
 #DriveBase initialisieren
 wheel_diameter = 56 
 axle_track = 113 
-drive_base = DriveBase(left_motor, right_motor, wheel_diameter, axle_track)
+drive_base = DriveBase(pd.left_motor, pd.right_motor, wheel_diameter, axle_track)
 drive_base.use_gyro(True)
 
 
@@ -37,7 +30,7 @@ def drive1():
     # für Roboter weiß
 
     # arm hochheben
-    action_front.run_angle(200, -110) #200, -110
+    pd.action_front.run_angle(200, -110) #200, -110
     yield True
 
     # zu der/die/das Kaktus
@@ -47,7 +40,7 @@ def drive1():
     yield True
     drive_base.settings(950) #950
     yield True
-    action_back.run_angle(200, -170) #200, -170
+    pd.action_back.run_angle(200, -170) #200, -170
     yield True
 
     # zu 1. Schrimm & Koralle
@@ -73,17 +66,17 @@ def drive1():
     yield True
     drive_base.straight(120) #120
     yield True
-    action_back.run_angle(200, 190) #200, 190
+    pd.action_back.run_angle(200, 190) #200, 190
     yield True
     drive_base.straight(-60) #-55
     yield True
-    action_back.run_angle(200, -80) #200, -80
+    pd.action_back.run_angle(200, -80) #200, -80
     yield True
-    action_front.run_angle(200, -50) #200, -50
+    pd.action_front.run_angle(200, -50) #200, -50
     yield True
     drive_base.straight(206) #200
     yield True
-    action_back.run_angle(200, -90) #200, -90
+    pd.action_back.run_angle(200, -90) #200, -90
     yield True
 
     # zu Anglerfisch
@@ -112,9 +105,9 @@ def drive1():
     yield True
     #drive_base.settings(250)
     wait(300) #300
-    action_front.run_angle(800, 150) #800, 150
+    pd.action_front.run_angle(800, 150) #800, 150
     yield True
-    action_front.run_angle(100, -160) #100,-180
+    pd.action_front.run_angle(100, -160) #100,-180
     yield True
 
     # zum Anker
@@ -122,7 +115,7 @@ def drive1():
     yield True
     drive_base.turn(-34) #before 34
     yield True
-    action_back.run_angle(80, 79) #before 80,78
+    pd.action_back.run_angle(80, 79) #before 80,78
     yield True
     drive_base.straight(-40) #-45
     yield True
@@ -132,7 +125,7 @@ def drive1():
     yield True
 
     # Anker hoch
-    action_back.run_angle(200, -90) #200, -90
+    pd.action_back.run_angle(200, -90) #200, -90
     yield True
 
     # alles einsammeln
