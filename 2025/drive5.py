@@ -5,7 +5,9 @@ from pybricks.robotics import DriveBase
 from pybricks.tools import wait, StopWatch, run_task, multitask
 from action_arc import action_arc
 from yaw import Yaw
+from pupdevices import PupDevices
 
+pd = PupDevices()
 hub = PrimeHub()
 # Motoren initialisieren 
 left_motor = Motor(Port.B, positive_direction=Direction.CLOCKWISE) 

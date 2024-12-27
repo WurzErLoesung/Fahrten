@@ -7,6 +7,7 @@ from action_arc import action_arc
 from yaw import Yaw
 from pupdevices import PupDevices
 
+pd = PupDevices()
 hub = PrimeHub()
 
 yaw = Yaw(hub, pd.left_motor, pd.right_motor)

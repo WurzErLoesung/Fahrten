@@ -4,7 +4,9 @@ from pybricks.parameters import Button, Color, Direction, Port, Side, Stop
 from pybricks.robotics import DriveBase
 from pybricks.tools import wait, StopWatch, run_task, multitask
 from action_arc import action_arc
+from pupdevices import PupDevices
 
+pd = PupDevices()
 hub = PrimeHub()
 watch = StopWatch()
 
