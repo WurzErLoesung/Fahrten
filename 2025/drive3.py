@@ -21,7 +21,12 @@ drive_base.settings(straight_speed=900, straight_acceleration=500)
 
 hub.speaker.beep()
 
-drive_base.settings(300)
+def drive3():
+    drive_base.settings(300)
+    drive_base.straight(100)
+    yield True
+    drive_base.straight(-100)
+    yield False
 
-drive_base.straight(100)
-drive_base.straight(-100)
+if __name__ == "__main__":
+    drive3()

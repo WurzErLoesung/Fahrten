@@ -3,88 +3,159 @@ from pybricks.pupdevices import Motor, ColorSensor, UltrasonicSensor, ForceSenso
 from pybricks.parameters import Button, Color, Direction, Port, Side, Stop
 from pybricks.robotics import DriveBase
 from pybricks.tools import wait, StopWatch, run_task
-from action_arc import action_arc
-from yaw import Yaw
+
 
 hub = PrimeHub()
 
-# Motoren initialisieren 
-left_motor = Motor(Port.E, positive_direction=Direction.CLOCKWISE) 
-right_motor = Motor(Port.A, positive_direction=Direction.COUNTERCLOCKWISE)
+print(f"{hub.battery.voltage()/1000} Volt")
 
-action_front = Motor(Port.D)
+# Motoren initialisieren
+left_motor = Motor(Port.B, positive_direction=Direction.COUNTERCLOCKWISE)
+right_motor = Motor(Port.F, positive_direction=Direction.CLOCKWISE)
+
+action_front = Motor(Port.C)
 action_back = Motor(Port.A)
 
 ultra = UltrasonicSensor(Port.E)
 color = ColorSensor(Port.D)
 
-
 #DriveBase initialisieren
 wheel_diameter = 56 
 axle_track = 113 
 drive_base = DriveBase(left_motor, right_motor, wheel_diameter, axle_track)
-drive_base.use_gyro(True) 
-drive_base.settings(straight_speed=900, straight_acceleration=500)
+drive_base.use_gyro(True)
+
+
+watch = StopWatch()
+
 hub.speaker.beep()
 
-drive_base.settings(900)
+def drive1():
+    drive_base.settings(250)
+    yield True
 
-#zu unbekanntem Wesen
-drive_base.straight(195)
-drive_base.turn(-47)
-drive_base.settings(300)
+    # für Roboter weiß
 
-#unbekanntes Wesen auslösen
-drive_base.straight(400)
-drive_base.settings(900)
-drive_base.straight(-300)
+    # arm hochheben
+    action_front.run_angle(200, -110) #200, -110
+    yield True
 
-#3 Schrimps + 1 Alge einsammeln
-drive_base.turn(18)
+    # zu der/die/das Kaktus
+    drive_base.turn(-4.5) #-4,5
+    yield True
+    drive_base.straight(590) #590
+    yield True
+    drive_base.settings(950) #950
+    yield True
+    action_back.run_angle(200, -170) #200, -170
+    yield True
 
-#1. Schrimps
-drive_base.straight(130)
-drive_base.turn(40)
+    # zu 1. Schrimm & Koralle
+    drive_base.straight(-200) #-200
+    yield True
+    drive_base.turn(75) #75
+    yield True
+    drive_base.straight(200) #200
+    yield True
 
-#Alge
-drive_base.straight(110)
-drive_base.turn(-25)
+    # 2. Schrims
+    drive_base.turn(-30) #30
+    yield True
+    drive_base.straight(195) #before 180
+    yield True
+    drive_base.turn(35) #35
+    yield True
+    drive_base.straight(70) #70
+    yield True
 
-#2. Schrimps
-drive_base.straight(140)
-drive_base.settings(turn_rate=40)
-drive_base.turn(40)
-drive_base.settings(900)
+    # zu Karotte
+    drive_base.turn(-124) #before -120
+    yield True
+    drive_base.straight(120) #120
+    yield True
+    action_back.run_angle(200, 190) #200, 190
+    yield True
+    drive_base.straight(-60) #-55
+    yield True
+    action_back.run_angle(200, -80) #200, -80
+    yield True
+    action_front.run_angle(200, -50) #200, -50
+    yield True
+    drive_base.straight(206) #200
+    yield True
+    action_back.run_angle(200, -90) #200, -90
+    yield True
 
-#3. Schrimps
-drive_base.straight(120)
-drive_base.turn(-145)
+    # zu Anglerfisch
+    drive_base.turn(-3) # before 10
+    yield True
+    drive_base.straight(400) #before 441.35
+    yield True
+    drive_base.straight(25) #25
+    yield True
 
-#Algenprobe
-drive_base.straight(70)
-action_front.run_angle(80, 200)
-drive_base.straight(-140)
-action_front.run_angle(80, -100)
-drive_base.straight(70)
-action_front.run_angle(80, -150)
-drive_base.turn(10)
-drive_base.straight(60)
-drive_base.turn(45)
+    drive_base.straight(-20) # bleibt somit nicht mehr hängen beim Anglerfisch
+    yield True
 
-#zu Anglerfich
-drive_base.turn(-10)
-drive_base.straight(500)
-drive_base.turn(-55)
-drive_base.curve(200, 40)
+    # eingesammelte Sachen abstellen
+    drive_base.turn(13) #13
+    yield True
+    drive_base.straight(255) #300
+    yield True
+    drive_base.turn(-10.5) #-10.5
+    yield True
 
-#zu Wasserprobe
-drive_base.straight(300)
-drive_base.turn(-10)
-drive_base.straight(70)
+    # zum Korallenriff
+    drive_base.settings(150)
+    yield True
+    drive_base.straight(240) #170
+    yield True
+    #drive_base.settings(250)
+    wait(300) #300
+    action_front.run_angle(800, 150) #800, 150
+    yield True
+    action_front.run_angle(100, -160) #100,-180
+    yield True
 
-#zu Meeresbodenprobe
-drive_base.straight(200)
-drive_base.turn(-30)
-action_front.run_angle(80, 75)
-drive_base.straight(-300)
-action_front.run_angle(80, -150)
+    # zum Anker
+    drive_base.straight(-120) #100
+    yield True
+    drive_base.turn(-34) #before 34
+    yield True
+    action_back.run_angle(80, 79) #before 80,78
+    yield True
+    drive_base.straight(-40) #-45
+    yield True
+    drive_base.turn(-19) #-17
+    yield True
+    drive_base.straight(-60) #60
+    yield True
+
+    # Anker hoch
+    action_back.run_angle(200, -90) #200, -90
+    yield True
+
+    # alles einsammeln
+    drive_base.turn(50) #30
+    yield True
+    drive_base.straight(270) #270
+    yield True
+    drive_base.turn(-25) #-30
+    yield True
+    drive_base.straight(120) #80
+    yield True
+    drive_base.turn(-57) #-50
+    yield True
+    drive_base.straight(20)
+    yield True
+    drive_base.settings(700)
+    yield True
+    drive_base.curve(600, 65)
+    yield False
+
+    print("Fahrt 1 hat " + str(watch.time()/1000) + " Sekunden gedauert.")
+    watch.reset()
+
+
+if __name__ == "__main__":
+    drive1()
