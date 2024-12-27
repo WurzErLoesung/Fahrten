@@ -7,25 +7,21 @@ from action_arc import action_arc
 from yaw import Yaw
 from pupdevices import PupDevices
 
-pd = PupDevices()
 hub = PrimeHub()
-
-yaw = Yaw(hub, pd.left_motor, pd.right_motor)
 
 watch = StopWatch()
 
-#DriveBase initialisieren
-wheel_diameter = 56
-axle_track = 113
-drive_base = DriveBase(pd.left_motor, pd.right_motor, wheel_diameter, axle_track)
-drive_base.use_gyro(False)
-drive_base.settings(straight_speed=900, straight_acceleration=500)
-StopWatch = watch
-hub.speaker.beep()
+def drive2(pd):
+    #DriveBase initialisieren
+    wheel_diameter = 56
+    axle_track = 113
+    drive_base = DriveBase(pd.left_motor, pd.right_motor, wheel_diameter, axle_track)
+    drive_base.use_gyro(False)
+    drive_base.settings(straight_speed=900, straight_acceleration=500)
+    hub.speaker.beep()
+    yaw = Yaw(hub, pd.left_motor, pd.right_motor)
 
-
-def drive2():
-    # Korallenbaum
+    #Korallenbaum
     drive_base.straight(190)
     yield True
     pd.action_back.run_angle(500, 250)
@@ -103,4 +99,4 @@ def drive2():
     watch.reset()
 
 if __name__ == "__main__":
-    drive2()
+    for element in  drive2(PupDevices()): pass
