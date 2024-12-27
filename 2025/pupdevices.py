@@ -12,13 +12,13 @@ class PupDevices(object):
              cls._instance = orig.__new__(cls, *args, **kw)
          return cls._instance
 
-    def __init__(self):
-        self.left_motor = Motor(Port.B)
-        self.right_motor = Motor(Port.F, positive_direction=Direction.COUNTERCLOCKWISE)
-        self.action_front = Motor(Port.C)
-        self.action_back = Motor(Port.A, positive_direction=Direction.COUNTERCLOCKWISE)
-        self.hub = PrimeHub()
-        self.imu = self.hub.imu
-        self.ultra = UltrasonicSensor(Port.E)
-        self.color = ColorSensor(Port.D)
+     def __init__(self):
+         self.left_motor = Motor(Port.B)
+         self.right_motor = Motor(Port.F, positive_direction=Direction.COUNTERCLOCKWISE)
+         self.action_front = Motor(Port.C)
+         self.action_back = Motor(Port.A, positive_direction=Direction.COUNTERCLOCKWISE)
+         self.hub = PrimeHub()
+         self.imu = self.hub.imu
+         self.ultra = UltrasonicSensor(Port.E)
+         self.color = ColorSensor(Port.D)
 
