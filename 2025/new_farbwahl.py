@@ -11,24 +11,15 @@ from drive3 import drive3
 from drive4 import drive4
 from drive5 import drive5
 from drive6 import drive6
+from pupdevices import PupDevices
 
 hub = PrimeHub()
-
-# Initialize Motors
-left_motor = Motor(Port.B, positive_direction=Direction.COUNTERCLOCKWISE)
-right_motor = Motor(Port.F, positive_direction=Direction.CLOCKWISE)
-action_front = Motor(Port.C)
-action_back = Motor(Port.A)
-
-# Initialize Sensors
-ultra = UltrasonicSensor(Port.E)
-color = ColorSensor(Port.D)
-
+pd = PupDevices()
 # Initialize DriveBase
 wheel_diameter = 56
 axle_track = 113
-drive_base = DriveBase(left_motor, right_motor, wheel_diameter, axle_track)
-yaw = Yaw(hub, left_motor, right_motor)
+drive_base = DriveBase(pd.left_motor, pd.right_motor, wheel_diameter, axle_track)
+yaw = Yaw(hub, pd.left_motor, pd.right_motor)
 
 Color.MAGENTA = Color(h=348, s=96, v=40)
 Color.RED = Color(h=359, s=97, v=39)
@@ -36,8 +27,8 @@ Color.BLUE = Color(h=213, s=100, v=74.9)
 Color.YELLOW = Color(h=48, s=77.3, v=94.9)
 Color.WHITE = Color(h=0, s=0,)
 
-my_colors = (Colo.BLUE, Color.MAGENTA, Color.RED, Color.YELLOW, Color.WHITE)
-sensor.detectable_colors(my_colors) 
+my_colors = (Color.BLUE, Color.MAGENTA, Color.RED, Color.YELLOW, Color.WHITE)
+pd.color.detectable_colors(my_colors) 
 
 # Timer Initialization
 timer = StopWatch()
@@ -46,10 +37,10 @@ fahrten = {}
 
 # Check color helper function
 def check_color(sensor_color):
-    print(color.color())
+    print(pd.color.color())
     print(sensor_color)
-    print(color.color() == sensor_color)
-    return sensor_color is None or color.color() == sensor_color
+    print(pd.color.color() == sensor_color)
+    return sensor_color is None or pd.color.color() == sensor_color
 
 # Countdown and color-checking function
 def play_countdown(sec, sensor_color=None):
@@ -94,25 +85,25 @@ def Fahrt(sensor_color, countdown, debug=False, *args, **kwargs):
 # Define Fahrt1 with the Fahrt decorator
 @Fahrt(sensor_color=Color.RED, countdown=3, debug=False)
 def Fahrt1():
-    for element in drive1(): yield element
+    for element in drive1(PupDevices()): yield element
 
 @Fahrt(sensor_color=Color.YELLOW, countdown=3, debug=False)
 def Fahrt2_3():
-    for element in drive2(): yield element
+    for element in drive2(PupDevices()): yield element
     wait(4000)
-    for element in drive3(): yield element
+    for element in drive3(PupDevices()): yield element
 
 @Fahrt(sensor_color=Color.WHITE, countdown=3, debug=False)
 def Fahrt4():
-    for element in drive4(): yield element
+    for element in drive4(PupDevices()): yield element
 
 @Fahrt(sensor_color=Color.MAGENTA, countdown=3, debug=False)
 def Fahrt5():
-    for element in drive5(): yield element
+    for element in drive5(PupDevices()): yield element
 
 @Fahrt(sensor_color=Color.BLUE, countdown=3, debug=False)
 def Fahrt6():
-    for element in drive6(): yield element
+    for element in drive6(PupDevices()): yield element
 
 
 
@@ -166,7 +157,7 @@ while True:
         wait(100)
         continue
 
-    found_color = color.color()
+    found_color = pd.color.color()
     if found_color != active_color:
         fahrt_active = False
         timer.reset()
