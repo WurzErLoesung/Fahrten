@@ -3,6 +3,14 @@ from pybricks.pupdevices import Motor, ColorSensor, UltrasonicSensor
 from pybricks.parameters import Button, Color, Direction, Port
 from pybricks.robotics import DriveBase
 from pybricks.tools import wait, StopWatch
+from yaw import Yaw
+from action_arc import action_arc
+from drive1 import drive1
+from drive2 import drive2
+from drive3 import drive3
+from drive4 import drive4
+from drive5 import drive5
+from drive6 import drive6
 
 hub = PrimeHub()
 
@@ -20,6 +28,16 @@ color = ColorSensor(Port.D)
 wheel_diameter = 56
 axle_track = 113
 drive_base = DriveBase(left_motor, right_motor, wheel_diameter, axle_track)
+yaw = Yaw(hub, left_motor, right_motor)
+
+Color.MAGENTA = Color(h=348, s=96, v=40)
+Color.RED = Color(h=359, s=97, v=39)
+Color.BLUE = Color(h=213, s=100, v=74.9)
+Color.YELLOW = Color(h=48, s=77.3, v=94.9)
+Color.WHITE = Color(h=0, s=0,)
+
+my_colors = (Colo.BLUE, Color.MAGENTA, Color.RED, Color.YELLOW, Color.WHITE)
+sensor.detectable_colors(my_colors) 
 
 # Timer Initialization
 timer = StopWatch()
@@ -76,9 +94,25 @@ def Fahrt(sensor_color, countdown, debug=False, *args, **kwargs):
 # Define Fahrt1 with the Fahrt decorator
 @Fahrt(sensor_color=Color.RED, countdown=3, debug=False)
 def Fahrt1():
-    drive_base.straight(200)
-    yield
+    drive1()
 
+@Fahrt(sensor_color=Color.YELLOW, countdown=3, debug=False)
+def Fahrt2_3():
+    drive2()
+    wait(4000)
+    drive3()
+
+@Fahrt(sensor_color=Color.WHITE, countdown=3, debug=False)
+def Fahrt4():
+    drive4()
+
+@Fahrt(sensor_color=Color.MAGENTA, countdown=3, debug=False)
+def Fahrt5():
+    drive5()
+
+@Fahrt(sensor_color=Color.BLUE, countdown=3, debug=False)
+def Fahrt6():
+    drive6()
 
 
 

@@ -30,54 +30,84 @@ drive_base.settings(straight_speed=900, straight_acceleration=500)
 StopWatch = watch
 hub.speaker.beep()
 
-#Korallenbaum
-drive_base.straight(190)
-action_back.run_angle(500, 250)
-#action_arc(drive_base, -1, action_back, 27, 200, 90, 30, 15)
-action_arc(drive_base, -1, action_back, 20, 182, 92, 30, 20)
-action_back.run_angle(500, -430)
-drive_base.straight(-95)
 
+def drive2():
+    # Korallenbaum
+    drive_base.straight(190)
+    yield True
+    action_back.run_angle(500, 250)
+    yield True
+    # action_arc(drive_base, -1, action_back, 27, 200, 90, 30, 15)
+    action_arc(drive_base, -1, action_back, 20, 182, 92, 30, 20)
+    yield True
+    action_back.run_angle(500, -430)
+    yield True
+    drive_base.straight(-95)
+    yield True
 
-#zu Schiffwrack
-yaw(-130)#130
-drive_base.straight(-325)#-327
-#drive_base.turn(-57
-yaw(-90)
+    # zu Schiffwrack
+    yaw(-130)  # 130
+    yield True
+    drive_base.straight(-325)  # -327
+    yield True
+    # drive_base.turn(-57
+    yaw(-90)
+    yield True
 
+    drive_base.settings(100)
+    drive_base.straight(-150)
+    yield True
+    action_front.run_angle(1000, 70)
+    yield True
+    drive_base.settings(50)
+    drive_base.straight(-65)  # -57
+    yield True
+    action_front.run_angle(1000, -80)  # 1000 -90
+    yield True
+    drive_base.straight(150)
+    yield True
+    drive_base.settings(900)
 
-drive_base.settings(100)
-drive_base.straight(-150)
-action_front.run_angle(1000, 70)
-drive_base.settings(50)
-drive_base.straight(-65)#-57
-action_front.run_angle(1000, -80)#1000 -90
-drive_base.straight(150)
-drive_base.settings(900)
+    # Korallenbaum Teil 2
+    drive_base.turn(-12)
+    yield True
+    drive_base.straight(120)
+    yield True
+    drive_base.straight(-90)  # 90
+    yield True
+    yaw(0)
+    yield True
 
+    # Hai und Taucherin
+    drive_base.straight(190)  # 200
+    yield True
+    yaw(-80)  # -82
+    yield True
+    action_back.run_angle(1250, -210)
+    yield True
+    drive_base.straight(140)  # 130
+    yield True
+    action_back.run_angle(1250, 450)
+    yield True
 
-#Korallenbaum Teil 2
-drive_base.turn(-12)
-drive_base.straight(120)
-drive_base.straight(-90)#90
-yaw(0)
+    # Korallenriff + Taucherin abliefern
+    drive_base.straight(-90)
+    yield True
+    yaw(0)
+    yield True
+    drive_base.straight(-170)
+    yield True
+    yaw(32)
+    yield True
+    drive_base.straight(180)
+    yield True
+    action_back.run_angle(1250, -800)
+    yield True
+    drive_base.straight(-800)
+    yield False
 
-#Hai und Taucherin
-drive_base.straight(190)#200
-yaw(-80)#-82
-action_back.run_angle(1250, -210)
-drive_base.straight(140)#130
-action_back.run_angle(1250, 450)
+    print("Fahrt 2 hat " + str(watch.time()/1000) + " Sekunden gedauert.")
+    watch.reset()
 
-#Korallenriff + Taucherin abliefern
-drive_base.straight(-90)
-yaw(0)
-drive_base.straight(-170)
-yaw(32)
-drive_base.straight(180)
-action_back.run_angle(1250, -800)
-drive_base.straight(-800)
-
-
-print("Fahrt 2 hat " + str(watch.time()/1000) + " Sekunden gedauert.")
-watch.reset()
+if __name__ == "__main__":
+    drive2()
