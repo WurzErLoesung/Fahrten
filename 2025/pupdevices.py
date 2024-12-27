@@ -5,17 +5,29 @@ from pybricks.robotics import DriveBase
 from pybricks.tools import wait, StopWatch
 
 
-class PupDevices(object):
-    def __new__(cls, *args, **kw):
-        if not hasattr(cls, '_instance'):
-            cls._instance = super(PupDevices, cls).__new__(cls)
+def singleton(cls):
+    instances = {}
+    def getinstance():
+        if cls not in instances:
+            instances[cls] = cls()
+        return instances[cls]
+    return getinstance
 
-            cls._instance.left_motor = Motor(Port.B)
-            cls._instance.right_motor = Motor(Port.F, positive_direction=Direction.COUNTERCLOCKWISE)
-            cls._instance.action_front = Motor(Port.C)
-            cls._instance.action_back = Motor(Port.A, positive_direction=Direction.COUNTERCLOCKWISE)
-            cls._instance.hub = PrimeHub()
-            cls._instance.imu = cls._instance.hub.imu
-            cls._instance.ultra = UltrasonicSensor(Port.E)
-            cls._instance.color = ColorSensor(Port.D)
-        return cls._instance
+@singleton
+class PupDevices:
+    def __init__(self):
+        self.left_motor = Motor(Port.B)
+        self.right_motor = Motor(Port.F, positive_direction=Direction.COUNTERCLOCKWISE)
+        self.action_front = Motor(Port.C)
+        self.action_back = Motor(Port.A, positive_direction=Direction.COUNTERCLOCKWISE)
+        self.hub = PrimeHub()
+        self.imu = self.hub.imu
+        self.ultra = UltrasonicSensor(Port.E)
+        self.color = ColorSensor(Port.D)
+
+if __name__ == "__main__":
+    hub = PrimeHub()
+    print(hub.system.name())
+    p = PupDevices()
+    p2 = PupDevices()
+    print(p == p2)
