@@ -11,8 +11,8 @@ hub = PrimeHub()
 left_motor = Motor(Port.B, positive_direction=Direction.CLOCKWISE) 
 right_motor = Motor(Port.F, positive_direction=Direction.COUNTERCLOCKWISE)
 
-action_front = Motor(Port.C)
-action_back = Motor(Port.A)
+pd.action_front = Motor(Port.C)
+pd.action_back = Motor(Port.A)
 
 ultra = UltrasonicSensor(Port.E)
 color = ColorSensor(Port.D)
@@ -53,7 +53,7 @@ def drive5():
     # Krabben aufstellen
     drive_base.straight(-225)
     yield True
-    action_back.run_angle(360, 360)
+    pd.action_back.run_angle(360, 360)
     yield True
     drive_base.straight(-100)
     yield True
@@ -65,7 +65,7 @@ def drive5():
     yield True
     drive_base.straight(-50)
     yield True
-    action_front.run_angle(1250, 850) # Schieber abwerfen
+    pd.action_front.run_angle(1250, 850) # Schieber abwerfen
     yield True
     drive_base.settings(800)
     yield True
