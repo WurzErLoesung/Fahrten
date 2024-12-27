@@ -5,25 +5,22 @@ from pybricks.robotics import DriveBase
 from pybricks.tools import wait, StopWatch, run_task
 from pupdevices import PupDevices
 
-pd = PupDevices()
-
 
 hub = PrimeHub()
 
 print(f"{hub.battery.voltage()/1000} Volt")
 
-#DriveBase initialisieren
-wheel_diameter = 56 
-axle_track = 113 
-drive_base = DriveBase(pd.left_motor, pd.right_motor, wheel_diameter, axle_track)
-drive_base.use_gyro(True)
-
-
 watch = StopWatch()
 
 hub.speaker.beep()
 
-def drive1():
+def drive1(pd):
+    #DriveBase initialisieren
+    wheel_diameter = 56 
+    axle_track = 113 
+    drive_base = DriveBase(pd.left_motor, pd.right_motor, wheel_diameter, axle_track)
+    drive_base.use_gyro(True)
+
     drive_base.settings(250)
     yield True
 
@@ -151,4 +148,4 @@ def drive1():
 
 
 if __name__ == "__main__":
-    drive1()
+    for element in drive1(PupDevices()): pass
