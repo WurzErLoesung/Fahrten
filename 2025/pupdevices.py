@@ -8,7 +8,7 @@ from pybricks.tools import wait, StopWatch
 class PupDevices(object):
     def __new__(cls, *args, **kw):
         if not hasattr(cls, '_instance'):
-            cls._instance = super(SingletonClass, cls).__new__(cls)
+            cls._instance = super(PupDevices, cls).__new__(cls)
 
             cls._instance.left_motor = Motor(Port.B)
             cls._instance.right_motor = Motor(Port.F, positive_direction=Direction.COUNTERCLOCKWISE)
