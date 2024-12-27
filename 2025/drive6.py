@@ -6,21 +6,20 @@ from pybricks.tools import wait, StopWatch, run_task, multitask
 from action_arc import action_arc
 from pupdevices import PupDevices
 
-pd = PupDevices()
 hub = PrimeHub()
 watch = StopWatch()
 
-#DriveBase initialisieren
-wheel_diameter = 56
-axle_track = 113
-drive_base = DriveBase(pd.left_motor, pd.right_motor, wheel_diameter, axle_track)
-drive_base.use_gyro(False)
-drive_base.settings(straight_speed=900, straight_acceleration=500, turn_rate=60)
-StopWatch = watch
-hub.speaker.beep()
 
+def drive6(pd):
+    #DriveBase initialisieren
+    wheel_diameter = 56
+    axle_track = 113
+    drive_base = DriveBase(pd.left_motor, pd.right_motor, wheel_diameter, axle_track)
+    drive_base.use_gyro(False)
+    drive_base.settings(straight_speed=900, straight_acceleration=500, turn_rate=60)
+    StopWatch = watch
+    hub.speaker.beep()
 
-def drive6():
     # Boat
     drive_base.straight(-5)
     yield True
@@ -113,4 +112,4 @@ def drive6():
 
 
 if __name__ == "__main__":
-    drive6()
+    for element in drive6(PupDevices()): pass
