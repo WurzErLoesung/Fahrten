@@ -94,25 +94,25 @@ def Fahrt(sensor_color, countdown, debug=False, *args, **kwargs):
 # Define Fahrt1 with the Fahrt decorator
 @Fahrt(sensor_color=Color.RED, countdown=3, debug=False)
 def Fahrt1():
-    drive1()
+    for element in drive1(): yield element
 
 @Fahrt(sensor_color=Color.YELLOW, countdown=3, debug=False)
 def Fahrt2_3():
-    drive2()
+    for element in drive2(): yield element
     wait(4000)
-    drive3()
+    for element in drive3(): yield element
 
 @Fahrt(sensor_color=Color.WHITE, countdown=3, debug=False)
 def Fahrt4():
-    drive4()
+    for element in drive4(): yield element
 
 @Fahrt(sensor_color=Color.MAGENTA, countdown=3, debug=False)
 def Fahrt5():
-    drive5()
+    for element in drive5(): yield element
 
 @Fahrt(sensor_color=Color.BLUE, countdown=3, debug=False)
 def Fahrt6():
-    drive6()
+    for element in drive6(): yield element
 
 
 
