@@ -12,28 +12,25 @@ watch = StopWatch()
 
 def drive6(pd):
     #DriveBase initialisieren
-    wheel_diameter = 56
-    axle_track = 113
-    drive_base = DriveBase(pd.left_motor, pd.right_motor, wheel_diameter, axle_track)
-    drive_base.use_gyro(False)
-    drive_base.settings(straight_speed=900, straight_acceleration=500, turn_rate=60)
+    pd.drive_base.use_gyro(False)
+    pd.drive_base.settings(straight_speed=900, straight_acceleration=500, turn_rate=60)
     StopWatch = watch
     hub.speaker.beep()
 
     # Boat
-    drive_base.straight(-5)
+    pd.drive_base.straight(-5)
     yield True
-    drive_base.straight(240)
+    pd.drive_base.straight(240)
     yield True
-    drive_base.turn(-28)
+    pd.drive_base.turn(-28)
     yield True
-    drive_base.straight(125)
+    pd.drive_base.straight(125)
     yield True
-    drive_base.turn(-17)
+    pd.drive_base.turn(-17)
     yield True
-    drive_base.straight(20)
+    pd.drive_base.straight(20)
     yield True
-    drive_base.turn(10)
+    pd.drive_base.turn(10)
     yield True
 
     # Lift Boat
@@ -41,40 +38,40 @@ def drive6(pd):
     yield True
 
     # Yeet Boat
-    drive_base.settings(straight_acceleration=5000)
+    pd.drive_base.settings(straight_acceleration=5000)
     yield True
-    drive_base.straight(-200)
+    pd.drive_base.straight(-200)
     yield True
-    drive_base.settings(straight_acceleration=500)
+    pd.drive_base.settings(straight_acceleration=500)
     yield True
 
-    drive_base.turn(-20)
+    pd.drive_base.turn(-20)
     yield True
-    drive_base.straight(250)
+    pd.drive_base.straight(250)
     yield True
-    drive_base.turn(50)
+    pd.drive_base.turn(50)
     yield True
-    drive_base.straight(200)
+    pd.drive_base.straight(200)
     yield True
-    drive_base.turn(50)
+    pd.drive_base.turn(50)
     yield True
-    drive_base.straight(250)
+    pd.drive_base.straight(250)
     yield True
     pd.action_front.run_angle(500, 960)
     yield True
-    drive_base.settings(straight_speed=500)
+    pd.drive_base.settings(straight_speed=500)
     yield True
-    drive_base.straight(-15)
+    pd.drive_base.straight(-15)
     yield True
-    drive_base.settings(straight_speed=900)
+    pd.drive_base.settings(straight_speed=900)
     yield True
 
     # drive to whales
-    drive_base.straight(-180)
+    pd.drive_base.straight(-180)
     yield True
-    drive_base.turn(92)
+    pd.drive_base.turn(92)
     yield True
-    drive_base.straight(-90)
+    pd.drive_base.straight(-90)
     yield True
 
     # solve whales
@@ -86,21 +83,21 @@ def drive6(pd):
     # drive to end
     wait(500)
     yield True
-    drive_base.straight(30)
+    pd.drive_base.straight(30)
     yield True
     wait(1000)
     yield True
-    drive_base.straight(100)
+    pd.drive_base.straight(100)
     yield True
     pd.action_back.run_angle(1500, 390)
     yield True
-    drive_base.turn(90)
+    pd.drive_base.turn(90)
     yield True
-    drive_base.straight(50)
+    pd.drive_base.straight(50)
     yield True
-    drive_base.turn(65)
+    pd.drive_base.turn(65)
     yield True
-    drive_base.straight(700)
+    pd.drive_base.straight(700)
     yield True
 
     # end
