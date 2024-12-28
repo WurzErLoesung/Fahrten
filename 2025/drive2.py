@@ -13,86 +13,83 @@ watch = StopWatch()
 
 def drive2(pd):
     #DriveBase initialisieren
-    wheel_diameter = 56
-    axle_track = 113
-    drive_base = DriveBase(pd.left_motor, pd.right_motor, wheel_diameter, axle_track)
-    drive_base.use_gyro(False)
-    drive_base.settings(straight_speed=900, straight_acceleration=500)
+    pd.drive_base.use_gyro(False)
+    pd.drive_base.settings(straight_speed=900, straight_acceleration=500)
     hub.speaker.beep()
     yaw = Yaw(hub, pd.left_motor, pd.right_motor)
 
     #Korallenbaum
-    drive_base.straight(190)
+    pd.drive_base.straight(190)
     yield True
     pd.action_back.run_angle(500, 250)
     yield True
-    # action_arc(drive_base, -1, pd.action_back, 27, 200, 90, 30, 15)
-    action_arc(drive_base, -1, pd.action_back, 20, 182, 92, 30, 20)
+    # action_arc(pd.drive_base, -1, pd.action_back, 27, 200, 90, 30, 15)
+    action_arc(pd.drive_base, -1, pd.action_back, 20, 182, 92, 30, 20)
     yield True
     pd.action_back.run_angle(500, -430)
     yield True
-    drive_base.straight(-95)
+    pd.drive_base.straight(-95)
     yield True
 
     # zu Schiffwrack
     yaw(-130)  # 130
     yield True
-    drive_base.straight(-325)  # -327
+    pd.drive_base.straight(-325)  # -327
     yield True
-    # drive_base.turn(-57
+    # pd.drive_base.turn(-57
     yaw(-90)
     yield True
 
-    drive_base.settings(100)
-    drive_base.straight(-150)
+    pd.drive_base.settings(100)
+    pd.drive_base.straight(-150)
     yield True
     pd.action_front.run_angle(1000, 70)
     yield True
-    drive_base.settings(50)
-    drive_base.straight(-65)  # -57
+    pd.drive_base.settings(50)
+    pd.drive_base.straight(-65)  # -57
     yield True
     pd.action_front.run_angle(1000, -80)  # 1000 -90
     yield True
-    drive_base.straight(150)
+    pd.drive_base.straight(150)
     yield True
-    drive_base.settings(900)
+    pd.drive_base.settings(900)
 
     # Korallenbaum Teil 2
-    drive_base.turn(-12)
+    pd.drive_base.turn(-12)
     yield True
-    drive_base.straight(120)
+    pd.drive_base.straight(120)
     yield True
-    drive_base.straight(-90)  # 90
+    pd.drive_base.straight(-90)  # 90
     yield True
     yaw(0)
     yield True
 
     # Hai und Taucherin
-    drive_base.straight(190)  # 200
+    pd.drive_base.straight(190)  # 200
     yield True
     yaw(-80)  # -82
     yield True
     pd.action_back.run_angle(1250, -210)
     yield True
-    drive_base.straight(140)  # 130
+    pd.drive_base.straight(140)  # 130
     yield True
     pd.action_back.run_angle(1250, 450)
     yield True
 
     # Korallenriff + Taucherin abliefern
-    drive_base.straight(-90)
+    pd.drive_base.straight(-90)
     yield True
     yaw(0)
     yield True
-    drive_base.straight(-170)
+    pd.drive_base.straight(-170)
     yield True
     yaw(32)
     yield True
-    drive_base.straight(180)
+    pd.drive_base.straight(180)
     yield True
     pd.action_back.run_angle(1250, -800)
     yield True
-    drive_base.straight(-800)
+    pd.drive_base.straight(-800)
     yield False
 
     print("Fahrt 2 hat " + str(watch.time()/1000) + " Sekunden gedauert.")

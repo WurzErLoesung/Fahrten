@@ -4,7 +4,6 @@ from pybricks.parameters import Button, Color, Direction, Port
 from pybricks.robotics import DriveBase
 from pybricks.tools import wait, StopWatch
 
-
 def singleton(cls):
     instances = {}
     def getinstance():
@@ -18,6 +17,7 @@ class PupDevices:
     def __init__(self):
         self.left_motor = Motor(Port.B)
         self.right_motor = Motor(Port.F, positive_direction=Direction.COUNTERCLOCKWISE)
+        self.drive_base = DriveBase(self.left_motor, self.right_motor, 56, 113)
         self.action_front = Motor(Port.C)
         self.action_back = Motor(Port.A, positive_direction=Direction.COUNTERCLOCKWISE)
         self.hub = PrimeHub()
