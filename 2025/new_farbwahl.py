@@ -124,12 +124,9 @@ def start_fahrt(sensor_color, countdown=None):
             try:
                 if not check_color(sensor_color): 
                     for i in range(10):
-                        print("check")
                         if check_color(sensor_color): break
-                    else: 
-                        print("break")
-                        break
-                    print("-----")
+                        wait(10)
+                    else: break
                 next(fahrt)
             except StopIteration:
                 break
@@ -154,13 +151,13 @@ while True:
     if not waiting:
         active_color = pd.color.color()
         
-        if active_color is not None: 
+        if active_color != Color.NONE: 
             start_fahrt(active_color, 0)
-            waiting = True
         else:
             hub.light.on(Color(h=0, s=100, v=100))
             wait(1000)
         wait(100)
+        waiting = True
         continue
 
     found_color = pd.color.color()
