@@ -24,11 +24,11 @@ def drive2(pd):
     pd.action_back.run_angle(500, 250)
     yield True
     # action_arc(pd.drive_base, -1, pd.action_back, 27, 200, 90, 30, 15)
-    action_arc(pd.drive_base, -1, pd.action_back, 20, 182, 92, 30, 20)
+    action_arc(pd.drive_base, -1, pd.action_back, 20, 182, 95, 30, 20)
     yield True
     pd.action_back.run_angle(500, -430)
     yield True
-    pd.drive_base.straight(-95)
+    pd.drive_base.straight(-100)
     yield True
 
     # zu Schiffwrack
