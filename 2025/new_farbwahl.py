@@ -122,6 +122,7 @@ def start_fahrt(sensor_color, countdown=None):
         
         while True:
             try:
+                if not check_color(sensor_color): break
                 next(fahrt)
             except StopIteration:
                 break
