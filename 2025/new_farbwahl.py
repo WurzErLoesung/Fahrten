@@ -78,11 +78,11 @@ def Fahrt(sensor_color, countdown, debug=False, *args, **kwargs):
     return fahrt_decorator
 
 # Define Fahrt1 with the Fahrt decorator
-@Fahrt(sensor_color=Color.RED, countdown=3, debug=False)
+@Fahrt(sensor_color=Color.RED, countdown=5, debug=False)
 def Fahrt1():
     for element in drive1(pd): yield element
 
-@Fahrt(sensor_color=Color.YELLOW, countdown=3, debug=False)
+@Fahrt(sensor_color=Color.YELLOW, countdown=7, debug=False)
 def Fahrt2_3():
     for element in drive2(pd): yield element
     wait(4000)
@@ -122,7 +122,14 @@ def start_fahrt(sensor_color, countdown=None):
         
         while True:
             try:
-                if not check_color(sensor_color): break
+                if not check_color(sensor_color): 
+                    for i in range(10):
+                        print("check")
+                        if check_color(sensor_color): break
+                    else: 
+                        print("break")
+                        break
+                    print("-----")
                 next(fahrt)
             except StopIteration:
                 break
@@ -134,6 +141,7 @@ def start_fahrt(sensor_color, countdown=None):
         hub.light.on(Color(h=0, s=100, v=100)) # Wait before ending
 
 # Main loop for color detection and Fahrt initiation
+print(hub.system.name())
 fahrt_active = False
 waiting = False
 active_color = None
