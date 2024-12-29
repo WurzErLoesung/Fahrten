@@ -14,8 +14,8 @@ watch = StopWatch()
 def drive2(pd):
     #DriveBase initialisieren
     pd.drive_base.use_gyro(False)
-    pd.drive_base.settings(straight_speed=900, straight_acceleration=500)
-    hub.speaker.beep()
+    pd.imu.reset_heading(0)
+    pd.drive_base.settings(straight_speed=800, straight_acceleration=500)
     yaw = Yaw(hub, pd.left_motor, pd.right_motor)
 
     #Korallenbaum
@@ -28,7 +28,7 @@ def drive2(pd):
     yield True
     pd.action_back.run_angle(500, -430)
     yield True
-    pd.drive_base.straight(-100)
+    pd.drive_base.straight(-110) # -100
     yield True
 
     # zu Schiffwrack
@@ -41,18 +41,16 @@ def drive2(pd):
     yield True
 
     pd.drive_base.settings(100)
-    pd.drive_base.straight(-150)
-    yield True
+    pd.drive_base.straight(-150) # -150
     pd.action_front.run_angle(1000, 70)
-    yield True
     pd.drive_base.settings(50)
-    pd.drive_base.straight(-65)  # -57
+    pd.drive_base.straight(-67)  # 58
     yield True
     pd.action_front.run_angle(1000, -80)  # 1000 -90
     yield True
     pd.drive_base.straight(150)
     yield True
-    pd.drive_base.settings(900)
+    pd.drive_base.settings(800)
 
     # Korallenbaum Teil 2
     pd.drive_base.turn(-12)
@@ -67,26 +65,27 @@ def drive2(pd):
     # Hai und Taucherin
     pd.drive_base.straight(190)  # 200
     yield True
-    yaw(-80)  # -82
+    yaw(-78)  # -80
     yield True
     pd.action_back.run_angle(1250, -210)
     yield True
-    pd.drive_base.straight(140)  # 130
+    pd.drive_base.straight(135)  # 130
     yield True
     pd.action_back.run_angle(1250, 450)
     yield True
 
     # Korallenriff + Taucherin abliefern
-    pd.drive_base.straight(-90)
+    pd.drive_base.straight(-110) # -90
     yield True
     yaw(0)
     yield True
-    pd.drive_base.straight(-170)
+    pd.drive_base.straight(-156) # -170
     yield True
-    yaw(32)
+    yaw(31) # 33
     yield True
-    pd.drive_base.straight(180)
+    pd.drive_base.straight(175) # 180
     yield True
+    yaw(25)
     pd.action_back.run_angle(1250, -800)
     yield True
     pd.drive_base.straight(-800)
