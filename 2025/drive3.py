@@ -9,7 +9,7 @@ hub = PrimeHub()
 
 def drive3(pd):
     #DriveBase initialisieren
-    pd.drive_base.use_gyro(True)
+    pd.drive_base.use_gyro(False)
     pd.drive_base.settings(straight_speed=900, straight_acceleration=500)
 
     hub.speaker.beep()
