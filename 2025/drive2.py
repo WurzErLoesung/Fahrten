@@ -81,7 +81,7 @@ def drive2(pd):
     yield True
     pd.drive_base.straight(-156) # -170
     yield True
-    yaw(31) # 33
+    yaw(29) # 33
     yield True
     pd.drive_base.straight(175) # 180
     yield True
