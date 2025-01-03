@@ -18,15 +18,22 @@ pd = PupDevices()
 # Initialize DriveBase
 yaw = Yaw(hub, pd.left_motor, pd.right_motor)
 
-Color.MAGENTA = Color(h=348, s=96, v=40)
-Color.RED = Color(h=359, s=97, v=39)
-Color.BLUE = Color(h=213, s=100, v=74.9)
-Color.YELLOW = Color(h=48, s=77.3, v=94.9)
-Color.WHITE = Color(h=0, s=0, v=100)
+Color.MAGENTA = Color(h=348, s=91, v=40)
+Color.RED = Color(h=352, s=96, v=54)
+Color.BLUE = Color(h=215, s=99, v=60)
+#Color.YELLOW = Color(h=48, s=77.3, v=94.9)
+#Color.WHITE = Color(h=0, s=0, v=100)
 Color.NONE = Color(h=0, s=0, v=0)
+#
+#my_colors = (Color.BLUE, Color.MAGENTA, Color.RED, Color.YELLOW, Color.WHITE, Color.NONE)
+#pd.color.detectable_colors(my_colors) 
 
-my_colors = (Color.BLUE, Color.MAGENTA, Color.RED, Color.YELLOW, Color.WHITE, Color.NONE)
-pd.color.detectable_colors(my_colors) 
+colors = list(pd.color.detectable_colors()) 
+colors.append(Color.MAGENTA)
+colors.append(Color.RED)
+colors.append(Color.BLUE)
+colors.append(Color.NONE)
+pd.color.detectable_colors(colors)
 
 # Timer Initialization
 timer = StopWatch()
