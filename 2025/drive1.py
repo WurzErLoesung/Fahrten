@@ -17,7 +17,7 @@ hub.speaker.beep()
 def drive1(pd):
     #DriveBase initialisieren
     pd.drive_base.use_gyro(False)
-
+    pd.imu.reset_heading(0)
     pd.drive_base.settings(250)
     yield True
 

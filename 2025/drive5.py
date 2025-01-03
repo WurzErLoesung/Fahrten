@@ -16,8 +16,9 @@ def drive5(pd):
 
     #DriveBase initialisieren
     pd.drive_base.use_gyro(False) 
+    pd.imu.reset_heading(0) 
     pd.drive_base.settings(straight_speed=400, straight_acceleration=500)
-    StopWatch = watch
+    watch = StopWatch()
     hub.speaker.beep()
 
     pd.drive_base.straight(115)
