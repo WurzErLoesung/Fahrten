@@ -34,7 +34,7 @@ def drive1(pd):
     yield True
     pd.drive_base.settings(950) #950
     yield True
-    pd.action_back.run_angle(200, -170) #200, -170
+    pd.action_back.run_angle(200, 170) #200, -170
     yield True
 
     # zu 1. Schrimm & Koralle
@@ -60,17 +60,17 @@ def drive1(pd):
     yield True
     pd.drive_base.straight(-120) #120
     yield True
-    pd.action_back.run_angle(200, 190) #200, 190
+    pd.action_back.run_angle(200, -190) #200, 190
     yield True
     pd.drive_base.straight(60) #-55
     yield True
-    pd.action_back.run_angle(200, -80) #200, -80
+    pd.action_back.run_angle(200, 80) #200, -80
     yield True
     pd.action_front.run_angle(200, -50) #200, -50
     yield True
     pd.drive_base.straight(-206) #200
     yield True
-    pd.action_back.run_angle(200, -90) #200, -90
+    pd.action_back.run_angle(200, 90) #200, -90
     yield True
 
     # zu Anglerfisch
@@ -109,7 +109,7 @@ def drive1(pd):
     yield True
     pd.drive_base.turn(34) #before 34
     yield True
-    pd.action_back.run_angle(80, 79) #before 80,78
+    pd.action_back.run_angle(80, -79) #before 80,78
     yield True
     pd.drive_base.straight(40) #-45
     yield True
@@ -119,7 +119,7 @@ def drive1(pd):
     yield True
 
     # Anker hoch
-    pd.action_back.run_angle(200, -90) #200, -90
+    pd.action_back.run_angle(200, 90) #200, -90
     yield True
 
     # alles einsammeln
@@ -137,10 +137,11 @@ def drive1(pd):
     yield True
     pd.drive_base.settings(700)
     yield True
-    pd.drive_base.curve(600, 65)
+    pd.drive_base.curve(-600, 65)
     yield False
 
     print("Fahrt 1 hat " + str(watch.time()/1000) + " Sekunden gedauert.")
+    print(pd.timer.time())
     watch.reset()
 
 

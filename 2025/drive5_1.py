@@ -4,28 +4,17 @@ from pybricks.parameters import Button, Color, Direction, Port, Side, Stop
 from pybricks.robotics import DriveBase
 from pybricks.tools import wait, StopWatch, run_task, multitask
 
-hub = PrimeHub()
-# Motoren initialisieren 
-left_motor = Motor(Port.B, positive_direction=Direction.CLOCKWISE) 
-right_motor = Motor(Port.F, positive_direction=Direction.COUNTERCLOCKWISE)
+def drive5_1(pd):
+    pd.drive_base.use_gyro(False)
+    pd.imu.reset_heading(0)
+    pd.drive_base.settings(straight_speed=200, straight_acceleration=500)
+    pd.drive_base.straight(115)
+    watch = StopWatch()
+    yield True
+    pd.drive_base.settings(400)
+    pd.drive_base.straight(-125)
+    yield False
 
-action_front = Motor(Port.C)
-action_back = Motor(Port.A)
-
-ultra = UltrasonicSensor(Port.E)
-color = ColorSensor(Port.D)
-watch = StopWatch()
-
-
-#DriveBase initialisieren
-wheel_diameter = 56 
-axle_track = 113 
-drive_base = DriveBase(left_motor, right_motor, wheel_diameter, axle_track)
-drive_base.use_gyro(False) 
-drive_base.settings(straight_speed=200, straight_acceleration=500)
-StopWatch = watch
-hub.speaker.beep()
-
-drive_base.straight(115)
-drive_base.settings(400)
-drive_base.straight(-125)
+    print("Fahrt 5 hat " + str(watch.time()/1000) + " Sekunden gedauert.")
+    watch.reset()
+    print(pd.timer.time())

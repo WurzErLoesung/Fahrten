@@ -106,6 +106,7 @@ def drive6(pd):
 
     print("Fahrt 6 hat " + str(watch.time()/1000) + " Sekunden gedauert.")
     watch.reset()
+    print(pd.timer.time())
 
 
 if __name__ == "__main__":

@@ -24,6 +24,7 @@ class PupDevices:
         self.imu = self.hub.imu
         self.ultra = UltrasonicSensor(Port.E)
         self.color = ColorSensor(Port.D)
+        self.timer = StopWatch()
 
 if __name__ == "__main__":
     hub = PrimeHub()
