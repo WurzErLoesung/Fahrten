@@ -17,9 +17,9 @@ def drive3(pd):
 
     pd.drive_base.settings(300)
     pd.drive_base.straight(100)
-    yield True
     pd.drive_base.straight(-100)
-    yield False
+
+    print(pd.timer.time())
 
 if __name__ == "__main__":
     for element in drive3(PupDevices()): pass

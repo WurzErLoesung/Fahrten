@@ -9,7 +9,8 @@ from drive1 import drive1
 from drive2 import drive2
 from drive3 import drive3
 from drive4 import drive4
-from drive5 import drive5
+from drive5_1 import drive5_1
+from drive5_2 import drive5_2
 from drive6 import drive6
 from pupdevices import PupDevices
 
@@ -21,6 +22,7 @@ yaw = Yaw(hub, pd.left_motor, pd.right_motor)
 Color.MAGENTA = Color(h=348, s=91, v=40)
 Color.RED = Color(h=352, s=96, v=54)
 Color.BLUE = Color(h=215, s=99, v=60)
+Color.GREEN = Color(h=157, s=93, v=27)
 #Color.YELLOW = Color(h=48, s=77.3, v=94.9)
 #Color.WHITE = Color(h=0, s=0, v=100)
 Color.NONE = Color(h=0, s=0, v=0)
@@ -32,6 +34,7 @@ colors = list(pd.color.detectable_colors())
 colors.append(Color.MAGENTA)
 colors.append(Color.RED)
 colors.append(Color.BLUE)
+colors.append(Color.GREEN)
 colors.append(Color.NONE)
 pd.color.detectable_colors(colors)
 
@@ -85,7 +88,7 @@ def Fahrt(sensor_color, countdown, debug=False, *args, **kwargs):
     return fahrt_decorator
 
 # Define Fahrt1 with the Fahrt decorator
-@Fahrt(sensor_color=Color.RED, countdown=5, debug=False)
+@Fahrt(sensor_color=Color.BLUE, countdown=5, debug=False)
 def Fahrt1():
     for element in drive1(pd): yield element
 
@@ -100,10 +103,14 @@ def Fahrt4():
     for element in drive4(pd): yield element
 
 @Fahrt(sensor_color=Color.MAGENTA, countdown=3, debug=False)
-def Fahrt5():
-    for element in drive5(pd): yield element
+def Fahrt5_1():
+    for element in drive5_1(pd): yield element
+    
+@Fahrt(sensor_color=Color.GREEN, countdown=3, debug=False)
+def Fahrt5_2():
+    for element in drive5_2(pd): yield element
 
-@Fahrt(sensor_color=Color.BLUE, countdown=3, debug=False)
+@Fahrt(sensor_color=Color.RED, countdown=3, debug=False)
 def Fahrt6():
     for element in drive6(pd): yield element
 

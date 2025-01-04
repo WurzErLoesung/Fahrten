@@ -49,6 +49,7 @@ def drive4(pd):
 
     print("Fahrt 4 hat " + str(watch.time()/1000) + " Sekunden gedauert.")
     watch.reset()
+    print(pd.timer.time())
 
 
 if __name__ == "__main__":

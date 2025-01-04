@@ -92,6 +92,7 @@ def drive2(pd):
     yield False
 
     print("Fahrt 2 hat " + str(watch.time()/1000) + " Sekunden gedauert.")
+    print(pd.timer.time())
     watch.reset()
 
 if __name__ == "__main__":
