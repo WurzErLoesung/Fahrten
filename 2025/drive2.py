@@ -45,9 +45,7 @@ def drive2(pd):
     pd.action_front.run_angle(1000, 70)
     pd.drive_base.settings(50)
     pd.drive_base.straight(-67)  # 58
-    yield True
     pd.action_front.run_angle(1000, -80)  # 1000 -90
-    yield True
     pd.drive_base.straight(150)
     yield True
     pd.drive_base.settings(800)

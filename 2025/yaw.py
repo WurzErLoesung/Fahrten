@@ -51,6 +51,9 @@ class Yaw:
     
         self.ml.stop()
         self.mr.stop()
+    
+    def reset(self, angle):
+        self.hub.imu.reset_heading(angle)
 
 if __name__ == "__main__":
     hub =  PrimeHub()
