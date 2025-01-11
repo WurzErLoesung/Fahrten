@@ -4,6 +4,7 @@ from pybricks.parameters import Button, Color, Direction, Port, Side, Stop
 from pybricks.robotics import DriveBase
 from pybricks.tools import wait, StopWatch, run_task
 from pupdevices import PupDevices
+from yaw import Yaw
 
 
 hub = PrimeHub()
@@ -18,7 +19,8 @@ def drive1(pd):
     #DriveBase initialisieren
     pd.drive_base.use_gyro(False)
     pd.imu.reset_heading(0)
-    pd.drive_base.settings(250)
+    pd.drive_base.settings(250, 500)
+    yaw = Yaw(hub, pd.left_motor, pd.right_motor)
     yield True
 
     # für Roboter weiß
@@ -30,49 +32,55 @@ def drive1(pd):
     # zu der/die/das Kaktus
     pd.drive_base.turn(4.6) #-4,5
     pd.drive_base.straight(-590) #590
+    yaw.reset(-45)
     pd.drive_base.settings(950) #950
     pd.action_back.run_angle(200, 170) #200, -170
 
     # zu 1. Schrimm & Koralle
     pd.drive_base.straight(200) #-200
     yield True
-    pd.drive_base.turn(-75) #75
+    yaw(20)
     yield True
-    pd.drive_base.straight(-200) #200
+    pd.drive_base.straight(-180) #200
     yield True
 
     # 2. Schrims
-    pd.drive_base.turn(30) #30
+    yaw(5)
     yield True
-    pd.drive_base.straight(-195) #before 180
+    pd.drive_base.straight(-185) #before 180
     yield True
-    pd.drive_base.turn(-40) #35
+    yaw(30)
     yield True
-    pd.drive_base.straight(-70) #70
+    pd.drive_base.straight(-75) #-70
     yield True
 
     # zu Karotte
-    pd.drive_base.turn(120) #before -120
+    yaw(-90)
     yield True
     pd.drive_base.straight(-120) #120
     yield True
     pd.action_back.run_angle(200, -190) #200, 190
+    yaw(-90)
     yield True
-    pd.drive_base.straight(60) #-55
+    pd.drive_base.settings(400, 200)
+    pd.drive_base.straight(65) #-55
+    pd.drive_base.settings(950, 500)
     yield True
     pd.action_back.run_angle(200, 80) #200, -80
     yield True
     pd.action_front.run_angle(200, -50) #200, -50
     yield True
-    pd.drive_base.straight(-206) #200
+    pd.drive_base.straight(-50)
+    yaw(-90)
+    pd.drive_base.straight(-186) #200
     yield True
     pd.action_back.run_angle(200, 90) #200, -90
     yield True
 
     # zu Anglerfisch
-    pd.drive_base.turn(3) # before 10
+    yaw(-93)
     yield True
-    pd.drive_base.straight(-400) #before 441.35
+    pd.drive_base.straight(-370) #before 441.35
     yield True
     pd.drive_base.straight(-25) #25
     yield True
@@ -81,11 +89,11 @@ def drive1(pd):
     yield True
 
     # eingesammelte Sachen abstellen
-    pd.drive_base.turn(-13) #13
+    yaw(-80)
     yield True
     pd.drive_base.straight(-255) #300
     yield True
-    pd.drive_base.turn(10.5) #-10.5
+    yaw(-90)
     yield True
 
     # zum Korallenriff
@@ -101,15 +109,15 @@ def drive1(pd):
     yield True
 
     # zum Anker
-    pd.drive_base.straight(120) #100
+    pd.drive_base.straight(110) #100
     yield True
-    pd.drive_base.turn(34) #before 34
+    yaw(-110)
     yield True
     pd.action_back.run_angle(80, -79) #before 80,78
     yield True
-    pd.drive_base.straight(40) #-45
+    pd.drive_base.straight(55) #-45
     yield True
-    pd.drive_base.turn(19) #-17
+    yaw(-130)
     yield True
     pd.drive_base.straight(60) #60
     yield True
@@ -119,15 +127,15 @@ def drive1(pd):
     yield True
 
     # alles einsammeln
-    pd.drive_base.turn(-50) #30
+    yaw(-100)
     yield True
-    pd.drive_base.straight(-270) #270
+    pd.drive_base.straight(-275) #270
     yield True
-    pd.drive_base.turn(25) #-30
+    yaw(-140)
     yield True
-    pd.drive_base.straight(-120) #80
+    pd.drive_base.straight(-110) #80
     yield True
-    pd.drive_base.turn(57) #-50
+    yaw(-170)
     yield True
     pd.drive_base.straight(-20)
     yield True

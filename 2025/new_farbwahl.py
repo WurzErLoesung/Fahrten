@@ -20,11 +20,11 @@ pd = PupDevices()
 yaw = Yaw(hub, pd.left_motor, pd.right_motor)
 
 Color.MAGENTA = Color(h=348, s=91, v=40)
-Color.RED = Color(h=352, s=96, v=54)
-Color.BLUE = Color(h=215, s=99, v=60)
+Color.RED = Color(h=352, s=97, v=51)
+Color.BLUE = Color(h=215, s=98, v=31)
 Color.GREEN = Color(h=157, s=93, v=27)
-#Color.YELLOW = Color(h=48, s=77.3, v=94.9)
-#Color.WHITE = Color(h=0, s=0, v=100)
+Color.YELLOW = Color(h=52, s=79, v=70)
+Color.WHITE = Color(h=118, s=13, v=75)
 Color.NONE = Color(h=0, s=0, v=0)
 #
 #my_colors = (Color.BLUE, Color.MAGENTA, Color.RED, Color.YELLOW, Color.WHITE, Color.NONE)
@@ -35,6 +35,8 @@ colors.append(Color.MAGENTA)
 colors.append(Color.RED)
 colors.append(Color.BLUE)
 colors.append(Color.GREEN)
+colors.append(Color.YELLOW)
+colors.append(Color.WHITE)
 colors.append(Color.NONE)
 pd.color.detectable_colors(colors)
 
@@ -132,6 +134,7 @@ def play_fahrt_found():
 def start_fahrt(sensor_color, countdown=None):
     if sensor_color in fahrten:
         if countdown is None or countdown > 0: play_fahrt_found()
+        print(f"Starting Fahrt {sensor_color}")
         fahrt = fahrten[sensor_color](countdown)
         
         while True:
