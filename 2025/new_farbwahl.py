@@ -92,25 +92,25 @@ def Fahrt(sensor_color, countdown, debug=False, *args, **kwargs):
 def Fahrt1():
     for element in drive1(pd): yield element
 
-@Fahrt(sensor_color=Color.YELLOW, countdown=7, debug=False)
+@Fahrt(sensor_color=Color.YELLOW, countdown=10, debug=False)
 def Fahrt2_3():
     for element in drive2(pd): yield element
-    wait(4000)
+    wait(8000)
     for element in drive3(pd): yield element
 
-@Fahrt(sensor_color=Color.WHITE, countdown=3, debug=False)
+@Fahrt(sensor_color=Color.WHITE, countdown=10, debug=False)
 def Fahrt4():
     for element in drive4(pd): yield element
 
-@Fahrt(sensor_color=Color.MAGENTA, countdown=3, debug=False)
+@Fahrt(sensor_color=Color.MAGENTA, countdown=10, debug=False)
 def Fahrt5_1():
     for element in drive5_1(pd): yield element
     
-@Fahrt(sensor_color=Color.GREEN, countdown=3, debug=False)
+@Fahrt(sensor_color=Color.GREEN, countdown=10, debug=False)
 def Fahrt5_2():
     for element in drive5_2(pd): yield element
 
-@Fahrt(sensor_color=Color.RED, countdown=3, debug=False)
+@Fahrt(sensor_color=Color.RED, countdown=10, debug=False)
 def Fahrt6():
     for element in drive6(pd): yield element
 
@@ -140,7 +140,9 @@ def start_fahrt(sensor_color, countdown=None):
                     for i in range(10):
                         if check_color(sensor_color): break
                         wait(10)
-                    else: break
+                    else:
+                        print(pd.color.hsv(), pd.color.color())
+                        break
                 next(fahrt)
             except StopIteration:
                 break

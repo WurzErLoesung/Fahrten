@@ -28,14 +28,10 @@ def drive1(pd):
     yield True
 
     # zu der/die/das Kaktus
-    #pd.drive_base.turn(4.5) #-4,5
-    yield True
+    pd.drive_base.turn(4.6) #-4,5
     pd.drive_base.straight(-590) #590
-    yield True
     pd.drive_base.settings(950) #950
-    yield True
     pd.action_back.run_angle(200, 170) #200, -170
-    yield True
 
     # zu 1. Schrimm & Koralle
     pd.drive_base.straight(200) #-200
@@ -50,13 +46,13 @@ def drive1(pd):
     yield True
     pd.drive_base.straight(-195) #before 180
     yield True
-    pd.drive_base.turn(-35) #35
+    pd.drive_base.turn(-40) #35
     yield True
     pd.drive_base.straight(-70) #70
     yield True
 
     # zu Karotte
-    pd.drive_base.turn(124) #before -120
+    pd.drive_base.turn(120) #before -120
     yield True
     pd.drive_base.straight(-120) #120
     yield True
