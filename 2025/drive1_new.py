@@ -28,70 +28,70 @@ def drive1(pd):
     yield True
 
     # zu der/die/das Kaktus
-    pd.drive_base.turn(4.6) #-4,5
-    pd.drive_base.straight(-590) #590
-    pd.drive_base.settings(900) #950
+    pd.drive_base.turn(-4.5) #-4,5
+    pd.drive_base.straight(590) #590
+    pd.drive_base.settings(850) #950
     pd.action_back.run_angle(200, 170) #200, -170
 
     # zu 1. Schrimm & Koralle
-    pd.drive_base.straight(200) #-200
+    pd.drive_base.straight(-200) #-200
     yield True
-    pd.drive_base.turn(-75) #75
+    pd.drive_base.turn(75) #75
     yield True
-    pd.drive_base.straight(-200) #200
+    pd.drive_base.straight(200) #200
     yield True
 
     # 2. Schrims
-    pd.drive_base.turn(30) #30
+    pd.drive_base.turn(-30) #30
     yield True
-    pd.drive_base.straight(-195) #before 180
+    pd.drive_base.straight(170) #before 195
     yield True
-    pd.drive_base.turn(-40) #35
+    pd.drive_base.turn(-35) #35
     yield True
-    pd.drive_base.straight(-70) #70
+    pd.drive_base.straight(70) #70
     yield True
 
     # zu Karotte
-    pd.drive_base.turn(120) #before -120
+    pd.drive_base.turn(-60) #before -120
     yield True
-    pd.drive_base.straight(-120) #120
+    pd.drive_base.straight(120) #120
     yield True
     pd.action_back.run_angle(200, -190) #200, 190
     yield True
-    pd.drive_base.straight(60) #-55
+    pd.drive_base.straight(-160) #-55
     yield True
     pd.action_back.run_angle(200, 80) #200, -80
     yield True
     pd.action_front.run_angle(200, -50) #200, -50
     yield True
-    pd.drive_base.straight(-206) #200
+    pd.drive_base.straight(200) #200
     yield True
     pd.action_back.run_angle(200, 90) #200, -90
     yield True
 
     # zu Anglerfisch
-    pd.drive_base.turn(11) # before 3
+    pd.drive_base.turn(-3) # before 10
     yield True
-    pd.drive_base.straight(-400) #before 441.35
+    pd.drive_base.straight(400) #before 441.35
     yield True
-    pd.drive_base.straight(-25) #25
+    pd.drive_base.straight(25) #25
     yield True
 
-    pd.drive_base.straight(20) # bleibt somit nicht mehr hängen beim Anglerfisch
+    pd.drive_base.straight(-20) # bleibt somit nicht mehr hängen beim Anglerfisch
     yield True
 
     # eingesammelte Sachen abstellen
-    pd.drive_base.turn(-13) #13
+    pd.drive_base.turn(13) #13
     yield True
-    pd.drive_base.straight(-255) #300
+    pd.drive_base.straight(255) #300
     yield True
-    pd.drive_base.turn(10.5) #-10.5
+    pd.drive_base.turn(-10.5) #-10.5
     yield True
 
     # zum Korallenriff
     pd.drive_base.settings(150)
     yield True
-    pd.drive_base.straight(-240) #170
+    pd.drive_base.straight(240) #170
     yield True
     #pd.drive_base.settings(250)
     wait(300) #300
@@ -101,17 +101,17 @@ def drive1(pd):
     yield True
 
     # zum Anker
-    pd.drive_base.straight(120) #100
+    pd.drive_base.straight(-120) #100
     yield True
-    pd.drive_base.turn(34) #before 34
+    pd.drive_base.turn(-34) #before 34
     yield True
     pd.action_back.run_angle(80, -79) #before 80,78
     yield True
-    pd.drive_base.straight(40) #-45
+    pd.drive_base.straight(-40) #-45
     yield True
-    pd.drive_base.turn(19) #-17
+    pd.drive_base.turn(-19) #-17
     yield True
-    pd.drive_base.straight(60) #60
+    pd.drive_base.straight(-60) #60
     yield True
 
     # Anker hoch
@@ -119,27 +119,23 @@ def drive1(pd):
     yield True
 
     # alles einsammeln
-    pd.drive_base.turn(-50) #30
+    pd.drive_base.turn(50) #30
     yield True
-    pd.drive_base.straight(-270) #270
+    pd.drive_base.straight(270) #270
     yield True
-    pd.drive_base.turn(25) #-30
+    pd.drive_base.turn(-25) #-30
     yield True
-    pd.drive_base.straight(-120) #80
+    pd.drive_base.straight(120) #80
     yield True
-    pd.drive_base.turn(57) #-50
+    pd.drive_base.turn(-57) #-50
     yield True
-    pd.drive_base.straight(-20)
+    pd.drive_base.straight(20)
     yield True
     pd.drive_base.settings(700)
     yield True
-    pd.drive_base.curve(-600, 65)
+    pd.drive_base.curve(600, 65)
     yield False
 
     print("Fahrt 1 hat " + str(watch.time()/1000) + " Sekunden gedauert.")
     print(pd.timer.time())
     watch.reset()
-
-
-if __name__ == "__main__":
-    for element in drive1(PupDevices()): pass

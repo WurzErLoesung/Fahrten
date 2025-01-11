@@ -15,7 +15,7 @@ def singleton(cls):
 @singleton
 class PupDevices:
     def __init__(self):
-        self.left_motor = Motor(Port.B)
+        self.left_motor = Motor(Port.B)#, positive_direction=Direction.COUNTERCLOCKWISE)
         self.right_motor = Motor(Port.F, positive_direction=Direction.COUNTERCLOCKWISE)
         self.drive_base = DriveBase(self.left_motor, self.right_motor, 56, 113)
         self.action_front = Motor(Port.C)
