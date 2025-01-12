@@ -5,6 +5,7 @@ from pybricks.robotics import DriveBase
 from pybricks.tools import wait, StopWatch, run_task, multitask
 from action_arc import action_arc
 from pupdevices import PupDevices
+from yaw import Yaw
 
 hub = PrimeHub()
 watch = StopWatch()
@@ -14,23 +15,24 @@ def drive6(pd):
     #DriveBase initialisieren
     pd.drive_base.use_gyro(False)
     pd.drive_base.settings(straight_speed=900, straight_acceleration=500, turn_rate=60)
+    yaw = Yaw(hub, pd.left_motor, pd.right_motor)
     StopWatch = watch
     hub.speaker.beep()
 
     # Boat
-    pd.drive_base.straight(-5)
+    pd.drive_base.straight(5)
     yield True
-    pd.drive_base.straight(240)
+    pd.drive_base.straight(-240)
     yield True
-    pd.drive_base.turn(-28)
+    yaw(-28)
     yield True
-    pd.drive_base.straight(125)
+    pd.drive_base.straight(-125)
     yield True
-    pd.drive_base.turn(-17)
+    yaw(-45)
     yield True
-    pd.drive_base.straight(20)
+    pd.drive_base.straight(-20)
     yield True
-    pd.drive_base.turn(10)
+    yaw(-40)
     yield True
 
     # Lift Boat
@@ -40,38 +42,46 @@ def drive6(pd):
     # Yeet Boat
     pd.drive_base.settings(straight_acceleration=5000)
     yield True
-    pd.drive_base.straight(-200)
+    pd.drive_base.straight(200)
     yield True
     pd.drive_base.settings(straight_acceleration=500)
     yield True
 
-    pd.drive_base.turn(-20)
+    yaw(-55)
     yield True
-    pd.drive_base.straight(250)
+    pd.drive_base.straight(-250)
     yield True
-    pd.drive_base.turn(50)
+    yaw(-5)
     yield True
-    pd.drive_base.straight(200)
+    pd.drive_base.straight(-220)
     yield True
-    pd.drive_base.turn(50)
+    yaw(45)
     yield True
-    pd.drive_base.straight(250)
+    pd.drive_base.straight(-180)
+    yield True
+    pd.drive_base.settings(straight_speed=40)
+    pd.drive_base.straight(-60)
+    yield True
+    pd.drive_base.settings(straight_speed=900)
+    pd.drive_base.straight(-5)
+    yield True
+    pd.drive_base.settings(straight_speed=40)
     yield True
     pd.action_front.run_angle(500, 960)
     yield True
-    pd.drive_base.settings(straight_speed=500)
     yield True
-    pd.drive_base.straight(-15)
+    pd.drive_base.straight(20)
     yield True
     pd.drive_base.settings(straight_speed=900)
     yield True
 
     # drive to whales
-    pd.drive_base.straight(-180)
+    pd.drive_base.straight(170)
     yield True
-    pd.drive_base.turn(92)
+    yaw(135)
     yield True
-    pd.drive_base.straight(-90)
+    pd.drive_base.straight(75)
+    yield True
     yield True
 
     # solve whales
@@ -83,21 +93,21 @@ def drive6(pd):
     # drive to end
     wait(500)
     yield True
-    pd.drive_base.straight(30)
+    pd.drive_base.straight(-30)
     yield True
-    wait(1000)
+    wait(1500)
     yield True
-    pd.drive_base.straight(100)
+    pd.drive_base.straight(-100)
     yield True
     pd.action_back.run_angle(1500, 390)
     yield True
-    pd.drive_base.turn(90)
+    yaw(217)
     yield True
-    pd.drive_base.straight(50)
+    pd.drive_base.straight(-50)
     yield True
-    pd.drive_base.turn(65)
+    yaw(285)
     yield True
-    pd.drive_base.straight(700)
+    pd.drive_base.straight(-670)
     yield True
 
     # end
