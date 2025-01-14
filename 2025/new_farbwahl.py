@@ -50,24 +50,28 @@ def check_color(sensor_color):
     return sensor_color is None or pd.color.color() == sensor_color
 
 # Countdown and color-checking function
-def play_countdown(sec, sensor_color=None):
+def play_countdown(sec, sensor_color=None, skip_start_sound=False):
     timer.reset()
     if sec == 0:
         return check_color(sensor_color)
     
     while timer.time() < max(0, sec - 3) * 1000:
+        if Button.LEFT in hub.buttons.pressed():
+            skip_start_sound = True
+            break
         if not check_color(sensor_color):
             return False
         wait(100)
     
-    for _ in range(3):
-        hub.speaker.beep(370, 250)
-        wait(500)
+    if not skip_start_sound:
+        for _ in range(3):
+            hub.speaker.beep(370, 250)
+            wait(500)
     
     if not check_color(sensor_color):
         return False
     
-    hub.speaker.beep(740, 500)
+    if not skip_start_sound: hub.speaker.beep(740, 500)
     wait(250)
     return check_color(sensor_color)
 
