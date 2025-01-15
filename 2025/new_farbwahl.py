@@ -12,6 +12,7 @@ from drive4 import drive4
 from drive5_1 import drive5_1
 from drive5_2 import drive5_2
 from drive6 import drive6
+from straight import straight
 from pupdevices import PupDevices
 
 hub = PrimeHub()
@@ -98,10 +99,10 @@ def Fahrt(sensor_color, countdown, debug=False, *args, **kwargs):
 def Fahrt1():
     for element in drive1(pd): yield element
 
-@Fahrt(sensor_color=Color.YELLOW, countdown=7, debug=False)
+@Fahrt(sensor_color=Color.YELLOW, countdown=5, debug=False)
 def Fahrt2_3():
     for element in drive2(pd): yield element
-    wait(6000)
+    wait(3000)
     for element in drive3(pd): yield element
 
 @Fahrt(sensor_color=Color.WHITE, countdown=10, debug=False)
@@ -112,11 +113,13 @@ def Fahrt4():
 def Fahrt5_1():
     for element in drive5_1(pd): yield element
     
-@Fahrt(sensor_color=Color.GREEN, countdown=6, debug=False)
+# @Fahrt(sensor_color=Color.GREEN, countdown=6, debug=False)
+@Fahrt(sensor_color=Color.GREEN, countdown=3, debug=False)
 def Fahrt5_2():
+    # for element in drive5_2(pd): yield element
     for element in drive5_2(pd): yield element
 
-@Fahrt(sensor_color=Color.RED, countdown=6, debug=False)
+@Fahrt(sensor_color=Color.RED, countdown=5, debug=False)
 def Fahrt6():
     for element in drive6(pd): yield element
 

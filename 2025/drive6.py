@@ -14,6 +14,7 @@ watch = StopWatch()
 def drive6(pd):
     #DriveBase initialisieren
     pd.drive_base.use_gyro(False)
+    pd.imu.reset_heading(0)
     pd.drive_base.settings(straight_speed=900, straight_acceleration=500, turn_rate=60)
     yaw = Yaw(hub, pd.left_motor, pd.right_motor)
     StopWatch = watch
@@ -64,9 +65,6 @@ def drive6(pd):
     yield True
     pd.drive_base.settings(straight_speed=40)
     yield True
-    pd.action_front.run_angle(500, 960)
-    yield True
-    yield True
     pd.drive_base.straight(20)
     yield True
     pd.drive_base.settings(straight_speed=900)
@@ -103,6 +101,8 @@ def drive6(pd):
     pd.drive_base.straight(-50)
     yield True
     yaw(285)
+    yield True
+    pd.action_front.run_angle(500, 960)
     yield True
     pd.drive_base.straight(-670)
     yield True

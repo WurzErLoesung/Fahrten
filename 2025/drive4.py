@@ -14,6 +14,7 @@ watch = StopWatch()
 def drive4(pd):
     #DriveBase initialisieren
     pd.drive_base.use_gyro(False)
+    pd.imu.reset_heading(0)
     pd.drive_base.settings(straight_speed=900, straight_acceleration=500, turn_rate=100)
     yaw = Yaw(hub, pd.left_motor, pd.right_motor)
     StopWatch = watch
