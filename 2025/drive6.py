@@ -59,11 +59,8 @@ def drive6(pd):
     yield True
     pd.drive_base.straight(-180)
     yield True
-    pd.drive_base.settings(straight_speed=40)
-    pd.drive_base.straight(-60)
-    yield True
-    pd.drive_base.settings(straight_speed=900)
-    pd.drive_base.straight(-5)
+    pd.drive_base.settings(straight_speed=30)
+    pd.drive_base.straight(-55)
     yield True
     pd.drive_base.settings(straight_speed=40)
     yield True
@@ -112,7 +109,13 @@ def drive6(pd):
 
     # end
     pd.action_front.run_angle(500, -960)
+    while pd.timer.time() < 149 * 1000:
+        wait(100)
+        yield True
+    yaw(305)
+    pd.drive_base.straight(10)
     yield False
+
 
     print("Fahrt 6 hat " + str(watch.time()/1000) + " Sekunden gedauert.")
     watch.reset()

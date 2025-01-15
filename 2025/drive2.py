@@ -67,13 +67,13 @@ def drive2(pd):
     yield True
     pd.action_back.run_angle(1250, -210)
     yield True
-    pd.drive_base.straight(135)  # 130
+    pd.drive_base.straight(145)  # 130
     yield True
     pd.action_back.run_angle(1250, 450)
     yield True
 
     # Korallenriff + Taucherin abliefern
-    pd.drive_base.straight(-110) # -90
+    pd.drive_base.straight(-120) # -90
     yield True
     yaw(0)
     yield True
@@ -85,9 +85,8 @@ def drive2(pd):
     yield True
     yaw(25)
     pd.action_back.run_angle(1250, -800)
-    yield True
+    yaw(22)
     pd.drive_base.straight(-800)
-    yield False
 
     print("Fahrt 2 hat " + str(watch.time()/1000) + " Sekunden gedauert.")
     print(pd.timer.time())
