@@ -12,7 +12,7 @@ def drive5_1(pd):
     watch = StopWatch()
     yield True
     pd.drive_base.settings(400)
-    pd.drive_base.straight(-125)
+    pd.drive_base.straight(-225)
     yield False
 
     print("Fahrt 5 hat " + str(watch.time()/1000) + " Sekunden gedauert.")
