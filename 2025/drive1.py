@@ -109,6 +109,7 @@ def drive1(pd):
     yield True
 
     # zum Anker
+    """
     pd.drive_base.straight(110) #100
     yield True
     yaw(-110)
@@ -130,10 +131,15 @@ def drive1(pd):
     yaw(-100)
     yield True
     pd.drive_base.straight(-275) #270
+    """
+
+    #additional
+    pd.drive_base.straight(-45)
+
     yield True
     yaw(-140)
     yield True
-    pd.drive_base.straight(-110) #80
+    pd.drive_base.straight(-105) #-110 bei Anker
     yield True
     yaw(-170)
     yield True
