@@ -17,69 +17,85 @@ hub.speaker.beep()
 
 def drive1(pd):
     #DriveBase initialisieren
+    default_speed = 300 # 250
     pd.drive_base.use_gyro(False)
     pd.imu.reset_heading(0)
-    pd.drive_base.settings(250, 500)
+    pd.drive_base.settings(default_speed, 500)
     pd.action_front.run_angle(300, -10)
     db = pd.drive_base
     yaw = Yaw(hub, pd.left_motor, pd.right_motor)
     yield True
 
     # unknown ocean creature
-    db.straight(-152)
+    db.straight(-170)
     yaw(-45)
     db.straight(-495)
     db.straight(400)
     yield True
 
     # collect stuff
-    db.straight(-150)
-    yaw(0)
-    db.straight(-250)
-    yaw(45)
-    db.straight(-140)
-    db.straight(165)
+    yaw(-25)
+    db.straight(-350)
+    yaw(35)
+    db.straight(-160)
+    db.straight(155)
+    yield True
     
     # wales
-    yaw(-41)
-    db.straight(-20)
+    yaw(-40)
+    db.straight(-40) # -20
     pd.action_front.run_angle(800, 140)
     wait(50)
     pd.action_front.run_angle(100, 40)
-    db.straight(-90)
-    yaw(-20)
-    db.straight(120)
+    db.straight(-60) # -90
+    yaw(-25)
+    db.straight(125)
     pd.action_front.run_angle(800, -160)
     db.straight(-60)
+    yield True
 
     # carrot
-    yaw(-95)
-    db.straight(140)
-    db.straight(-140)
+    yaw(-97)
+    db.straight(150)
+    db.straight(-160)
+    yield True
     
     # anglerfish
     yaw(-75)
-    db.straight(-300)
+    db.straight(-255)
     yaw(-95)
-    db.straight(-480)
+    db.straight(-520)
+    yield True
 
     # anker
     yaw(-105)
-    db.straight(200)
+    db.straight(210)
     yaw(-45)
-    db.straight(50)
-    yaw(-90)
-    db.straight(-600)
-    yaw(-75)
-    
-    pd.action_back.run_angle(-800, 100)
-    pd.action_front.run_angle(800, 160)
-    pd.action_back.run_angle(800, 100)
-    pd.action_front.run_angle(-800, 140)
+    db.straight(70)
+    yaw(-50)
+    db.straight(-55)
+    yield True
 
-    db.straight(150)
-    yaw(-135)
-    db.straight(-800)
+    # coral reef and shark
+    yaw(-93)
+    db.straight(-550)
+    pd.action_back.run_angle(-800, 130)
+    pd.action_back.run_angle(800, 130)
+    db.settings(straight_speed=100)
+    db.straight(-55)
+    db.settings(straight_speed=default_speed)
+    yaw(-75)
+    yield True
+
+    pd.action_front.run_angle(800, 160)
+    pd.action_front.run_angle(-800, 140)
+    yield True
+
+    # collect remaining stuff and get da fuq outta here
+    db.straight(90)
+    yaw(-150)
+    db.straight(-850)
+    yield True
     
 
 

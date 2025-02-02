@@ -5,14 +5,13 @@ from pybricks.robotics import DriveBase
 from pybricks.tools import wait, StopWatch
 from yaw import Yaw
 from action_arc import action_arc
-from drive1 import drive1
+from drive1_rework import drive1
 from drive2 import drive2
 from drive3 import drive3
 from drive4 import drive4
 from drive5_1 import drive5_1
 from drive5_2 import drive5_2
 from drive6 import drive6
-from straight import straight
 from pupdevices import PupDevices
 
 hub = PrimeHub()
@@ -95,7 +94,7 @@ def Fahrt(sensor_color, countdown, debug=False, *args, **kwargs):
     return fahrt_decorator
 
 # Define Fahrt1 with the Fahrt decorator
-@Fahrt(sensor_color=Color.BLUE, countdown=5, debug=False)
+@Fahrt(sensor_color=Color.RED, countdown=5, debug=False)
 def Fahrt1():
     for element in drive1(pd): yield element
 
@@ -119,7 +118,7 @@ def Fahrt5_2():
     # for element in drive5_2(pd): yield element
     for element in drive5_2(pd): yield element
 
-@Fahrt(sensor_color=Color.RED, countdown=5, debug=False)
+@Fahrt(sensor_color=Color.BLUE, countdown=5, debug=False)
 def Fahrt6():
     for element in drive6(pd): yield element
 
