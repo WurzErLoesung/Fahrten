@@ -6,12 +6,10 @@ from pybricks.tools import wait, StopWatch
 from yaw import Yaw
 from action_arc import action_arc
 from drive1_rework import drive1
-from drive2 import drive2
-from drive3 import drive3
-from drive4 import drive4
-from drive5_1 import drive5_1
-from drive5_2 import drive5_2
-from drive6 import drive6
+from drive2_rework import drive2
+from drive3_rework import drive3
+from drive4_rework import drive4
+from drive5_rework import drive5
 from pupdevices import PupDevices
 
 hub = PrimeHub()
@@ -25,6 +23,7 @@ Color.BLUE = Color(h=215, s=98, v=31)
 Color.GREEN = Color(h=157, s=93, v=27)
 Color.YELLOW = Color(h=52, s=79, v=70)
 Color.WHITE = Color(h=118, s=13, v=75)
+Color.ORANGE = Color(h=7, s=89, v=75)
 Color.NONE = Color(h=0, s=0, v=0)
 #
 #my_colors = (Color.BLUE, Color.MAGENTA, Color.RED, Color.YELLOW, Color.WHITE, Color.NONE)
@@ -37,6 +36,7 @@ colors.append(Color.BLUE)
 colors.append(Color.GREEN)
 colors.append(Color.YELLOW)
 colors.append(Color.WHITE)
+colors.append(Color.ORANGE)
 colors.append(Color.NONE)
 pd.color.detectable_colors(colors)
 
@@ -99,29 +99,20 @@ def Fahrt1():
     for element in drive1(pd): yield element
 
 @Fahrt(sensor_color=Color.YELLOW, countdown=5, debug=False)
-def Fahrt2_3():
+def Fahrt2():
     for element in drive2(pd): yield element
-    wait(3000)
+
+@Fahrt(sensor_color=Color.BLUE, countdown=5, debug=False)
+def Fahrt3():
     for element in drive3(pd): yield element
 
-@Fahrt(sensor_color=Color.WHITE, countdown=10, debug=False)
+@Fahrt(sensor_color=Color.GREEN, countdown=10, debug=False)
 def Fahrt4():
     for element in drive4(pd): yield element
 
-@Fahrt(sensor_color=Color.MAGENTA, countdown=4, debug=False)
-def Fahrt5_1():
-    for element in drive5_1(pd): yield element
-    
-# @Fahrt(sensor_color=Color.GREEN, countdown=6, debug=False)
-@Fahrt(sensor_color=Color.GREEN, countdown=3, debug=False)
-def Fahrt5_2():
-    # for element in drive5_2(pd): yield element
-    for element in drive5_2(pd): yield element
-
-@Fahrt(sensor_color=Color.BLUE, countdown=5, debug=False)
-def Fahrt6():
-    for element in drive6(pd): yield element
-
+@Fahrt(sensor_color=Color.ORANGE, countdown=4, debug=False)
+def Fahrt5():
+    for element in drive5(pd): yield element
 
 
 # Play sound functions

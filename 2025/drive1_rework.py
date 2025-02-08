@@ -17,7 +17,7 @@ hub.speaker.beep()
 
 def drive1(pd):
     #DriveBase initialisieren
-    default_speed = 300 # 250
+    default_speed = 200 # 250
     pd.drive_base.use_gyro(False)
     pd.imu.reset_heading(0)
     pd.drive_base.settings(default_speed, 500)
@@ -27,7 +27,7 @@ def drive1(pd):
     yield True
 
     # unknown ocean creature
-    db.straight(-170)
+    db.straight(-180) # -170
     yaw(-45)
     db.straight(-495)
     db.straight(400)
@@ -43,15 +43,15 @@ def drive1(pd):
     
     # wales
     yaw(-40)
-    db.straight(-40) # -20
+    db.straight(-40)
     pd.action_front.run_angle(800, 140)
     wait(50)
     pd.action_front.run_angle(100, 40)
-    db.straight(-60) # -90
+    db.straight(-60)
     yaw(-25)
     db.straight(125)
     pd.action_front.run_angle(800, -160)
-    db.straight(-60)
+    db.straight(-50) # -60
     yield True
 
     # carrot
@@ -88,7 +88,20 @@ def drive1(pd):
     yield True
 
     pd.action_front.run_angle(800, 160)
-    pd.action_front.run_angle(-800, 140)
+    #pd.action_front.run_angle(-800, 140)
+    pd.action_front.run_angle(-100, 45)
+    yield True
+
+    yaw(-90)
+    yield True
+    db.straight(-35)
+    yield True
+    pd.action_front.run_angle(-100, 100)
+    yield True
+    db.straight(35)
+    yield True
+
+    yaw(-75)
     yield True
 
     # collect remaining stuff and get da fuq outta here
