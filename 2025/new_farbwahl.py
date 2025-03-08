@@ -5,8 +5,8 @@ from pybricks.robotics import DriveBase
 from pybricks.tools import wait, StopWatch
 from yaw import Yaw
 from action_arc import action_arc
-from drive1_rework import drive1
-from drive2_rework import drive2
+from drive1_rework_less_2 import drive1
+from drive2_rework_2 import drive2
 from drive3_rework import drive3
 from drive4_rework import drive4
 from drive5_rework import drive5
@@ -14,28 +14,27 @@ from pupdevices import PupDevices
 
 hub = PrimeHub()
 pd = PupDevices()
-# Initialize DriveBase
+# Initialize Drilor(h=118,veBase
 yaw = Yaw(hub, pd.left_motor, pd.right_motor)
 
-Color.MAGENTA = Color(h=348, s=91, v=40)
+
+# Color.MAGENTA = Color(h=348, s=91, v=40)
+# Color.WHITE = Co s=13, v=75)
 Color.RED = Color(h=352, s=97, v=51)
-Color.BLUE = Color(h=215, s=98, v=31)
-Color.GREEN = Color(h=157, s=93, v=27)
-Color.YELLOW = Color(h=52, s=79, v=70)
-Color.WHITE = Color(h=118, s=13, v=75)
+Color.YELLOW = Color(h=52, s=79, v=80)
+Color.CYAN = Color(h=197, s=92, v=57)
+Color.GREEN = Color(h=158, s=93, v=25)
 Color.ORANGE = Color(h=7, s=89, v=75)
-Color.NONE = Color(h=0, s=0, v=0)
+Color.NONE = Color(h=0, s=0, v=0)  
 #
 #my_colors = (Color.BLUE, Color.MAGENTA, Color.RED, Color.YELLOW, Color.WHITE, Color.NONE)
 #pd.color.detectable_colors(my_colors) 
 
 colors = list(pd.color.detectable_colors()) 
-colors.append(Color.MAGENTA)
 colors.append(Color.RED)
-colors.append(Color.BLUE)
-colors.append(Color.GREEN)
 colors.append(Color.YELLOW)
-colors.append(Color.WHITE)
+colors.append(Color.CYAN)
+colors.append(Color.GREEN)
 colors.append(Color.ORANGE)
 colors.append(Color.NONE)
 pd.color.detectable_colors(colors)
@@ -94,23 +93,23 @@ def Fahrt(sensor_color, countdown, debug=False, *args, **kwargs):
     return fahrt_decorator
 
 # Define Fahrt1 with the Fahrt decorator
-@Fahrt(sensor_color=Color.RED, countdown=5, debug=False)
+@Fahrt(sensor_color=Color.RED, countdown=3, debug=False)
 def Fahrt1():
     for element in drive1(pd): yield element
 
-@Fahrt(sensor_color=Color.YELLOW, countdown=5, debug=False)
+@Fahrt(sensor_color=Color.YELLOW, countdown=4, debug=False)
 def Fahrt2():
     for element in drive2(pd): yield element
 
-@Fahrt(sensor_color=Color.BLUE, countdown=5, debug=False)
+@Fahrt(sensor_color=Color.CYAN, countdown=5, debug=False)
 def Fahrt3():
     for element in drive3(pd): yield element
 
-@Fahrt(sensor_color=Color.GREEN, countdown=10, debug=False)
+@Fahrt(sensor_color=Color.GREEN, countdown=4, debug=False)
 def Fahrt4():
     for element in drive4(pd): yield element
 
-@Fahrt(sensor_color=Color.ORANGE, countdown=4, debug=False)
+@Fahrt(sensor_color=Color.ORANGE, countdown=3, debug=False)
 def Fahrt5():
     for element in drive5(pd): yield element
 

@@ -18,6 +18,7 @@ hub.speaker.beep()
 def drive1(pd):
     #DriveBase initialisieren
     default_speed = 200 # 250
+    
     pd.drive_base.use_gyro(False)
     pd.imu.reset_heading(0)
     pd.drive_base.settings(default_speed, 500)
@@ -28,66 +29,99 @@ def drive1(pd):
 
     # unknown ocean creature
     db.straight(-180) # -170
+    yield True
     yaw(-45)
-    db.straight(-495)
+    yield True
+    db.straight(-480) # -495
+    yield True
     db.straight(400)
     yield True
 
     # collect stuff
     yaw(-25)
+    yield True
     db.straight(-350)
+    yield True
     yaw(35)
+    yield True
     db.straight(-160)
+    yield True
     db.straight(155)
     yield True
     
     # wales
-    yaw(-40)
+    yaw(-35) # -40
+    yield True
+    
     db.straight(-40)
+    yield True
     pd.action_front.run_angle(800, 140)
+    yield True
     wait(50)
+    yield True
     pd.action_front.run_angle(100, 40)
+    yield True
     db.straight(-60)
+    yield True
     yaw(-25)
+    yield True
     db.straight(125)
-    pd.action_front.run_angle(800, -160)
-    db.straight(-50) # -60
+    yield True
+    pd.action_front.run_angle(400, -160)
+    yield True
+    db.straight(-55) ## -55
     yield True
 
     # carrot
-    yaw(-97)
+    yaw(-100)
+    yield True
     db.straight(150)
-    db.straight(-160)
+    yield True
+    db.straight(-190) # -160
     yield True
     
     # anglerfish
-    yaw(-75)
-    db.straight(-255)
-    yaw(-95)
-    db.straight(-520)
+    yaw(-66) ##-70
+    yield True
+    db.straight(-255) #-260 # -255
+    yield True
+    yaw(-95) ##-95
+    yield True
+    db.straight(-520) ##-525
     yield True
 
     # anker
     yaw(-105)
+    yield True
     db.straight(210)
+    yield True
     yaw(-45)
+    yield True
     db.straight(70)
+    yield True
     yaw(-50)
-    db.straight(-55)
+    yield True
+    db.straight(-55) #-55
     yield True
 
     # coral reef and shark
     yaw(-93)
+    yield True
     db.straight(-550)
+    yield True
     pd.action_back.run_angle(-800, 130)
+    yield True
     pd.action_back.run_angle(800, 130)
+    yield True
     db.settings(straight_speed=100)
     db.straight(-55)
+    yield True
     db.settings(straight_speed=default_speed)
     yaw(-75)
     yield True
 
     pd.action_front.run_angle(800, 160)
+    yield True
     #pd.action_front.run_angle(-800, 140)
     pd.action_front.run_angle(-100, 45)
     yield True
@@ -106,7 +140,9 @@ def drive1(pd):
 
     # collect remaining stuff and get da fuq outta here
     db.straight(90)
+    yield True
     yaw(-150)
+    yield True
     db.straight(-850)
     yield True
     

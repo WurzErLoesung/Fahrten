@@ -6,13 +6,19 @@ from pybricks.tools import wait, StopWatch, run_task, multitask
 import umath as math
 
 class Yaw:
-    def __init__(self, hub, left_motor, right_motor, positive_direction=1):
+    def __init__(self, hub, left_motor, right_motor, positive_direction=1, min_velocity: int = 20, max_velocity: int = 300, acceleration: int = 500):
         self.hub = hub
         self.ml = left_motor
         self.mr = right_motor
         self.direction = positive_direction
+        self.min_velocity = min_velocity
+        self.max_velocity = max_velocity
+        self.acceleration = acceleration
 
-    def __call__(self, deg, min_velocity: int = 300, max_velocity: int = 20):
+    def __call__(self, deg, min_velocity: int = None, max_velocity: int = None, acceleration: int = None):
+        min_velocity = min_velocity if min_velocity is not None else self.min_velocity
+        max_velocity = max_velocity if max_velocity is not None else self.max_velocity
+        
         deg = deg % 360
         time_limit = 3000
         s = StopWatch()
@@ -38,16 +44,15 @@ class Yaw:
             
             direction = 1 if difference >= 0 else -1
     
-            max_velocity = 300
-            min_velocity = 20
-    
             # higher values = higher average speed
             speed_potency = 3
-    
+
+            acceleration = acceleration if acceleration is not None else self.acceleration
             velocity = round(min_velocity + (max_velocity - min_velocity) * (abs(difference) / 180) ** (1 / speed_potency))
-    
-            self.ml.run(-self.direction * velocity * direction)
-            self.mr.run(self.direction * velocity * direction)
+            accelerated_velocity = min((s.time() / 1000) * acceleration, velocity)
+
+            self.ml.run(-self.direction * accelerated_velocity * direction)
+            self.mr.run(self.direction * accelerated_velocity * direction)
     
         self.ml.stop()
         self.mr.stop()

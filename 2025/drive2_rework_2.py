@@ -24,50 +24,60 @@ def drive2(pd):
     yield True
     yaw(25)
     yield True
-    pd.drive_base.straight(-370)
+    pd.drive_base.straight(-270)
+    yaw(-15)
+    yaw(24)
+    pd.drive_base.straight(-100)
     yield True
 
     #Taucherin abliefern
     pd.action_front.run_angle(400, 330)
     yield True
     # yaw(25)
-    pd.drive_base.straight(60) # 55
+    pd.drive_base.straight(70) # 55
     yield True
     # pd.action_front.run_angle(800, -325)
     yield True
 
     #Korallenknospen
-    pd.action_front.run(-800)
-    yaw(-18) #-20
-    pd.action_front.stop()
-    yield True
+    # pd.action_front.run(-800)
+    # yaw(-18) #-20
+    # pd.action_front.stop()
+    # yield True
+    # # return
+    # # pd.drive_base.straight(-45)
+    # yield True
+    # yaw(-10)
     # return
-    # pd.drive_base.straight(-45)
-    yield True
-    yaw(-10)
-    return
-    pd.drive_base.straight(15) # 50
-    yield True
-    # return
+    # pd.drive_base.straight(15) # 50
+    # yield True
+    # # return
 
     #Korallenbaum
-    yaw(89) # 90
+    pd.action_front.run(-800)
+    yaw(90.4, max_velocity=300) # 90
+    pd.action_front.stop()
     yield True
-    pd.drive_base.straight(5) # -5
-    yield True
-    pd.action_back.run_angle(400, 575)
+    # pd.drive_base.straight(7) # -5
+    # yield True
+    # wait(5_000)
+    # wait(250)
+    pd.action_back.run_angle(100, 100)
+    pd.action_back.run_angle(500, 475)
     yield True
     pd.action_back.run_angle(500, -200)
     yield True
+    # wait(250)
+    # wait(5_000)
 
     # Zum Schiffswrack
     yaw(70)
     yield True
-    pd.drive_base.straight(135) # 90 # 110
+    pd.drive_base.straight(100) # 90 # 110
     yield True
     yaw(90)
     yield True
-    pd.drive_base.straight(-450) # -350 # -380
+    pd.drive_base.straight(-460) # -350 # -380
     pd.drive_base.straight(30) # 0
     
     # Shrimp
