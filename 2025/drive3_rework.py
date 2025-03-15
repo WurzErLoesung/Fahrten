@@ -17,7 +17,7 @@ hub.speaker.beep()
 
 def drive3(pd):
     #DriveBase initialisieren
-    default_speed = 350 # 250
+    default_speed = 600 # 350
     turn_velocity = 100
     pd.drive_base.use_gyro(False)
     pd.imu.reset_heading(0)
@@ -31,48 +31,38 @@ def drive3(pd):
     # Trident, shark and corals
     db.settings(100, 50)
     db.straight(150)
+    yield True
     yaw(-35, max_velocity=turn_velocity)
+    yield True
     yaw(0, max_velocity=turn_velocity)
+    yield True
     db.settings(default_speed, 500)
-    db.straight(410) # 570
+    db.straight(425) # 570
+    yield True
     yaw(-48) # -45
+    yield True
     db.straight(175)
+    yield True
     pd.action_back.run_angle(-300, 360)
+    yield True
     db.settings(150)
     wait(250)
+    yield True
     db.straight(-200)
+    yield True
     db.settings(default_speed)
     db.straight(-60)
+    db.straight(20)
+    yield True
     yaw(0)
+    yield True
     db.settings(600, 900)
-    db.straight(-650)
+    db.straight(-750)
 
-    print("Fahrt5 hat " + str(watch.time()/1000) + " Sekunden gedauert.")
+    print("Fahrt3 hat " + str(watch.time()/1000) + " Sekunden gedauert.")
     watch.reset()
     print(pd.timer.time())
-
-    # db.straight(180)
-    # yaw(80, max_velocity=turn_velocity)
-    # db.straight(545)
-    # yaw(45, max_velocity=turn_velocity)
-    # db.straight(140) #200
-    # pd.action_back.run_angle(-300, 360)
-    # db.straight(-200)
-    # yaw(80)
-    # db.settings(300)
-    # db.straight(-600)
-    # db.straight(290) #240
-    # db.straight(-40)
-    # db.settings(900, 900)
-    # db.straight(40)
-    # db.settings(default_speed, 500)
-    # db.straight(-400)
-    # yaw(90)
-    # db.straight(-800)
-    
-
-
-
+    yield False
 
 
 if __name__ == "__main__":
