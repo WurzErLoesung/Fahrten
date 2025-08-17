@@ -21,13 +21,13 @@ hub.speaker.beep()
 def straight(pd):
     pd.drive_base.use_gyro(False)
     pd.imu.reset_heading(0)
-    pd.drive_base.settings(500, 400)
+    pd.drive_base.settings(320, 200, 250, 250)
     yaw = Yaw(hub, pd.left_motor, pd.right_motor, positive_direction=-1)
     yield True
 
-    pd.drive_base.drive(100, 0)
+    pd.drive_base.straight(1000)
 
 
 if __name__ == "__main__":
-    for element in drive1(PupDevices()):
+    for element in straight(PupDevices()):
         pass
