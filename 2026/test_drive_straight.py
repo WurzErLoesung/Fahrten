@@ -5,6 +5,7 @@ from pybricks.pupdevices import (ColorSensor, ForceSensor, Motor,
 from pybricks.robotics import DriveBase
 from pybricks.tools import StopWatch, run_task, wait
 
+from PID import PID
 from pupdevices import PupDevices
 from yaw import Yaw
 
@@ -24,8 +25,7 @@ def straight(pd):
     pd.drive_base.settings(320, 200, 250, 250)
     yaw = Yaw(hub, pd.left_motor, pd.right_motor, positive_direction=-1)
     yield True
-
-    pd.drive_base.straight(1000)
+    run_task(pid.start(800))
 
 
 if __name__ == "__main__":
