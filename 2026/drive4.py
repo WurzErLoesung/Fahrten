@@ -1,11 +1,12 @@
 from pybricks.hubs import PrimeHub
-from pybricks.pupdevices import Motor, ColorSensor, UltrasonicSensor, ForceSensor
 from pybricks.parameters import Button, Color, Direction, Port, Side, Stop
+from pybricks.pupdevices import (ColorSensor, ForceSensor, Motor,
+                                 UltrasonicSensor)
 from pybricks.robotics import DriveBase
-from pybricks.tools import wait, StopWatch, run_task
+from pybricks.tools import StopWatch, run_task, wait
+
 from pupdevices import PupDevices
 from yaw import Yaw
-
 
 hub = PrimeHub()
 
@@ -16,6 +17,7 @@ watch = StopWatch
 
 hub.speaker.beep()
 
+
 def drive4(pd):
     pd.drive_base.use_gyro(False)
     pd.imu.reset_heading(0)
@@ -23,8 +25,11 @@ def drive4(pd):
     yaw = Yaw(hub, pd.left_motor, pd.right_motor, positive_direction=-1)
     yield True
 
+    pd.action_left.run_until_stalled(400, then=Stop.COAST, duty_limit=35)
+
     pd.action_right.run_until_stalled(-400, then=Stop.COAST, duty_limit=35)
     pd.drive_base.straight(390)
+
     for i in range(3):
         pd.action_right.run_angle(1500, 150)
         wait(250)
@@ -47,8 +52,7 @@ def drive4(pd):
     pd.drive_base.straight(350)
     pd.drive_base.straight(-20)
 
-    
 
 if __name__ == "__main__":
-    for element in drive4(PupDevices()): pass
-        
+    for element in drive4(PupDevices()):
+        pass
