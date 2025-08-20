@@ -30,7 +30,6 @@ def drive4(pd):
     pd.action_right.run_until_stalled(-300, then=Stop.COAST, duty_limit=35)
     pd.drive_base.straight(400)
 
-
     for i in range(3):
         pd.action_right.run_angle(600, 150)
         wait(500)
@@ -44,11 +43,10 @@ def drive4(pd):
     yaw(-30)
     pd.drive_base.straight(460)
     yaw(60)
-    pd.drive_base.straight(110)
+    pd.drive_base.straight(90)
     pd.action_left.run_angle(200, 50)
     pd.action_right.run_angle(100, 120)
     yaw(20)
-    pd.drive_base.straight(-25)
     yaw(-12)
     pd.drive_base.straight(-50)
     pd.action_right.run_angle(100, -90)
@@ -59,8 +57,14 @@ def drive4(pd):
     pd.drive_base.straight(200)
     pd.drive_base.straight(-58)
     pd.action_right.run_angle(100, 40)
+    yaw(85)
+    pd.drive_base.straight(50)
+    yaw(90)
     pd.drive_base.straight(200)
     pd.action_right.run_angle(100, 30)
+    pd.action_left.run_angle(200, -150)
+    yaw(90)
+    pd.drive_base.straight(200)
 
 
 if __name__ == "__main__":
