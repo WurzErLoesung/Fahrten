@@ -22,14 +22,14 @@ def ship(pd):
     pd.drive_base.use_gyro(False)
     pd.imu.reset_heading(-90)
     pd.drive_base.settings(900, 500)
-    yaw = Yaw(hub, pd.left_motor, pd.right_motor)
+    yaw = Yaw(hub, pd.right_motor, pd.left_motor)
     yield True
 
     pd.action_right.run_angle(5000, 900)
     pd.action_right.run_until_stalled(-5000, duty_limit=50)
-    pd.drive_base.arc(2000, distance=-595)
-    pd.action_left.run_angle(1500, 60)
     pd.drive_base.arc(2000, distance=595)
+    pd.action_left.run_angle(1500, 60)
+    pd.drive_base.arc(2000, distance=-595)
 
     yield False
     print("Fahrt hat " + str(watch.time() / 1000) + " Sekunden gedauert.")
