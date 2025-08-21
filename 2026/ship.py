@@ -1,11 +1,12 @@
 from pybricks.hubs import PrimeHub
-from pybricks.pupdevices import Motor, ColorSensor, UltrasonicSensor, ForceSensor
 from pybricks.parameters import Button, Color, Direction, Port, Side, Stop
+from pybricks.pupdevices import (ColorSensor, ForceSensor, Motor,
+                                 UltrasonicSensor)
 from pybricks.robotics import DriveBase
-from pybricks.tools import wait, StopWatch, run_task
-from pupdevices_new import PupDevicesNew
-from yaw import Yaw
+from pybricks.tools import StopWatch, run_task, wait
 
+from pupdevices import PupDevices
+from yaw import Yaw
 
 hub = PrimeHub()
 
@@ -15,8 +16,9 @@ watch = StopWatch()
 
 hub.speaker.beep()
 
-def drive2(pd):
-    #DriveBase initialisieren
+
+def ship(pd):
+    # DriveBase initialisieren
     pd.drive_base.use_gyro(False)
     pd.imu.reset_heading(-90)
     pd.drive_base.settings(900, 500)
@@ -28,12 +30,13 @@ def drive2(pd):
     pd.drive_base.arc(2000, distance=-595)
     pd.action_left.run_angle(1500, 60)
     pd.drive_base.arc(2000, distance=595)
-    
+
     yield False
-    print("Fahrt hat " + str(watch.time()/1000) + " Sekunden gedauert.")
+    print("Fahrt hat " + str(watch.time() / 1000) + " Sekunden gedauert.")
     print(pd.timer.time())
     watch.reset()
 
 
 if __name__ == "__main__":
-    for element in drive2(PupDevicesNew()): pass
+    for element in ship(PupDevicesNew()):
+        pass
