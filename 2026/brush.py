@@ -1,11 +1,12 @@
 from pybricks.hubs import PrimeHub
-from pybricks.pupdevices import Motor, ColorSensor, UltrasonicSensor, ForceSensor
 from pybricks.parameters import Button, Color, Direction, Port, Side, Stop
+from pybricks.pupdevices import (ColorSensor, ForceSensor, Motor,
+                                 UltrasonicSensor)
 from pybricks.robotics import DriveBase
-from pybricks.tools import wait, StopWatch, run_task
+from pybricks.tools import StopWatch, run_task, wait
+
 from pupdevices import PupDevices
 from yaw import Yaw
-
 
 hub = PrimeHub()
 
@@ -16,7 +17,8 @@ watch = StopWatch
 
 hub.speaker.beep()
 
-def drive1(pd):
+
+def brush(pd):
     pd.drive_base.use_gyro(False)
     pd.imu.reset_heading(0)
     pd.drive_base.settings(500, 400)
@@ -44,6 +46,7 @@ def drive1(pd):
     print(pd.timer.time())
     yield True
 
+
 if __name__ == "__main__":
-    for element in drive1(PupDevices()): pass
-        
+    for element in brush(PupDevices()):
+        pass
