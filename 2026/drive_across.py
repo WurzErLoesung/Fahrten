@@ -3,7 +3,7 @@ from pybricks.pupdevices import Motor, ColorSensor, UltrasonicSensor, ForceSenso
 from pybricks.parameters import Button, Color, Direction, Port, Side, Stop
 from pybricks.robotics import DriveBase
 from pybricks.tools import wait, StopWatch, run_task
-from pupdevices_new import PupDevicesNew
+from pupdevices import PupDevices
 from yaw import Yaw
 
 
@@ -37,4 +37,4 @@ def drive_across(pd):
 
 
 if __name__ == "__main__":
-    for element in drive_across(PupDevicesNew()): pass
+    for element in drive_across(PupDevices()): pass
