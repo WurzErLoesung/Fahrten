@@ -38,5 +38,5 @@ def ship(pd):
 
 
 if __name__ == "__main__":
-    for element in ship(PupDevicesNew()):
+    for element in ship(PupDevices()):
         pass
