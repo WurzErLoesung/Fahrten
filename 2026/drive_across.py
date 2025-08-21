@@ -20,16 +20,16 @@ def drive_across(pd):
     pd.drive_base.use_gyro(False)
     pd.imu.reset_heading(-125)
     pd.drive_base.settings(800, 500)
-    yaw = Yaw(hub, pd.left_motor, pd.right_motor)
+    yaw = Yaw(hub, pd.right_motor, pd.left_motor)
     yield True
 
     #pd.drive_base.arc(-50, distance = -150)
 
     #yaw(-110)
-    pd.drive_base.straight(-450)
+    pd.drive_base.straight(450)
     yaw(-90)
-    pd.drive_base.straight(-750)
-    pd.drive_base.arc(200, distance=-800)
+    pd.drive_base.straight(750)
+    pd.drive_base.arc(200, distance=800)
     yield False
     print("Fahrt hat " + str(watch.time()/1000) + " Sekunden gedauert.")
     print(pd.timer.time())
