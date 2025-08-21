@@ -18,7 +18,7 @@ watch = StopWatch
 hub.speaker.beep()
 
 
-def drive4(pd):
+def silo(pd):
     pd.drive_base.use_gyro(False)
     pd.imu.reset_heading(0)
     pd.drive_base.settings(500, 500)
@@ -68,5 +68,5 @@ def drive4(pd):
 
 
 if __name__ == "__main__":
-    for element in drive4(PupDevices()):
+    for element in silo(PupDevices()):
         pass
