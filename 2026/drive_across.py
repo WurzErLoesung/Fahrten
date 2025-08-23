@@ -26,10 +26,10 @@ def drive_across(pd):
     #pd.drive_base.arc(-50, distance = -150)
 
     #yaw(-110)
-    pd.drive_base.straight(450)
+    pd.drive_base.straight(470)
     yaw(-90)
-    pd.drive_base.straight(750)
-    pd.drive_base.arc(200, distance=800)
+    pd.drive_base.straight(740)
+    pd.drive_base.arc(400, distance=800)
     yield False
     print("Fahrt hat " + str(watch.time()/1000) + " Sekunden gedauert.")
     print(pd.timer.time())
