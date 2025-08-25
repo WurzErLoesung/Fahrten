@@ -9,7 +9,7 @@ from yaw import Yaw
 
 hub = PrimeHub()
 
-print(f"{hub.battery.voltage()/1000} Volt")
+print(f"{hub.system.name()}: {hub.battery.voltage()/1000} Volt")
 
 watch = StopWatch()
 
@@ -24,33 +24,53 @@ def trolley(pd):
     yaw = Yaw(hub, pd.right_motor, pd.left_motor)
     yield True
 
-    pd.drive_base.straight(620)
-    yaw(80)
-    pd.drive_base.straight(355)
-    yaw(25)
-    pd.drive_base.straight(-10)
-    pd.action_left.run_angle(-300, 500)
-    pd.drive_base.straight(10)
-    yaw(10)
-    pd.drive_base.straight(145)
+    # Drive to trolley
+    pd.drive_base.straight(420)
+    yaw(65)
+    pd.drive_base.straight(400)
+    
+    # Activate trolley
+    yaw(20) # 20
+    pd.drive_base.straight(-5)
+    pd.action_left.run_angle(-1000, 1450)
+    
+
+    # Pick up artefact
+    pd.drive_base.straight(155)
     pd.action_right.run_angle(2000, 1000)
     pd.action_right.run_angle(-2000, 1000)
+
+    # Activate statue
     pd.drive_base.straight(-100)
+    pd.action_left.run_angle(-1000, 300)
+    yaw(-45)
+    pd.drive_base.straight(-10)
+    pd.action_left.run_angle(1000, 1900)
+
+    # Drive home
     pd.drive_base.settings(900, 500)
     yaw(80)
-    pd.drive_base.straight(-155)
+    pd.drive_base.straight(-355)
     yaw(30)
     pd.drive_base.straight(-820)
-
-
-
-   
     
     yield False
     print("Fahrt hat " + str(watch.time()/1000) + " Sekunden gedauert.")
     print(pd.timer.time())
     watch.reset()
 
+def test(pd):
+    #DriveBase initialisieren
+
+    pd.drive_base.use_gyro(False)
+    pd.imu.reset_heading(0)
+    pd.drive_base.settings(200, 500)
+    yaw = Yaw(hub, pd.right_motor, pd.left_motor)
+    yield True
+
+
 
 if __name__ == "__main__":
     for element in trolley(PupDevices()): pass
+    # for element in trolley(PupDevices()): pass
+
