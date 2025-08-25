@@ -21,8 +21,15 @@ def crane(pd):
     # DriveBase initialisieren
     pd.drive_base.use_gyro(False)
     pd.imu.reset_heading(-90)
-    pd.drive_base.settings(250, 500)
-    yaw = Yaw(hub, pd.right_motor, pd.left_motor)
+    pd.drive_base.settings(400, 500)
+    yaw = Yaw(
+        hub,
+        pd.right_motor,
+        pd.left_motor,
+        min_velocity=40,
+        max_velocity=600,
+        acceleration=700,
+    )
     yield True
 
     pd.drive_base.straight(630)
@@ -38,23 +45,23 @@ def crane(pd):
     pd.action_left.run_time(-1000, 1600)
     yield True
 
-    yaw(-171)
-    pd.drive_base.settings(150)
-    pd.drive_base.straight(-105)
+    yaw(-177)
+    pd.drive_base.settings(180, 300)
+    pd.drive_base.straight(-115)
     yield True
 
-    pd.drive_base.settings(250)
+    pd.drive_base.settings(400, 500)
     pd.drive_base.straight(150)
     yield True
 
     yaw(-118)
-    pd.drive_base.straight(-305)
+    pd.drive_base.straight(-300)
     yield True
 
     pd.drive_base.straight(150)
     yaw(-75)
     yield True
-    pd.drive_base.settings(700)
+    pd.drive_base.settings(700, 700)
     pd.drive_base.straight(-570)
 
     yield False
