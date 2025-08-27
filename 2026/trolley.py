@@ -9,7 +9,8 @@ from yaw import Yaw
 
 hub = PrimeHub()
 
-print(f"{hub.system.name()}: {hub.battery.voltage()/1000} Volt")
+print(f"{hub.system.name()}: {hub.battery.voltage()} mV")
+print(f"{hub.system.name()}: {hub.battery.current()} mA")
 
 watch = StopWatch()
 
@@ -27,25 +28,29 @@ def trolley(pd):
     # Drive to trolley
     pd.drive_base.straight(420)
     yaw(65)
-    pd.drive_base.straight(400)
+    pd.drive_base.straight(420)
     
     # Activate trolley
-    yaw(20) # 20
-    pd.drive_base.straight(-5)
+    yaw(12) #20
+    pd.drive_base.straight(-24)
     pd.action_left.run_angle(-1000, 1450)
-    
 
     # Pick up artefact
-    pd.drive_base.straight(155)
+    yaw(10)#15
+    pd.drive_base.straight(150)#155
     pd.action_right.run_angle(2000, 1000)
     pd.action_right.run_angle(-2000, 1000)
 
     # Activate statue
-    pd.drive_base.straight(-100)
-    pd.action_left.run_angle(-1000, 300)
+    pd.drive_base.straight(-20)
+    pd.action_left.run_angle(500, 300)
+    pd.drive_base.straight(-80)
     yaw(-45)
-    pd.drive_base.straight(-10)
-    pd.action_left.run_angle(1000, 1900)
+    pd.drive_base.straight(25)
+    pd.action_left.run_angle(-500, 300)
+    pd.drive_base.straight(-40)
+    yaw(-50)
+    pd.action_left.run_angle(1050, 900)
 
     # Drive home
     pd.drive_base.settings(900, 500)
