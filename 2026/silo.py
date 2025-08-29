@@ -19,12 +19,14 @@ hub.speaker.beep()
 
 
 def silo(pd):
+    # Setup
     pd.drive_base.use_gyro(False)
     pd.imu.reset_heading(0)
     pd.drive_base.settings(500, 500)
     yaw = Yaw(hub, pd.left_motor, pd.right_motor, positive_direction=-1)
     yield True
 
+    # Dinge aus dem Silo hauen
     pd.action_left.run_angle(200, 50)
 
     pd.action_right.run_until_stalled(-300, then=Stop.COAST, duty_limit=35)
@@ -39,6 +41,7 @@ def silo(pd):
     pd.action_right.run_until_stalled(-300, then=Stop.COAST, duty_limit=50)
     pd.action_left.run_angle(200, -50)
 
+    # Falltür umdrehen und Blöcke aus der Schmiede
     pd.drive_base.straight(-100)
     yaw(-30)
     pd.drive_base.straight(460)
@@ -51,8 +54,11 @@ def silo(pd):
     pd.drive_base.straight(-50)
     pd.action_right.run_angle(100, -90)
     pd.action_left.run_angle(200, -50)
-    yaw(90)
+
+    # Rausfahren
+    yaw(100)
     pd.drive_base.straight(220)
+    yaw(90)
     pd.action_left.run_angle(200, 50)
     pd.drive_base.straight(200)
     pd.drive_base.straight(-58)
