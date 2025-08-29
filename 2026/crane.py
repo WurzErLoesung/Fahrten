@@ -32,34 +32,43 @@ def crane(pd):
     )
     yield True
 
+    pd.action_right.run(200)
+
     pd.drive_base.straight(630)
     yield True
+
+
+
 
     yaw(-110)
     yield True
 
+
     pd.drive_base.straight(160)
+
     yaw(-91.5)
     yield True
 
-    pd.action_left.run_time(-1000, 1600)
+
+    pd.action_left.run_time(-1000, 1100)
     yield True
 
-    yaw(-174)
-    pd.drive_base.settings(180, 300)
-    pd.drive_base.straight(-115)
+    yaw(-170)
+    pd.drive_base.settings(300, 300)
+    pd.drive_base.straight(-105)
+    yield True
+
+    pd.drive_base.straight(150)
     yield True
 
     pd.drive_base.settings(400, 500)
-    pd.drive_base.straight(150)
-    yield True
 
     yaw(-120)
-    pd.drive_base.straight(-315)
+    pd.drive_base.straight(-330)
     yield True
 
     pd.drive_base.straight(150)
-    yaw(-75)
+    yaw(-74)
     yield True
     pd.drive_base.settings(700, 700)
     pd.drive_base.straight(-570)
