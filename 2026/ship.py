@@ -25,8 +25,9 @@ def ship(pd):
     yaw = Yaw(hub, pd.right_motor, pd.left_motor)
     yield True
 
-    pd.action_right.run_angle(5000, 900)
-    pd.action_right.run_until_stalled(-5000, duty_limit=50)
+    pd.action_right.run_angle(5000, 500)
+    #pd.action_right.run_angle(-5000, 600)
+    pd.action_right.run_until_stalled(-5000, duty_limit=75)
     pd.drive_base.arc(2000, distance=595)
     pd.action_left.run_angle(1500, 60)
     pd.drive_base.arc(2000, distance=-595)
