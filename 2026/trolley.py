@@ -49,15 +49,17 @@ def trolley(pd):
     pd.drive_base.straight(25)
     pd.action_left.run_angle(-500, 300)
     pd.drive_base.straight(-40)
-    yaw(-50)
-    pd.action_left.run_angle(1050, 900)
+    pd.action_left.run_angle(1050, 450)
+    yaw(-65)
+    pd.action_left.run_angle(1050, 450)
 
     # Drive home
     pd.drive_base.settings(900, 500)
-    yaw(80)
-    pd.drive_base.straight(-355)
-    yaw(30)
-    pd.drive_base.straight(-820)
+    pd.drive_base.straight(30)
+    yaw(255)
+    pd.drive_base.straight(290)
+    yaw(200)
+    pd.drive_base.straight(820)
     
     yield False
     print("Fahrt hat " + str(watch.time()/1000) + " Sekunden gedauert.")
