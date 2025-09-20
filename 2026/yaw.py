@@ -4,6 +4,7 @@ from pybricks.parameters import Button, Color, Direction, Port, Side, Stop
 from pybricks.robotics import DriveBase
 from pybricks.tools import wait, StopWatch, run_task, multitask
 import umath as math
+from pupdevices import PupDevices 
 
 class Yaw:
     def __init__(self, hub, left_motor, right_motor, positive_direction=1, min_velocity: int = 20, max_velocity: int = 300, acceleration: int = 500):
@@ -56,13 +57,12 @@ class Yaw:
     
         self.ml.stop()
         self.mr.stop()
+        return
     
     def reset(self, angle):
         self.hub.imu.reset_heading(angle)
 
 if __name__ == "__main__":
-    hub =  PrimeHub()
-    ml = Motor(Port.B)
-    mr = Motor(Port.F, positive_direction=Direction.COUNTERCLOCKWISE)
-    yaw = Yaw(hub, ml, mr)
+    pd = PupDevices()
+    yaw = Yaw(hub, pd.left_motor, pd.right_motor, min_velocity=300, max_velocity=800, acceleration=950)
     yaw(90)
