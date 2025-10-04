@@ -19,18 +19,17 @@ hub.speaker.beep()
 
 def ship(pd):
     # DriveBase initialisieren
-    pd.drive_base.use_gyro(False)
-    pd.imu.reset_heading(-90)
-    pd.drive_base.settings(900, 500)
+    pd.drive_base.use_gyro(True)
+    pd.imu.reset_heading(90)
+    pd.drive_base.settings(977, 977)
     yaw = Yaw(hub, pd.right_motor, pd.left_motor)
     yield True
 
-    pd.action_right.run_angle(5000, 500)
-    #pd.action_right.run_angle(-5000, 600)
-    pd.action_right.run_until_stalled(-5000, duty_limit=75)
-    pd.drive_base.arc(2000, distance=595)
-    pd.action_left.run_angle(1500, 60)
-    pd.drive_base.arc(2000, distance=-595)
+    pd.action_right.run_angle(950, 270)
+    pd.action_right.run_angle(-900, 705)
+    pd.drive_base.straight(505)
+    pd.action_left.run_angle(1500, 60, wait=False)
+    pd.drive_base.straight(-470)
 
     yield False
     print("Fahrt hat " + str(watch.time() / 1000) + " Sekunden gedauert.")
