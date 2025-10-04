@@ -19,9 +19,9 @@ hub.speaker.beep()
 def trolley(pd):
     #DriveBase initialisieren
 
-    pd.drive_base.use_gyro(False)
+    pd.drive_base.use_gyro(True)
     pd.imu.reset_heading(0)
-    pd.drive_base.settings(200, 500)
+    pd.drive_base.settings(500, 500)
     yaw = Yaw(hub, pd.right_motor, pd.left_motor)
     yield True
 
