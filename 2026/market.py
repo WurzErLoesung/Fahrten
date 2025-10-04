@@ -25,12 +25,12 @@ def market(pd):
     yaw = Yaw(hub, pd.right_motor, pd.left_motor, min_velocity=100, max_velocity=450, acceleration=600)
     yield True
 
-    pd.drive_base.straight(60)
+    pd.drive_base.straight(65)
     yaw(-45)
-    pd.drive_base.straight(485)
+    pd.drive_base.straight(495)
     pd.action_right.run_angle(900, 1000, wait=False)
     pd.action_left.run_angle(900, -700)
-    pd.drive_base.straight(-150)
+    pd.drive_base.straight(-155)
     pd.action_left.run_angle(900, 200, wait=False)
     pd.drive_base.straight(70, wait=False)
     wait(500)
