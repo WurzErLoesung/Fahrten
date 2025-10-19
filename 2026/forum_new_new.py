@@ -52,30 +52,27 @@ def forum_new_new(pd):
     # Zu Forum fahren und abladen
     pd.drive_base.straight(-120)
     yaw(-87)
-    pd.drive_base.straight(550)
-    """
-    yaw(-60)
-    pd.drive_base.straight(40)
-    yaw(-90)
-    pd.drive_base.straight(100)
-    yaw(-110)
-    pd.drive_base.straight(200)
-    yaw(-180)
-
+    pd.drive_base.straight(450)
+    
+    yaw(-105)
+    pd.drive_base.straight(240)
+    yaw(180)
     pd.drive_base.straight(90)
-    pd.action_left.run_angle(100, -50)
-    pd.drive_base.straight(-80)
+    
+    pd.action_left.run_angle(100, -100)
+    pd.drive_base.straight(-90)
     pd.action_right.run_angle(800, 2850)
     pd.drive_base.straight(50)
     pd.drive_base.straight(-80) 
     pd.action_right.run_angle(800, -3000, wait=False)
     
-    pd.drive_base.straight(50)
     yaw(-90)
-"""
+    pd.drive_base.straight(125) #150
+    yaw(-180)
+    pd.drive_base.straight(40)
+    
     yield False
     print("Fahrt hat " + str(watch.time()/1000) + " Sekunden gedauert.")
-    print(pd.timer.time())
     watch.reset()
 
 def test(pd):
