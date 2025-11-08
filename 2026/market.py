@@ -27,10 +27,10 @@ def market(pd):
 
     pd.drive_base.straight(65)
     yaw(-45)
-    pd.drive_base.straight(495)
+    pd.drive_base.straight(507)
     pd.action_right.run_angle(900, 1000, wait=False)
     pd.action_left.run_angle(900, -700)
-    pd.drive_base.straight(-155)
+    pd.drive_base.straight(-160)
     pd.action_left.run_angle(900, 200, wait=False)
     pd.drive_base.straight(70, wait=False)
     wait(500)
