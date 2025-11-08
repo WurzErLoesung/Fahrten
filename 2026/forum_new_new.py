@@ -23,11 +23,11 @@ def forum_new_new(pd):
     pd.imu.reset_heading(0)
     pd.drive_base.settings(700, 500)
     yaw = Yaw(hub, pd.right_motor, pd.left_motor, min_velocity=100, max_velocity=500, acceleration=600)
-
+    
     # Zu Trolley fahren und aufheben
     pd.drive_base.straight(20)
-    yaw(-21)
-    pd.drive_base.straight(670) 
+    yaw(-19)
+    pd.drive_base.straight(700) 
     yaw(-58)
     pd.drive_base.straight(150) 
     yaw(-90)
@@ -50,12 +50,12 @@ def forum_new_new(pd):
     pd.action_right.run_angle(800, -1200)
 
     # Zu Forum fahren und abladen
-    pd.drive_base.straight(-120)
+    pd.drive_base.straight(-110)
     yaw(-87)
     pd.drive_base.straight(450)
     
     yaw(-105)
-    pd.drive_base.straight(240)
+    pd.drive_base.straight(250)
     yaw(180)
     pd.drive_base.straight(90)
     
@@ -67,7 +67,7 @@ def forum_new_new(pd):
     pd.action_right.run_angle(800, -3000, wait=False)
     
     yaw(-90)
-    pd.drive_base.straight(125) #150
+    pd.drive_base.straight(145) #150
     yaw(-180)
     pd.drive_base.straight(40)
     
