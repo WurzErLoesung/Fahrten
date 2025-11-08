@@ -1,10 +1,8 @@
 from pybricks.hubs import PrimeHub
 from pybricks.parameters import Button, Color, Direction, Port, Side, Stop
-from pybricks.pupdevices import (ColorSensor, ForceSensor, Motor,
-                                 UltrasonicSensor)
+from pybricks.pupdevices import (ColorSensor, ForceSensor, Motor, UltrasonicSensor)
 from pybricks.robotics import DriveBase
 from pybricks.tools import StopWatch, run_task, wait
-
 from pupdevices import PupDevices
 from yaw import Yaw
 
@@ -25,9 +23,9 @@ def ship(pd):
     yaw = Yaw(hub, pd.right_motor, pd.left_motor)
     yield True
 
-    pd.action_right.run_angle(950, 270)
-    pd.action_right.run_angle(-900, 705)
-    pd.drive_base.straight(505)
+    pd.action_right.run_angle(950, 300)
+    pd.action_right.run_angle(-900, 715)
+    pd.drive_base.straight(515)
     pd.action_left.run_angle(1500, 60, wait=False)
     pd.drive_base.straight(-470)
 
