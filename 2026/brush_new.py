@@ -21,16 +21,17 @@ def brush_new(pd):
 
     pd.drive_base.use_gyro(False)
     pd.imu.reset_heading(0)
-    pd.drive_base.settings(950, 950)
+    pd.drive_base.settings(950, 700)
     yaw = Yaw(hub, pd.right_motor, pd.left_motor, min_velocity=100, max_velocity=500, acceleration=800)
     yield True
 
 
     pd.drive_base.straight(100)
-    yaw(16)
-    pd.drive_base.straight(505)
+    yaw(14.5)
+    print(pd.hub.imu.heading())
+    pd.drive_base.straight(520)
     yaw(-90)
-    pd.drive_base.straight(120)
+    pd.drive_base.straight(140)
     pd.action_left.run_angle(1000, -350)
     pd.action_left.run_angle(800, 350, wait=False)
     pd.action_right.run_angle(300, 260)
