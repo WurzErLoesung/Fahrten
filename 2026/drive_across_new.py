@@ -24,21 +24,21 @@ def drive_across_new(pd):
     yield True
 
     #drive to market
-    pd.drive_base.straight(150)
+    pd.drive_base.straight(160)
     yaw(90)
-    pd.drive_base.straight(1100)
+    pd.drive_base.straight(1105)
     yaw(0)
     
     #solve scale
     pd.drive_base.straight(100)
-    pd.drive_base.straight(-210)
-    yaw(4)
-
+    pd.drive_base.straight(-190)
+    yaw(-2)
     #turn gear
-    pd.action_left.run_angle(700, -1700)
+    pd.action_left.run_angle(700, -1500)
 
     #drive to homebase
-    yaw(7)
+    pd.action_left.run_angle(700, 100, wait=False)
+    yaw(10)
     pd.drive_base.straight(90)
     yaw(110)
     pd.drive_base.settings(977, 700)
