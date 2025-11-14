@@ -22,11 +22,11 @@ def ship(pd):
     pd.drive_base.settings(977, 977)
     yaw = Yaw(hub, pd.right_motor, pd.left_motor)
     yield True
-    #pd.action_right.run_angle(950, 330)
-    #pd.action_right.run_angle(-900, 715)
-    pd.drive_base.straight(500)
+    # pd.action_right.run_angle(950, 330)
+    # pd.action_right.run_angle(-900, 715)
+    pd.drive_base.arc(6000,distance=560)
     pd.action_left.run_angle(1500, 60, wait=False)
-    pd.drive_base.straight(-475)
+    pd.drive_base.straight(-500)
 
     yield False
     print("Fahrt hat " + str(watch.time() / 1000) + " Sekunden gedauert.")
