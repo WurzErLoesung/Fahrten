@@ -27,7 +27,7 @@ def ship(pd):
     pd.action_right.run_angle(-900, 715)
     pd.drive_base.straight(515)
     pd.action_left.run_angle(1500, 60, wait=False)
-    pd.drive_base.straight(-470)
+    pd.drive_base.straight(-475)
 
     yield False
     print("Fahrt hat " + str(watch.time() / 1000) + " Sekunden gedauert.")
