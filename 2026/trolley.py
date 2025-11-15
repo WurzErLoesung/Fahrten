@@ -21,30 +21,31 @@ def trolley(pd):
 
     pd.drive_base.use_gyro(True)
     pd.imu.reset_heading(0)
-    pd.drive_base.settings(500, 500)
-    yaw = Yaw(hub, pd.right_motor, pd.left_motor)
+    pd.drive_base.settings(700, 500)
+    yaw = Yaw(hub, pd.right_motor, pd.left_motor, min_velocity=50, max_velocity=650, acceleration=500)
     yield True
 
     # Drive to trolley
-    pd.drive_base.straight(420)
+    pd.drive_base.straight(415)
     yaw(65)
     pd.drive_base.straight(420)
     
     # Activate trolley
     yaw(12) #20
-    pd.drive_base.straight(-24)
+    
+    pd.drive_base.straight(-10)
     pd.action_left.run_angle(-1000, 1450)
-
+    
     # Pick up artefact
-    yaw(10)#15
-    pd.drive_base.straight(150)#155
+    #yaw(10)#15
+    pd.drive_base.straight(160)#155
     pd.action_right.run_angle(2000, 1000)
     pd.action_right.run_angle(-2000, 1000)
-
+    
     # Activate statue
-    pd.drive_base.straight(-20)
+    pd.drive_base.straight(-15)
     pd.action_left.run_angle(500, 300)
-    pd.drive_base.straight(-80)
+    pd.drive_base.straight(-110)
     yaw(-45)
     pd.drive_base.straight(25)
     pd.action_left.run_angle(-500, 300)
@@ -59,8 +60,8 @@ def trolley(pd):
     yaw(255)
     pd.drive_base.straight(290)
     yaw(200)
-    pd.drive_base.straight(820)
-    
+    pd.drive_base.straight(720)
+   
     yield False
     print("Fahrt hat " + str(watch.time()/1000) + " Sekunden gedauert.")
     print(pd.timer.time())
@@ -80,4 +81,3 @@ def test(pd):
 if __name__ == "__main__":
     for element in trolley(PupDevices()): pass
     # for element in trolley(PupDevices()): pass
-
