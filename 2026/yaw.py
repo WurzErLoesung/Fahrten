@@ -1,56 +1,68 @@
 from pybricks.hubs import PrimeHub
-from pybricks.pupdevices import Motor, ColorSensor, UltrasonicSensor, ForceSensor
+from pybricks.pupdevices import Motor, ColorDistanceSensor
 from pybricks.parameters import Button, Color, Direction, Port, Side, Stop
 from pybricks.robotics import DriveBase
-from pybricks.tools import wait, StopWatch, run_task
-from pupdevices import PupDevices
-from yaw import Yaw
+from pybricks.tools import wait, StopWatch, run_task, multitask
+import umath as math
+from pupdevices import PupDevices 
 
-hub = PrimeHub()
+class Yaw:
+    def __init__(self, hub, left_motor, right_motor, positive_direction=1, min_velocity: int = 20, max_velocity: int = 300, acceleration: int = 500):
+        self.hub = hub
+        self.ml = left_motor
+        self.mr = right_motor
+        self.direction = positive_direction
+        self.min_velocity = min_velocity
+        self.max_velocity = max_velocity
+        self.acceleration = acceleration
 
-print(f"{hub.system.name()}: {hub.battery.voltage()} mV")
-print(f"{hub.system.name()}: {hub.battery.current()} mA")
-
-watch = StopWatch()
-
-hub.speaker.beep()
-
-def stonehenge(pd):
-    pd.drive_base.use_gyro(False)
-    pd.imu.reset_heading(0)
-    pd.drive_base.settings(straight_speed=777, straight_acceleration=700)
-    yaw = Yaw(hub, pd.right_motor, pd.left_motor, min_velocity=100, max_velocity=400, acceleration=500)
-    #yaw = Yaw(hub, pd.right_motor, pd.left_motor, min_velocity=977, max_velocity=977, acceleration=977)
-    # driving to stonehenge
-    pd.drive_base.straight(50)
-    yaw(-15) #-18
-    pd.drive_base.straight(555) #550 553 
-    yaw(0)
-    pd.drive_base.straight(40)
-    yaw(43) #45 42
-    pd.drive_base.straight(300)
-
-    # solving everything
-    pd.action_left.run_angle(590, -850) #-610 690 820
-    pd.action_left.run_angle(600, 1480) #1470 
-    pd.action_left.run_angle(600, -250) #-200
-    for i in range(2):
-        pd.action_right.run_angle(1000, -640) #600
-        pd.action_right.run_angle(100, 360) #350
-    yield True
-
-    # driving back to homebase
-    pd.drive_base.straight(-240)
-    yaw(0)
-    pd.drive_base.straight(-40)
-    yaw(-25)
-    pd.drive_base.straight(-400)
-    yaw(-45)
-    pd.drive_base.straight(-300)
+    def __call__(self, deg, min_velocity: int = None, max_velocity: int = None, acceleration: int = None):
+        min_velocity = min_velocity if min_velocity is not None else self.min_velocity
+        max_velocity = max_velocity if max_velocity is not None else self.max_velocity
+        
+        deg = deg % 360
+        time_limit = 3000
+        s = StopWatch()
+        start = s.time()
+        while True:
+            current_yaw = (self.hub.imu.heading()) % 360
+            if current_yaw < 0: current_yaw = 360 - current_yaw
+            difference = deg - current_yaw
     
     
+            if abs(difference) < 0.1:
+                self.ml.stop()
+                self.mr.stop()
+                break
+    
+            if s.time() - start > time_limit:
+                print("Timeout")
+                break
     
     
+            if abs(difference) > 180:
+                difference = (360 - abs(difference)) * -1 * (difference/abs(difference))
+            
+            direction = 1 if difference >= 0 else -1
+    
+            # higher values = higher average speed
+            speed_potency = 3
+
+            acceleration = acceleration if acceleration is not None else self.acceleration
+            velocity = round(min_velocity + (max_velocity - min_velocity) * (abs(difference) / 180) ** (1 / speed_potency))
+            accelerated_velocity = min((s.time() / 1000) * acceleration, velocity)
+
+            self.ml.run(-self.direction * accelerated_velocity * direction)
+            self.mr.run(self.direction * accelerated_velocity * direction)
+    
+        self.ml.stop()
+        self.mr.stop()
+        return
+    
+    def reset(self, angle):
+        self.hub.imu.reset_heading(angle)
 
 if __name__ == "__main__":
-    for element in stonehenge(PupDevices()): pass
+    pd = PupDevices()
+    yaw = Yaw(hub, pd.left_motor, pd.right_motor, min_velocity=300, max_velocity=800, acceleration=950)
+    yaw(90)
