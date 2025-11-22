@@ -31,21 +31,12 @@ def stonehenge(pd):
     pd.drive_base.straight(300)
 
     # solving everything
-<<<<<<< HEAD
-    pd.action_left.run_angle(600, -660)
-    pd.action_left.run_angle(600, 1200)
-    pd.action_left.run_angle(600, -200)
-    for i in range(3):
-        pd.action_right.run_angle(1000, -600)
-        pd.action_right.run_angle(100, 350)
-=======
     pd.action_left.run_angle(590, -850) #-610 690 820
     pd.action_left.run_angle(600, 1480) #1470 
     pd.action_left.run_angle(600, -250) #-200
     for i in range(2):
         pd.action_right.run_angle(1000, -640) #600
         pd.action_right.run_angle(100, 360) #350
->>>>>>> 152563c48c7d45372702354bb4662239a6030c78
     yield True
 
     # driving back to homebase
