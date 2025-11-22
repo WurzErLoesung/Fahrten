@@ -20,32 +20,27 @@ def stonehenge(pd):
     pd.imu.reset_heading(0)
     pd.drive_base.settings(straight_speed=777, straight_acceleration=700)
     yaw = Yaw(hub, pd.right_motor, pd.left_motor, min_velocity=100, max_velocity=400, acceleration=500)
-    #yaw = Yaw(hub, pd.right_motor, pd.left_motor, min_velocity=977, max_velocity=977, acceleration=977)
     # driving to stonehenge
+    pd.drive_base.straight(500)
+    wait(1000)
+    pd.drive_base.straight(-500)
+    return
+
     pd.drive_base.straight(50)
-    yaw(-15) #-18
-    pd.drive_base.straight(555) #550 553 
+    yaw(-18)
+    pd.drive_base.straight(550)
     yaw(0)
     pd.drive_base.straight(40)
-    yaw(43) #45 42
+    yaw(45)
     pd.drive_base.straight(300)
 
     # solving everything
-<<<<<<< HEAD
     pd.action_left.run_angle(600, -660)
     pd.action_left.run_angle(600, 1200)
     pd.action_left.run_angle(600, -200)
     for i in range(3):
         pd.action_right.run_angle(1000, -600)
         pd.action_right.run_angle(100, 350)
-=======
-    pd.action_left.run_angle(590, -850) #-610 690 820
-    pd.action_left.run_angle(600, 1480) #1470 
-    pd.action_left.run_angle(600, -250) #-200
-    for i in range(2):
-        pd.action_right.run_angle(1000, -640) #600
-        pd.action_right.run_angle(100, 360) #350
->>>>>>> 152563c48c7d45372702354bb4662239a6030c78
     yield True
 
     # driving back to homebase
