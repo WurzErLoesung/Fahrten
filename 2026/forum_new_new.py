@@ -21,14 +21,14 @@ def forum_new_new(pd):
 
     pd.drive_base.use_gyro(True)
     pd.imu.reset_heading(0)
-    pd.drive_base.settings(700, 500)
-    yaw = Yaw(hub, pd.right_motor, pd.left_motor, min_velocity=100, max_velocity=500, acceleration=600)
+    pd.drive_base.settings(700, 500) #700, 500
+    yaw = Yaw(hub, pd.right_motor, pd.left_motor, min_velocity=100, max_velocity=500, acceleration=600) #100, 500, 600
     
     # Zu Trolley fahren und aufheben
     pd.drive_base.straight(20)
     yaw(-19)
     pd.drive_base.straight(700) 
-    yaw(-58)
+    yaw(-63)
     pd.drive_base.straight(150) 
     yaw(-90)
     pd.drive_base.straight(130)
@@ -50,26 +50,26 @@ def forum_new_new(pd):
     pd.action_right.run_angle(800, -1200)
 
     # Zu Forum fahren und abladen
-    pd.drive_base.straight(-110)
-    yaw(-87)
+    pd.drive_base.straight(-120)
+    yaw(-90)
     pd.drive_base.straight(450)
     
     yaw(-105)
-    pd.drive_base.straight(250)
+    pd.drive_base.straight(260)
     yaw(180)
-    pd.drive_base.straight(90)
+    pd.drive_base.straight(40)
     
-    pd.action_left.run_angle(100, -100)
-    pd.drive_base.straight(-90)
+    pd.action_left.run_angle(100, -50)
+    pd.drive_base.straight(-50)
     pd.action_right.run_angle(800, 2850)
-    pd.drive_base.straight(50)
-    pd.drive_base.straight(-80) 
+    pd.drive_base.straight(80)
+    pd.drive_base.straight(-60) 
     pd.action_right.run_angle(800, -3000, wait=False)
     
     yaw(-90)
     pd.drive_base.straight(145) #150
     yaw(-180)
-    pd.drive_base.straight(40)
+    pd.drive_base.straight(30)
     
     yield False
     print("Fahrt hat " + str(watch.time()/1000) + " Sekunden gedauert.")
