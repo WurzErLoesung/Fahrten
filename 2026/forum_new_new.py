@@ -29,7 +29,7 @@ def forum_new_new(pd):
     yaw(-19)
     pd.drive_base.straight(700) 
     yaw(-63)
-    pd.drive_base.straight(150) 
+    pd.drive_base.straight(145) 
     yaw(-90)
     pd.drive_base.straight(130)
 
@@ -52,9 +52,9 @@ def forum_new_new(pd):
     # Zu Forum fahren und abladen
     pd.drive_base.straight(-120)
     yaw(-90)
-    pd.drive_base.straight(450)
+    pd.drive_base.straight(455)
     
-    yaw(-105)
+    yaw(-104)
     pd.drive_base.straight(260)
     yaw(180)
     pd.drive_base.straight(40)
