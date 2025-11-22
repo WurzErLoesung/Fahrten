@@ -28,7 +28,7 @@ def trolley(pd):
     # Drive to trolley
     pd.drive_base.straight(415)
     yaw(65)
-    pd.drive_base.straight(420)
+    pd.drive_base.straight(410) #420
     
     # Activate trolley
     yaw(12) #20
@@ -38,7 +38,7 @@ def trolley(pd):
     
     # Pick up artefact
     #yaw(10)#15
-    pd.drive_base.straight(160)#155
+    pd.drive_base.straight(165)#155
     pd.action_right.run_angle(2000, 1000)
     pd.action_right.run_angle(-2000, 1000)
     
