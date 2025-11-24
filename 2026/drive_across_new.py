@@ -26,13 +26,14 @@ def drive_across_new(pd):
     #drive to market
     pd.drive_base.straight(160)
     yaw(90)
-    pd.drive_base.straight(1105)
+    pd.drive_base.straight(1170)
     yaw(0)
     
     #solve scale
     pd.drive_base.straight(110)
+    yaw(0)
     pd.drive_base.straight(-200)
-    yaw(-4)
+    yaw(4)
     #turn gear
     pd.action_left.run_angle(700, -1500)
 
