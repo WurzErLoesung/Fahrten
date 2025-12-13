@@ -1,9 +1,10 @@
+from pupdevices import PupDevices
 from pybricks.hubs import PrimeHub
 from pybricks.parameters import Button, Color, Direction, Port, Side, Stop
-from pybricks.pupdevices import (ColorSensor, ForceSensor, Motor, UltrasonicSensor)
+from pybricks.pupdevices import (ColorSensor, ForceSensor, Motor,
+                                 UltrasonicSensor)
 from pybricks.robotics import DriveBase
 from pybricks.tools import StopWatch, run_task, wait
-from pupdevices import PupDevices
 from yaw import Yaw
 
 hub = PrimeHub()
@@ -22,11 +23,20 @@ def ship(pd):
     pd.drive_base.settings(977, 977)
     yaw = Yaw(hub, pd.right_motor, pd.left_motor)
     yield True
+
     # pd.action_right.run_angle(950, 330)
+    # yield True
     # pd.action_right.run_angle(-900, 715)
-    pd.drive_base.arc(3500,distance=490) #530
+    # yield True
+
+    pd.drive_base.arc(3500, distance=490)  # 530
+    yield True
+
     pd.action_left.run_angle(1500, 60, wait=False)
+    yield True
+
     pd.drive_base.straight(-515)
+    yield True
 
     yield False
     print("Fahrt hat " + str(watch.time() / 1000) + " Sekunden gedauert.")
