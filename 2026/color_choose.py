@@ -55,6 +55,14 @@ except ImportError:
     trolley = None
     TROLLEY_AVAILABLE = False
 
+try:
+    from crane.crane import crane
+
+    CRANE_AVAILABLE = True
+except ImportError:
+    crane = None
+    CRANE_AVAILABLE = False
+
 # ========================================
 # HARDWARE INITIALISIERUNG
 # ========================================
@@ -76,13 +84,14 @@ if hub.battery.voltage() < 7500:
 # ========================================
 # FARBDEFINITIONEN - Hier anpassen!
 # ========================================
-Color.MAGENTA = Color(h=348, s=91, v=40)
-Color.RED = Color(h=352, s=97, v=51)
-Color.BLUE = Color(h=215, s=98, v=31)
-Color.GREEN = Color(h=157, s=93, v=27)
-Color.YELLOW = Color(h=52, s=79, v=70)
-Color.WHITE = Color(h=118, s=13, v=75)
+Color.MAGENTA = Color(h=333, s=75, v=78)
+Color.RED = Color(h=355, s=86, v=90)
+Color.BLUE = Color(h=214, s=89, v=82)
+Color.GREEN = Color(h=158, s=75, v=45)
+Color.YELLOW = Color(h=52, s=59, v=100)
+Color.WHITE = Color(h=0, s=0, v=100)
 Color.NONE = Color(h=0, s=0, v=0)
+Color.BLACK = Color(h=170, s=20, v=36)
 
 colors = list(pd.color.detectable_colors())
 colors.extend(
@@ -94,6 +103,7 @@ colors.extend(
         Color.YELLOW,
         Color.WHITE,
         Color.NONE,
+        Color.BLACK,
     ]
 )
 pd.color.detectable_colors(colors)
@@ -103,12 +113,13 @@ pd.color.detectable_colors(colors)
 # ========================================
 # Format: Farbe: (Funktion, Countdown-Sekunden, Name)
 MISSIONS = {
-    Color.BLUE: (brush_new, 5, "Brush"),
+    Color.BLUE: (brush_new, 5, "Brush"),  # alt
     Color.YELLOW: (drive_across_new, 5, "Drive Across"),
-    Color.WHITE: (forum_new_new, 10, "Forum"),
-    Color.MAGENTA: (ship, 4, "Ship"),
-    Color.GREEN: (stonehenge, 3, "Stonehenge"),
-    Color.RED: (trolley, 5, "Trolley"),
+    Color.WHITE: (forum_new_new, 10, "Forum"),  # alt
+    Color.MAGENTA: (ship, 4, "Ship"),  # alt
+    Color.GREEN: (crane, 3, "Crane"),  # alt
+    Color.RED: (trolley, 5, "Trolley"),  # alt
+    Color.BLACK: (stonehenge, 5, "Stonehenge"),  # alt
 }
 
 # ========================================

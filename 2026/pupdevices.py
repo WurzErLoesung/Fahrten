@@ -1,16 +1,20 @@
 from pybricks.hubs import PrimeHub
-from pybricks.pupdevices import Motor, ColorSensor, UltrasonicSensor
 from pybricks.parameters import Button, Color, Direction, Port
+from pybricks.pupdevices import ColorSensor, Motor, UltrasonicSensor
 from pybricks.robotics import DriveBase
-from pybricks.tools import wait, StopWatch
+from pybricks.tools import StopWatch, wait
+
 
 def singleton(cls):
     instances = {}
+
     def getinstance():
         if cls not in instances:
             instances[cls] = cls()
         return instances[cls]
+
     return getinstance
+
 
 @singleton
 class PupDevices:
@@ -22,9 +26,10 @@ class PupDevices:
         self.action_right = Motor(Port.F, positive_direction=Direction.COUNTERCLOCKWISE)
         self.hub = PrimeHub()
         self.imu = self.hub.imu
-        self.color = ColorSensor(Port.B)
-        self.color_top = ColorSensor(Port.A)
+        self.color_bottom = ColorSensor(Port.B)
+        self.color = ColorSensor(Port.A)
         self.timer = StopWatch()
+
 
 if __name__ == "__main__":
     hub = PrimeHub()

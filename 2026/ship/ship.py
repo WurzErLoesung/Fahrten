@@ -18,9 +18,9 @@ hub.speaker.beep()
 
 def ship(pd):
     # DriveBase initialisieren
-    pd.drive_base.use_gyro(False)
+    pd.drive_base.use_gyro(True)
     pd.imu.reset_heading(90)
-    pd.drive_base.settings(977, 550)
+    pd.drive_base.settings(500, 500)
     yaw = Yaw(hub, pd.right_motor, pd.left_motor)
     yield True
 
@@ -29,10 +29,12 @@ def ship(pd):
     # pd.action_right.run_angle(-900, 715)
     # yield True
 
-    pd.drive_base.arc(2800, distance=650)  # 530
+    pd.drive_base.arc(4000, distance=510)
+    # pd.drive_base.straight(150)
+
     yield True
 
-    pd.action_right.run_angle(1350, -60, wait=False)
+    pd.action_left.run_angle(700, 70, wait=False)
     yield True
 
     pd.drive_base.settings(977, 977)
