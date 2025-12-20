@@ -21,11 +21,11 @@ def drive_across_new(pd):
     yaw = Yaw(hub, pd.right_motor, pd.left_motor)
     yield True
     # bring 3 items to forum
-    pd.drive_base.straight(200)
+    pd.drive_base.straight(190)
     yield True
     yaw(51)
     yield True
-    pd.drive_base.straight(350)
+    pd.drive_base.straight(330) #335
     yield True
     pd.drive_base.straight(-250)
     yield True
@@ -35,17 +35,17 @@ def drive_across_new(pd):
     yield True
     pd.action_right.run_angle(700, 455, wait=False)
     yield True
-    yaw(142)
+    yaw(141)
     yield True
-    pd.drive_base.straight(-80)
+    pd.drive_base.straight(-90) #-85
     yield True
     pd.action_right.run_angle(600, -500)
     yield True
     yaw(45)
     yield True
-    pd.drive_base.straight(220)
+    pd.drive_base.straight(200) #220
     yield True
-    pd.drive_base.straight(-300)
+    pd.drive_base.straight(-280) #-300
     yield True
     yaw(112)
     yield True
