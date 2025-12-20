@@ -17,52 +17,41 @@ def drive_across_new(pd):
     # DriveBase initialisieren
     pd.drive_base.use_gyro(True)
     pd.imu.reset_heading(0)
-    pd.drive_base.settings(500, 400)
-    yaw = Yaw(
-        hub,
-        pd.right_motor,
-        pd.left_motor,
-        min_velocity=100,
-        max_velocity=600,
-        acceleration=400,
-    )
+    pd.drive_base.settings(600, 500)
+    yaw = Yaw(hub, pd.right_motor, pd.left_motor)
     yield True
-    # drive to market
-    pd.drive_base.straight(160)
+    # bring 3 items to forum
+    pd.drive_base.straight(200)
+    yield True
+    yaw(51)
+    yield True
+    pd.drive_base.straight(350)
+    yield True
+    pd.drive_base.straight(-250)
     yield True
     yaw(90)
     yield True
-    pd.drive_base.straight(1170)
+    pd.drive_base.straight(750)
     yield True
-    yaw(0)
+    pd.action_right.run_angle(700, 455, wait=False)
     yield True
+    yaw(142)
+    yield True
+    pd.drive_base.straight(-80)
+    yield True
+    pd.action_right.run_angle(600, -500)
+    yield True
+    yaw(45)
+    yield True
+    pd.drive_base.straight(220)
+    yield True
+    pd.drive_base.straight(-300)
+    yield True
+    yaw(112)
+    yield True
+    pd.drive_base.settings(900, 900)
+    pd.drive_base.straight(1050)
 
-    # solve scale
-    pd.drive_base.straight(110)
-    yield True
-    yaw(0)
-    yield True
-    pd.drive_base.straight(-200)
-    yield True
-    yaw(4)
-    yield True
-    # turn gear
-    pd.action_left.run_angle(700, -1500)
-    yield True
-    # drive to homebase
-    pd.action_left.run_angle(700, 130, wait=False)
-    yield True
-    yaw(8)
-    yield True
-    pd.drive_base.straight(50)
-    yield True
-    # pd.drive_base.straight(-20)
-    yaw(105)
-    yield True
-    pd.drive_base.settings(977, 700)
-    yield True
-    pd.drive_base.straight(800)
-    yield True
     yield False
     print("Fahrt hat " + str(watch.time() / 1000) + " Sekunden gedauert.")
     print(pd.timer.time())
