@@ -32,39 +32,49 @@ def stonehenge(pd):
     yield True
 
     # driving to stonehenge
-    pd.drive_base.straight(50)
+    pd.drive_base.straight(40) # BEFORE: 50
     yield True
     yaw(-15)  # -18
     yield True
-    pd.drive_base.straight(555)  # 550 553
+    pd.drive_base.straight(590)  # BEFORE: 555 # 550 553
     yield True
-    yaw(0)
-    yield True
-    pd.drive_base.straight(40)
-    yield True
+
+    # yaw(0)
+    # yield True
+    # pd.drive_base.straight(40)
+    # yield True
+
     yaw(43)  # 45 42
     yield True
-    pd.drive_base.straight(600) # 300 (20.12.)
+    pd.drive_base.straight(400) # 300 (20.12.)
     yield True
+    
 
     # solving everything
     run_task(solve(pd))
     yield True
 
+    pd.drive_base.arc(400, angle=-140)
+    yield end(pd)
+    return
+
+
     # driving back to homebase
     pd.drive_base.straight(-240)
     yield True
+
+    # yaw(10)
+    # yield True
+    # pd.drive_base.straight(-40)
+    # yield True
+
     yaw(0)
     yield True
-    pd.drive_base.straight(-40)
-    yield True
-    yaw(-25)
-    yield True
-    pd.drive_base.straight(-400)
+    pd.drive_base.straight(-330) # -400
     yield True
     yaw(-45)
     yield True
-    pd.drive_base.straight(-300)
+    pd.drive_base.straight(-400)
     yield True
 
     yield False
@@ -82,10 +92,10 @@ async def solve(pd):
     await multitask(solve1(pd), solve2(pd))
 
 async def solve1(pd):
-    await pd.action_right.run_angle(-1000, 10000)
+    await pd.action_right.run_angle(-1200, 10000)
 
 async def solve2(pd):
-    await pd.action_left.run_angle(590, -1050) # -610 -690 -820 -850 (20.12.)
+    await pd.action_left.run_angle(590, -1150) # -610 -690 -820 -850 (20.12.)
     await pd.action_left.run_angle(600, 1480)  # 1470
     await pd.action_left.run_angle(600, -250)  # -200
 
