@@ -41,7 +41,7 @@ def forum_new_new(pd):
     yield True
     yaw(-90)
     yield True
-    pd.drive_base.straight(130)
+    pd.drive_base.straight(110)
     yield True
     # yaw(-30)
     # pd.drive_base.straight(-20)
@@ -65,7 +65,7 @@ def forum_new_new(pd):
     yield True
     yaw(-90)
     yield True
-    pd.drive_base.straight(455)
+    pd.drive_base.straight(465)
     yield True
 
     yaw(-104)
@@ -74,7 +74,7 @@ def forum_new_new(pd):
     yield True
     yaw(180)
     yield True
-    pd.drive_base.straight(40)
+    pd.drive_base.straight(60)
     yield True
 
     pd.action_left.run_angle(100, -50)
