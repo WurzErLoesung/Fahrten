@@ -29,6 +29,7 @@ class PupDevices:
         self.color_bottom = ColorSensor(Port.B)
         self.color = ColorSensor(Port.A)
         self.timer = StopWatch()
+        self.straight = self.drive_base.straight
 
 
 if __name__ == "__main__":
