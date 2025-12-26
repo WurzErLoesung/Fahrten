@@ -54,7 +54,7 @@ def stonehenge(pd):
     run_task(solve(pd))
     yield True
 
-    pd.drive_base.arc(400, angle=-140)
+    pd.drive_base.arc(450, angle=-140)
     yield end(pd)
     return
 
@@ -92,11 +92,12 @@ async def solve(pd):
     await multitask(solve1(pd), solve2(pd))
 
 async def solve1(pd):
-    await pd.action_right.run_angle(-1200, 10000)
+    await pd.action_right.run_angle(-1200, 7500)
 
 async def solve2(pd):
-    await pd.action_left.run_angle(590, -1150) # -610 -690 -820 -850 (20.12.)
+    await pd.action_left.run_angle(590, -1250) # -610 -690 -820 -850 (20.12.)
     await pd.action_left.run_angle(600, 1480)  # 1470
+    await wait(1500)
     await pd.action_left.run_angle(600, -250)  # -200
 
 
