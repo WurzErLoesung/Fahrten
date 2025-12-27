@@ -32,16 +32,17 @@ def artifact(pd):
 
     pd.straight(300)
     yaw(25)
-    pd.straight(430)
+    pd.straight(440)
 
     run_task(prepare(pd, yaw))
     pd.action_right.run_angle(800, 1400)
     pd.action_left.run_angle(-400, 600)
+    pd.action_left.run_angle(400, 200)
     pd.action_right.run_angle(-800, 1400)
 
     pd.straight(-150)
     yaw(20)
-    pd.drive_base.arc(2000, angle=-20)
+    pd.drive_base.arc(1500, angle=-30)
 
 
     yield False
@@ -60,7 +61,7 @@ async def prepare2(pd, yaw):
     await pd.straight(-15)
 
 if __name__ == "__main__":
-    # PupDevices().action_left.run_angle(-400, 500)
+   # PupDevices().action_left.run_angle(-400, 500)
     for element in artifact(PupDevices()):
         pass
 
