@@ -16,7 +16,6 @@ watch = StopWatch()
 
 hub.speaker.beep()
 
-
 def stonehenge(pd):
     pd.drive_base.use_gyro(False)
     pd.imu.reset_heading(0)
@@ -34,59 +33,24 @@ def stonehenge(pd):
     # driving to stonehenge
     pd.drive_base.straight(40) # BEFORE: 50
     yield True
-    yaw(-14)  # -18
+    yaw(-13)  # -18
     yield True
-    pd.drive_base.straight(580)  # BEFORE: 555 # 550 553
+    pd.drive_base.straight(590)  # BEFORE: 555 # 550 553
     yield True
-
-    # yaw(0)
-    # yield True
-    # pd.drive_base.straight(40)
-    # yield True
-
-    yaw(43)  # 45 42
+    yaw(45)  # 43 45 42
     yield True
-    pd.drive_base.straight(400) # 300 (20.12.)
+    pd.drive_base.straight(430) # 300 (20.12.)
     yield True
-    
 
     # solving everything
     run_task(solve(pd))
     yield True
 
-    pd.drive_base.arc(450, angle=-140)
-    yield end(pd)
-    return
-
-
-    # driving back to homebase
-    pd.drive_base.straight(-240)
-    yield True
-
-    # yaw(10)
-    # yield True
-    # pd.drive_base.straight(-40)
-    # yield True
-
-    yaw(0)
-    yield True
-    pd.drive_base.straight(-330) # -400
-    yield True
-    yaw(-45)
-    yield True
-    pd.drive_base.straight(-400)
-    yield True
-
+    pd.drive_base.arc(370, angle=-145) # 450
     yield False
     print("Fahrt hat " + str(watch.time() / 1000) + " Sekunden gedauert.")
     print(pd.timer.time())
     watch.reset()
-
-def end(pd):
-    print("Fahrt hat " + str(watch.time() / 1000) + " Sekunden gedauert.")
-    print(pd.timer.time())
-    watch.reset()
-    yield False
 
 async def solve(pd):
     await multitask(solve1(pd), solve2(pd))
