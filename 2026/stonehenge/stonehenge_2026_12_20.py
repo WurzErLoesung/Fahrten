@@ -27,16 +27,16 @@ def stonehenge(pd):
         pd.left_motor,
         min_velocity=100,
         max_velocity=400,
-        acceleration=500,
+        acceleration=300,
     )
     yield True
 
     # driving to stonehenge
     pd.drive_base.straight(40) # BEFORE: 50
     yield True
-    yaw(-15)  # -18
+    yaw(-14)  # -18
     yield True
-    pd.drive_base.straight(590)  # BEFORE: 555 # 550 553
+    pd.drive_base.straight(580)  # BEFORE: 555 # 550 553
     yield True
 
     # yaw(0)
