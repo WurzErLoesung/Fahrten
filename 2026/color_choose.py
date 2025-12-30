@@ -24,11 +24,11 @@ except ImportError:
     DRIVE_AVAILABLE = False
 
 try:
-    from forum_new.forum_new_new import forum_new_new
+    from forum_new.forum_2026_12_23 import forum
 
     FORUM_AVAILABLE = True
 except ImportError:
-    forum_new_new = None
+    forum = None
     FORUM_AVAILABLE = False
 
 try:
@@ -40,7 +40,7 @@ except ImportError:
     SHIP_AVAILABLE = False
 
 try:
-    from stonehenge.stonehenge import stonehenge
+    from stonehenge.stonehenge_2026_12_20 import stonehenge
 
     STONEHENGE_AVAILABLE = True
 except ImportError:
@@ -48,15 +48,15 @@ except ImportError:
     STONEHENGE_AVAILABLE = False
 
 try:
-    from trolley.trolley import trolley
+    from artifact.artifact_2026_12_26 import artifact
 
-    TROLLEY_AVAILABLE = True
+    ARTIFACT_AVAILABLE = True
 except ImportError:
     trolley = None
-    TROLLEY_AVAILABLE = False
+    ARTIFACT_AVAILABLE = False
 
 try:
-    from crane.crane import crane
+    from crane import crane
 
     CRANE_AVAILABLE = True
 except ImportError:
@@ -84,14 +84,14 @@ if hub.battery.voltage() < 7500:
 # ========================================
 # FARBDEFINITIONEN - Hier anpassen!
 # ========================================
-Color.MAGENTA = Color(h=333, s=75, v=78)
-Color.RED = Color(h=355, s=86, v=90)
-Color.BLUE = Color(h=214, s=89, v=82)
-Color.GREEN = Color(h=158, s=75, v=45)
-Color.YELLOW = Color(h=52, s=59, v=100)
+Color.MAGENTA = Color(h=336, s=76, v=78)
+Color.RED = Color(h=354, s=86, v=84)
+Color.BLUE = Color(h=215, s=91, v=81)
+Color.GREEN = Color(h=158, s=78, v=56)
+Color.YELLOW = Color(h=48, s=61, v=100)
 Color.WHITE = Color(h=0, s=0, v=100)
 Color.NONE = Color(h=0, s=0, v=0)
-Color.BLACK = Color(h=170, s=20, v=36)
+Color.BLACK = Color(h=204, s=25, v=26)
 
 colors = list(pd.color.detectable_colors())
 colors.extend(
@@ -113,13 +113,13 @@ pd.color.detectable_colors(colors)
 # ========================================
 # Format: Farbe: (Funktion, Countdown-Sekunden, Name)
 MISSIONS = {
-    Color.BLUE: (brush_new, 5, "Brush"),  # alt
-    Color.YELLOW: (drive_across_new, 5, "Drive Across"),
-    Color.WHITE: (forum_new_new, 10, "Forum"),  # alt
-    Color.MAGENTA: (ship, 4, "Ship"),  # alt
-    Color.GREEN: (crane, 3, "Crane"),  # alt
-    Color.RED: (trolley, 5, "Trolley"),  # alt
-    Color.BLACK: (stonehenge, 5, "Stonehenge"),  # alt
+    Color.BLUE: (brush_new, 5, "Brush"),  # passt
+    Color.YELLOW: (drive_across_new, 5, "Drive Across"), # passt
+    Color.WHITE: (forum, 10, "Forum"),  # passt
+    Color.MAGENTA: (ship, 4, "Ship"),  # passt
+    Color.GREEN: (crane, 3, "Crane"),  # passt
+    Color.RED: (artifact, 5, "Artifact"),  # passt
+    Color.BLACK: (stonehenge, 5, "Stonehenge"),  # passt
 }
 
 # ========================================

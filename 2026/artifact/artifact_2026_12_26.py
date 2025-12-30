@@ -32,13 +32,13 @@ def artifact(pd):
 
     pd.straight(300)
     yaw(25)
-    pd.straight(440)
+    pd.straight(450)
 
     run_task(prepare(pd, yaw))
-    pd.action_right.run_angle(800, 1400)
-    pd.action_left.run_angle(-400, 600)
-    pd.action_left.run_angle(400, 200)
-    pd.action_right.run_angle(-800, 1400)
+    pd.action_right.run_angle(800, 1700)
+    pd.action_left.run_angle(400, 1100)
+    pd.action_left.run_angle(-400, 200)
+    pd.action_right.run_angle(-800, 1700)
 
     pd.straight(-150)
     yaw(20)
@@ -53,12 +53,12 @@ async def prepare(pd, yaw):
     await multitask(prepare1(pd), prepare2(pd, yaw))
 
 async def prepare1(pd):
-    await pd.action_left.run_angle(800, 500)
+    await pd.action_left.run_angle(-800, 800)
     
 async def prepare2(pd, yaw):
     yaw(0)
-    await pd.straight(170)
-    await pd.straight(-15)
+    await pd.straight(220) #170
+    await pd.straight(-20)
 
 if __name__ == "__main__":
    # PupDevices().action_left.run_angle(-400, 500)

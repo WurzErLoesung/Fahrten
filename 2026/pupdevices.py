@@ -19,15 +19,19 @@ def singleton(cls):
 @singleton
 class PupDevices:
     def __init__(self):
+        self.hub = PrimeHub()
+        color_top_port = Port.A
+        color_bottom_port = Port.B
+        if self.hub.system.name() == "ROOTBOTS 2":
+            color_top_port, color_bottom_port = color_bottom_port, color_top_port
         self.left_motor = Motor(Port.C, positive_direction=Direction.COUNTERCLOCKWISE)
         self.right_motor = Motor(Port.D)
         self.drive_base = DriveBase(self.left_motor, self.right_motor, 56, 145)
         self.action_left = Motor(Port.E)
         self.action_right = Motor(Port.F, positive_direction=Direction.COUNTERCLOCKWISE)
-        self.hub = PrimeHub()
         self.imu = self.hub.imu
-        self.color_bottom = ColorSensor(Port.B)
-        self.color = ColorSensor(Port.A)
+        self.color_bottom = ColorSensor(color_bottom_port)
+        self.color = ColorSensor(color_top_port)
         self.timer = StopWatch()
         self.straight = self.drive_base.straight
 
