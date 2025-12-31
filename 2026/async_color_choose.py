@@ -13,52 +13,60 @@ from pupdevices import PupDevices
 # try: from (folder.file) import (function)
 # except ImportError: (function) = None
 
-try: from brush_new.brush_async import brush_new
-except ImportError: brush_new = None
+try: from artifact.async_artifact import artifact
+except ImportError: artifact = None
 
-try: from drive_across_new.drive_across_new import drive_across_new
-except ImportError: drive_across_new = None
+try: from brush.async_brush import brush
+except ImportError: brush = None
 
-try: from forum_new.forum_new_new import forum_new_new
-except ImportError: forum_new_new = None
+try: from crane.async_crane import crane
+except ImportError: crane = None
 
-try: from ship.ship import ship
+try: from drive_across.async_drive_across import drive_across
+except ImportError: drive_across
+
+try: from forum.async_forum import forum
+except ImportError: forum = None
+
+try: from ship.async_ship import ship
 except ImportError: ship = None
 
-try: from stonehenge.stonehenge import stonehenge
+try: from stonehenge.async_stonehenge import stonehenge
 except ImportError: stonehenge = None
-
-try: from trolley.trolley import trolley
-except ImportError: trolley = None
-
-try: from crane.crane import crane
-except ImportError: crane = None
 
 # ========================================
 # COLOR ASIGNMENT
 # ========================================
 
-mission_colors = [
-    Color.MAGENTA := Color(h=333, s=75, v=78),
-    Color.RED := Color(h=355, s=86, v=90),
-    Color.BLUE := Color(h=214, s=89, v=82),
-    Color.GREEN := Color(h=158, s=75, v=45),
-    Color.YELLOW := Color(h=52, s=59, v=100),
-    Color.WHITE := Color(h=0, s=0, v=100),
-    Color.NONE := Color(h=0, s=0, v=0),
-    Color.BLACK := Color(h=170, s=20, v=36)
-]
+Color.MAGENTA = Color(h=336, s=76, v=78)
+Color.RED = Color(h=354, s=86, v=84)
+Color.BLUE = Color(h=215, s=91, v=81)
+Color.GREEN = Color(h=158, s=78, v=56)
+Color.YELLOW = Color(h=48, s=61, v=100)
+Color.WHITE = Color(h=0, s=0, v=100)
+Color.NONE = Color(h=0, s=0, v=0)
+Color.BLACK = Color(h=204, s=25, v=26)
 
+mission_colors = [
+    Color.MAGENTA,
+    Color.RED,
+    Color.BLUE,
+    Color.GREEN,
+    Color.YELLOW,
+    Color.WHITE,
+    Color.NONE,
+    Color.BLACK
+]
 
 # Format: Farbe: (Funktion, Countdown-Sekunden, Name)
 MISSIONS = {
-    Color.BLUE: (brush_new, 5, "Brush"),  # alt
-    Color.YELLOW: (drive_across_new, 5, "Drive Across"),
-    Color.WHITE: (forum_new_new, 10, "Forum"),  # alt
-    Color.MAGENTA: (ship, 4, "Ship"),  # alt
-    Color.GREEN: (crane, 3, "Crane"),  # alt
-    Color.RED: (trolley, 5, "Trolley"),  # alt
-    Color.BLACK: (stonehenge, 5, "Stonehenge"),  # alt
+    Color.RED: (artifact, 5, "Artifact"),  # passt
+    Color.BLUE: (brush_new, 5, "Brush"),  # passt
+    Color.GREEN: (crane, 3, "Crane"),  # passt
+    Color.YELLOW: (drive_across_new, 5, "Drive Across"), # passt
+    Color.WHITE: (forum, 10, "Forum"),  # passt
+    Color.MAGENTA: (ship, 4, "Ship"),  # passt
+    Color.BLACK: (stonehenge, 5, "Stonehenge"),  # passt
 }
 
 # ========================================
