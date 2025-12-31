@@ -5,6 +5,8 @@ from pybricks.pupdevices import Motor
 
 from pupdevices import PupDevices
 
+CompetitionMode = False
+
 # ========================================
 # MODULE IMPORTS
 # ========================================
@@ -61,9 +63,9 @@ mission_colors = [
 # Format: Farbe: (Funktion, Countdown-Sekunden, Name)
 MISSIONS = {
     Color.RED: (artifact, 5, "Artifact"),  # passt
-    Color.BLUE: (brush_new, 5, "Brush"),  # passt
+    Color.BLUE: (brush, 5, "Brush"),  # passt
     Color.GREEN: (crane, 3, "Crane"),  # passt
-    Color.YELLOW: (drive_across_new, 5, "Drive Across"), # passt
+    Color.YELLOW: (drive_across, 5, "Drive Across"), # passt
     Color.WHITE: (forum, 10, "Forum"),  # passt
     Color.MAGENTA: (ship, 4, "Ship"),  # passt
     Color.BLACK: (stonehenge, 5, "Stonehenge"),  # passt
@@ -76,6 +78,11 @@ MISSIONS = {
 hub = PrimeHub()
 pd = PupDevices()
 timer = StopWatch()
+competition_timer = StopWatch()
+competition_timer.pause()
+competition_timer.reset()
+
+competition_seconds = 150
 
 print(f"\n{'='*40}")
 print(f"System: {hub.system.name()}")
@@ -98,7 +105,8 @@ pd.color.detectable_colors(colors)
 # ========================================
 
 async def check_color(sensor_color, pd):
-    return sensor_color is None or await pd.color.color() == sensor_color
+    color = await pd.color.color() 
+    return sensor_color is None or color == sensor_color
 
 async def is_module_mounted(module_color, pd):
     if module_color is None: return False
@@ -109,17 +117,22 @@ async def is_module_mounted(module_color, pd):
             if check: return True
             await wait(10)
         return False
+    return True
 
 async def module_halt(module_color, pd):
-    while ( await is_module_mounted(module_color, pd) ): await wait(200)
+    check = await is_module_mounted(module_color, pd)  
+    while check: 
+        await wait(200)
+        check = await is_module_mounted(module_color, pd)  
     return False
 
 async def play_countdown(seconds: int):
     timer.reset()
+    timer.resume()
     if seconds <= 0: return
 
     buffer = max(0, seconds - 3) * 1000
-    if timer.time() < buffer: await wait(buffer)
+    if timer.time() < buffer: await wait(buffer - timer.time())
 
     for _ in range(3):
         await hub.speaker.beep(370, 250)
@@ -137,21 +150,27 @@ async def play_mission_success():
     await hub.speaker.beep(523, 100)
     await hub.speaker.beep(370, 500)
 
+async def await_buttons_pressed(*buttons):
+    while not any([ button in hub.buttons.pressed() for button in buttons ]): await wait(20)
+    return True
+
+async def await_competition_time():
+    while competition_timer.time() < competition_seconds * 1000: await wait(20)
+    raise SystemExit
+
 async def play_starting_sounds(seconds: int):
     if seconds <= 0: return
     else: 
-        await mission_identified()
-        await multitask(play_countdown(seconds), await_button_press(Button.LEFT), race=True)
-
-async def await_button_press(button: Button)
-    while not button in hub.buttons.pressed(): pass
-    return True
+        await play_mission_identified()
+        await multitask(play_countdown(seconds), await_buttons_pressed(Button.LEFT), await_competition_time(), race=True)
 
 def stop_all_motors():
+    return
     try: pd.drive_base.stop()
     except: pass
-    for attr in dir(pd).values():
-        try: if isinstance(attr, Motor): attr.stop()
+    for attr in dir(pd):
+        try: 
+            if isinstance(getattr(pd, attr), Motor): getattr(pd, attr).stop()
         except: pass
 
 def print_available_missions():
@@ -173,7 +192,7 @@ async def run_mission(sensor_color, custom_countdown=None):
 
     # Identify mission and countdown duration
     if sensor_color not in MISSIONS: return False
-    mission, default_countdown, name = MISSIONS[sensor_color][0]
+    mission, default_countdown, name = MISSIONS[sensor_color]
     if mission is None:
         print(f"❌ {name} nicht verfügbar!")
         await hub.speaker.beep(200, 500)
@@ -184,14 +203,15 @@ async def run_mission(sensor_color, custom_countdown=None):
         print(f"\n{'='*40}")
         print(f"Mission: {name}")
         print(f"Farbe: {sensor_color}")
-        print(f"Countdown: {use_countdown}s")
+        print(f"Countdown: {countdown}s")
         print(f"{'='*40}\n")
     
     # Run countdown
-    result = await multitask(play_starting_sounds(countdown), module_halt(sensor_color, pd), race=True)
+    result = await multitask(play_starting_sounds(countdown), module_halt(sensor_color, pd), await_competition_time(), race=True)
     if False in result: 
         print("Countdown abgebrochen")
         hub.light.on(Color.ORANGE)
+        await play_mission_success()
         wait(500)
         return False
 
@@ -200,13 +220,13 @@ async def run_mission(sensor_color, custom_countdown=None):
 
         # Run mission
         print(f"Starte {name}...")
-        result = await multitask(mission(pd), module_halt(sensor_color, pd), race=True)
+        result = await multitask(mission(pd), module_halt(sensor_color, pd), await_competition_time(), race=True)
         
         # Result
         if result[1] == False:
             print(f"ABBRUCH: Farbe verloren!")
             await hub.speaker.beep(200, 300)
-            break
+            
         elapsed = mission_timer.time() / 1000
         print(f"\n✅ {name} fertig in {elapsed:.1f}s")
 
@@ -218,40 +238,53 @@ async def run_mission(sensor_color, custom_countdown=None):
     finally:
         stop_all_motors()
 
-    await play_mission_finished()
-    await hub.light.on(Color(h=0, s=100, v=100))
+    await play_mission_success()
+    hub.light.on(Color(h=0, s=100, v=100))
     return True
 
 # ========================================
 # HAUPTSCHLEIFE
 # ========================================
 def main_loop():
-    waiting = True
+    comp_timer_active = False
+    waiting = not CompetitionMode
     active_color = None
     mission_active = False
     print_available_missions()
 
     while True:
-        hub.light.on( Color(h=120, s=100, v=100) if not waiting else Color(h=0, s=100, v=100))
+        hub.light.on(Color(h=0, s=100, v=100))
         
         if Button.RIGHT in hub.buttons.pressed():
             waiting = not waiting
             hub.speaker.beep(400 if waiting else 600, 100)
-            wait(250)
-        
 
         color = pd.color.color()
         if color != active_color:
             mission_active = False
             timer.reset()
-            active_color = found_color
+            active_color = color
         
-        elif waiting and (mission_active or timer.time() > 1000): 
+        elif waiting and (mission_active or timer.time() < 1000): 
             wait(100)
+
+        elif not waiting:
+            hub.light.on(Color(h=120, s=100, v=100))
+            wait(500)
+            run_task(await_buttons_pressed(Button.LEFT, Button.RIGHT))
+            if Button.LEFT in hub.buttons.pressed():
+                competition_timer.resume()
+                active_color = pd.color.color()
+                print(f"Wettbewerbs-Timer gestartet: {competition_seconds} Sekunden")
+                run_task(run_mission(active_color, custom_countdown=0))
+            waiting = True
+            hub.light.on(Color(h=0, s=100, v=100))
+            hub.speaker.beep(400 if waiting else 600, 100)
+            wait(500)
 
         elif active_color != Color.NONE and active_color in MISSIONS:
             mission_active = True
-            start_mission(active_color)
+            run_task(run_mission(active_color))
             mission_active = False
 
         else: wait(100)
@@ -264,8 +297,13 @@ if __name__ == "__main__":
         main_loop()
     except KeyboardInterrupt:
         print("\nProgramm beendet")
+    except SystemExit: 
+        stop_all_motors()
+        run_task(play_mission_success())
     except Exception as e:
         print(f"\nFEHLER: {e}")
         hub.speaker.beep(200, 2000)
+        stop_all_motors()
+        raise e
     finally:
         stop_all_motors()
