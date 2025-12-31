@@ -14,7 +14,7 @@ watch = StopWatch()
 hub.speaker.beep()
 
 
-async def brush_new(pd):
+async def brush(pd):
     # DriveBase initialisieren
     pd.drive_base.use_gyro(False)
     pd.imu.reset_heading(0)
@@ -29,57 +29,33 @@ async def brush_new(pd):
     )
 
     await pd.drive_base.straight(100)
-    yield True
     yaw(14.5)
-    yield True
     print(pd.hub.imu.heading())
     await pd.drive_base.straight(520)
-    yield True
     yaw(-90)
-    yield True
     await pd.drive_base.straight(150)
-    yield True
 
     await multitask(do_brush(pd), do_rest(pd))
-    yield True
 
     await pd.drive_base.straight(-110)
-    yield True
     yaw(20)
-    yield True
     await pd.drive_base.straight(-620)
-    yield True
 
     print("Fahrt hat " + str(watch.time() / 1000) + " Sekunden gedauert.")
     print(pd.timer.time())
     watch.reset()
-    yield False
+    return True
 
 
 async def do_brush(pd):
     await pd.action_left.run_angle(1000, -350)
-    yield True
     await pd.action_left.run_angle(800, 300)
-    yield True
 
 
 async def do_rest(pd):
     await pd.action_right.run_angle(300, 260)
-    yield True
     await pd.action_right.run_angle(600, -970)
-    yield True
     await pd.action_right.run_angle(800, 450)
-    yield True
-
-
-def test(pd):
-    # DriveBase initialisieren
-    pd.drive_base.use_gyro(False)
-    pd.imu.reset_heading(0)
-    pd.drive_base.settings(200, 500)
-    yaw = Yaw(hub, pd.right_motor, pd.left_motor)
-
 
 if __name__ == "__main__":
-    run_task(brush_new(PupDevices()))
-    # for element in brush_new(PupDevices()): pass
+    run_task(brush(PupDevices()))
