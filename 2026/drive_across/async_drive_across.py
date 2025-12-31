@@ -13,7 +13,7 @@ watch = StopWatch()
 hub.speaker.beep()
 
 
-async def drive_across_new(pd):
+async def drive_across(pd):
     # DriveBase initialisieren
     pd.drive_base.use_gyro(True)
     pd.imu.reset_heading(0)
@@ -45,4 +45,4 @@ async def drive_across_new(pd):
 
 
 if __name__ == "__main__":
-    run_task(drive_across_new(PupDevices()))
+    run_task(drive_across(PupDevices()))

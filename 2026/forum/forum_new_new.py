@@ -14,7 +14,7 @@ watch = StopWatch()
 hub.speaker.beep()
 
 
-def forum_new_new(pd):
+def forum(pd):
     # DriveBase initialisieren
     pd.drive_base.use_gyro(True)
     pd.imu.reset_heading(0)
@@ -114,5 +114,5 @@ def test(pd):
 
 
 if __name__ == "__main__":
-    for element in forum_new_new(PupDevices()):
+    for element in forum(PupDevices()):
         pass

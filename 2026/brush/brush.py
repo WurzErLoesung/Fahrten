@@ -14,7 +14,7 @@ watch = StopWatch()
 hub.speaker.beep()
 
 
-def brush_new(pd):
+def brush(pd):
     # DriveBase initialisieren
     pd.drive_base.use_gyro(False)
     pd.imu.reset_heading(0)
@@ -81,5 +81,5 @@ def test(pd):
 
 
 if __name__ == "__main__":
-    brush_new(PupDevices())
-    # for element in brush_new(PupDevices()): pass
+    brush(PupDevices())
+    # for element in brush(PupDevices()): pass
