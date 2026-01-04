@@ -158,6 +158,10 @@ async def await_competition_time():
     while competition_timer.time() < competition_seconds * 1000: await wait(20)
     raise SystemExit
 
+async def await_color_change(pd, active_color):
+    while ( await pd.color.color() ) == active_color: 
+        await wait(100)
+
 async def play_starting_sounds(seconds: int):
     if seconds <= 0: return
     else: 
@@ -247,7 +251,7 @@ async def run_mission(sensor_color, custom_countdown=None):
 def main_loop():
     comp_timer_active = False
     waiting = not CompetitionMode
-    active_color = None
+    active_color = Color.NONE
     mission_active = False
     print_available_missions()
 
@@ -276,6 +280,7 @@ def main_loop():
                 active_color = pd.color.color()
                 print(f"Wettbewerbs-Timer gestartet: {competition_seconds} Sekunden")
                 run_task(run_mission(active_color, custom_countdown=0))
+                run_task(await_color_change(pd, active_color))
             waiting = True
             hub.light.on(Color(h=0, s=100, v=100))
             hub.speaker.beep(400 if waiting else 600, 100)
@@ -284,6 +289,7 @@ def main_loop():
         elif active_color != Color.NONE and active_color in MISSIONS:
             mission_active = True
             run_task(run_mission(active_color))
+            run_task(await_color_change(pd, active_color))
             mission_active = False
 
         else: wait(100)
