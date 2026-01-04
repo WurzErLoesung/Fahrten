@@ -54,7 +54,7 @@ class Yaw:
             self.ml.run(-self.direction * accelerated_velocity * direction)
             self.mr.run(self.direction * accelerated_velocity * direction)
             
-            await wait(0)
+            await wait(5)
     
         self.ml.stop()
         self.mr.stop()
