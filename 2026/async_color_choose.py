@@ -165,7 +165,6 @@ async def play_starting_sounds(seconds: int):
         await multitask(play_countdown(seconds), await_buttons_pressed(Button.LEFT), await_competition_time(), race=True)
 
 def stop_all_motors():
-    return
     try: pd.drive_base.stop()
     except: pass
     for attr in dir(pd):
