@@ -29,11 +29,11 @@ async def forum(pd):
 
     # Drive to cart
     await pd.drive_base.straight(200)
-    yaw(-21)
+    await yaw(-21)
     await pd.drive_base.straight(550)
-    yaw(-80)
+    await yaw(-80)
     await pd.drive_base.straight(275)
-    yaw(0)
+    await yaw(0)
 
     # Pick up cart
     await pd.drive_base.straight(90)
@@ -41,11 +41,11 @@ async def forum(pd):
     await pd.drive_base.straight(-70)
 
     # Drive to forum (using 2 "edges")
-    yaw(-80)
+    await yaw(-80)
     await pd.drive_base.straight(350)
-    yaw(-115)
+    await yaw(-115)
     await pd.drive_base.straight(400)
-    yaw(-180)
+    await yaw(-180)
 
     # Drop contents into forum
     await pd.drive_base.straight(50)
@@ -55,7 +55,7 @@ async def forum(pd):
     # Reset module and place flag
     await pd.drive_base.straight(-60)
 
-    yaw(-240)
+    await yaw(-240)
     await pd.drive_base.straight(-110)
 
     print("Fahrt hat " + str(watch.time() / 1000) + " Sekunden gedauert.")

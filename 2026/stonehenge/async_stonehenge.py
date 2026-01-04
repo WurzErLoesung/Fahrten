@@ -27,9 +27,9 @@ async def stonehenge(pd):
 
     # driving to stonehenge
     await pd.drive_base.straight(40) # BEFORE: 50
-    yaw(-13)  # -18
+    await yaw(-13)  # -18
     await pd.drive_base.straight(590)  # BEFORE: 555 # 550 553
-    yaw(45)  # 43 45 42
+    await yaw(45)  # 43 45 42
     await pd.drive_base.straight(430) # 300 (20.12.)
 
     # solving everything

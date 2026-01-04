@@ -15,7 +15,7 @@ class Yaw:
         self.max_velocity = max_velocity
         self.acceleration = acceleration
 
-    def __call__(self, deg, min_velocity: int = None, max_velocity: int = None, acceleration: int = None):
+    async def __call__(self, deg, min_velocity: int = None, max_velocity: int = None, acceleration: int = None):
         min_velocity = min_velocity if min_velocity is not None else self.min_velocity
         max_velocity = max_velocity if max_velocity is not None else self.max_velocity
         
@@ -53,16 +53,20 @@ class Yaw:
 
             self.ml.run(-self.direction * accelerated_velocity * direction)
             self.mr.run(self.direction * accelerated_velocity * direction)
+            
+            await wait(0)
     
         self.ml.stop()
         self.mr.stop()
-    
+
     def reset(self, angle):
         self.hub.imu.reset_heading(angle)
 
 if __name__ == "__main__":
     hub =  PrimeHub()
-    ml = Motor(Port.B)
-    mr = Motor(Port.F, positive_direction=Direction.COUNTERCLOCKWISE)
+
+    ml = Motor(Port.C)
+    mr = Motor(Port.D, positive_direction=Direction.COUNTERCLOCKWISE)
     yaw = Yaw(hub, ml, mr)
-    yaw(90)
+    run_task(yaw(90))
+    run_task(yaw(-90))

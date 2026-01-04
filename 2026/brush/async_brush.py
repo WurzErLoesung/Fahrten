@@ -29,16 +29,16 @@ async def brush(pd):
     )
 
     await pd.drive_base.straight(100)
-    yaw(14.5)
+    await yaw(14.5)
     print(pd.hub.imu.heading())
     await pd.drive_base.straight(520)
-    yaw(-90)
+    await yaw(-90)
     await pd.drive_base.straight(150)
 
     await multitask(do_brush(pd), do_rest(pd))
 
     await pd.drive_base.straight(-110)
-    yaw(20)
+    await yaw(20)
     await pd.drive_base.straight(-620)
 
     print("Fahrt hat " + str(watch.time() / 1000) + " Sekunden gedauert.")
