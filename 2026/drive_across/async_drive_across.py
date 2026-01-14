@@ -19,22 +19,22 @@ async def drive_across(pd):
     pd.imu.reset_heading(0)
     pd.drive_base.settings(600, 500)
     yaw = Yaw(hub, pd.right_motor, pd.left_motor)
-
+    
     # bring 3 items to forum
     await pd.drive_base.straight(190)
     await yaw(51)
-    await pd.drive_base.straight(380)  # 335
-    await pd.drive_base.straight(-300)
-    await yaw(90)
-    await pd.drive_base.straight(830)
-    pd.action_right.run_angle(700, 455)  # wait=False
-    await yaw(141)
-    await pd.drive_base.straight(-95)  # -85
-    await pd.action_right.run_angle(600, -500)
-    await yaw(45)
-    await pd.drive_base.straight(200) #220
+    await pd.drive_base.straight(335) #330
+    await pd.drive_base.straight(-250)
+    await yaw(90) 
+    await pd.drive_base.straight(750)
+    pd.action_right.run_angle(600, 455) # wait=False
+    await yaw(146) #141
+    await pd.drive_base.straight(-110) #-90
+    await pd.action_right.run_angle(550, -700)
+    await yaw(45) #45
+    await pd.drive_base.straight(230) #220
     await pd.drive_base.straight(-280) #-300
-    await yaw(112)
+    await yaw(108) #112
     pd.drive_base.settings(900, 900)
     await pd.drive_base.straight(1050)
 

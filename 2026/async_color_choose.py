@@ -62,12 +62,12 @@ mission_colors = [
 
 # Format: Farbe: (Funktion, Countdown-Sekunden, Name)
 MISSIONS = {
-    Color.RED: (artifact, 5, "Artifact"),  # passt
+    Color.RED: (artifact, 2, "Artifact"),  # passt
     Color.BLUE: (brush, 5, "Brush"),  # passt
     Color.GREEN: (crane, 3, "Crane"),  # passt
-    Color.YELLOW: (drive_across, 5, "Drive Across"), # passt
-    Color.WHITE: (forum, 10, "Forum"),  # passt
-    Color.MAGENTA: (ship, 4, "Ship"),  # passt
+    Color.YELLOW: (drive_across, 2, "Drive Across"), # passt
+    Color.WHITE: (forum, 5, "Forum"),  # passt
+    Color.MAGENTA: (ship, 2, "Ship"),  # passt
     Color.BLACK: (stonehenge, 5, "Stonehenge"),  # passt
 }
 
