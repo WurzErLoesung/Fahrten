@@ -20,10 +20,12 @@ async def ship(pd):
     pd.drive_base.settings(500, 500)
     yaw = Yaw(hub, pd.right_motor, pd.left_motor)
 
-    await pd.drive_base.arc(4000, distance=510)
-    pd.action_left.run_angle(700, 70)
+    await pd.drive_base.arc(4200, distance=550, wait=True)
+    pd.action_left.run_angle(700, -70)
+    pd.action_left.run_angle(700, 50, wait=True)
     pd.drive_base.settings(977, 977)
-    await pd.drive_base.straight(-530)
+    await wait(50)
+    await pd.drive_base.straight(-600)
 
     print("Fahrt hat " + str(watch.time() / 1000) + " Sekunden gedauert.")
     # print(pd.timer.time())
