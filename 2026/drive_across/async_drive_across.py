@@ -17,24 +17,36 @@ async def drive_across(pd):
     # DriveBase initialisieren
     pd.drive_base.use_gyro(True)
     pd.imu.reset_heading(0)
-    pd.drive_base.settings(600, 500)
+    pd.drive_base.settings(500, 500)
     yaw = Yaw(hub, pd.right_motor, pd.left_motor)
     
     # bring 3 items to forum
     await pd.drive_base.straight(190)
     await yaw(51)
-    await pd.drive_base.straight(335) #330
+    await pd.drive_base.straight(345) #330
     await pd.drive_base.straight(-250)
     await yaw(90) 
-    await pd.drive_base.straight(750)
+    await pd.drive_base.straight(765)
+    """
+    pd.drive_base.drive(500, 0)
+    while True:
+        reflection = await pd.color_bottom.reflection()  # <<< wichtig
+        if reflection < 20:
+            pd.drive_base.stop()
+            break
+        await wait(10)
+    """
+    #await pd.drive_base.straight(-20)
     pd.action_right.run_angle(600, 455) # wait=False
-    await yaw(146) #141
-    await pd.drive_base.straight(-110) #-90
-    await pd.action_right.run_angle(550, -700)
+    await yaw(139) #141
+    await pd.drive_base.straight(-135) #-90 #110
+    yaw(153.5)
+    await pd.action_right.run_angle(450, -700)
+    await pd.drive_base.straight(30)
     await yaw(45) #45
     await pd.drive_base.straight(230) #220
     await pd.drive_base.straight(-280) #-300
-    await yaw(108) #112
+    await yaw(102) #112
     pd.drive_base.settings(900, 900)
     await pd.drive_base.straight(1050)
 
