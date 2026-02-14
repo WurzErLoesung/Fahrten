@@ -32,7 +32,7 @@ async def artifact(pd):
 
     await pd.straight(300)
     await yaw(25)
-    await pd.straight(450)
+    await pd.straight(470)
 
     await multitask(prepare1(pd), prepare2(pd, yaw))
     await pd.action_right.run_angle(800, 1700)
@@ -41,7 +41,7 @@ async def artifact(pd):
     await pd.action_right.run_angle(-800, 1700)
 
     await pd.straight(-150)
-    await yaw(20)
+    await yaw(21)
     await pd.drive_base.arc(1500, angle=-30)
 
 
