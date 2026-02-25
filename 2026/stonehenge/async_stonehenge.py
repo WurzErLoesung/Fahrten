@@ -15,7 +15,7 @@ watch = StopWatch()
 async def stonehenge(pd):
     pd.drive_base.use_gyro(False)
     pd.imu.reset_heading(0)
-    pd.drive_base.settings(straight_speed=777, straight_acceleration=700)
+    pd.drive_base.settings(straight_speed=500, straight_acceleration=400)
     yaw = Yaw(
         hub,
         pd.right_motor,
@@ -26,10 +26,10 @@ async def stonehenge(pd):
     )
 
     # driving to stonehenge
-    await pd.drive_base.straight(40) # BEFORE: 50
-    await yaw(-13)  # -18
-    await pd.drive_base.straight(590)  # BEFORE: 555 # 550 553
-    await yaw(45)  # 43 45 42
+    await pd.drive_base.straight(50) # BEFORE: 50
+    await yaw(-16)  # -18
+    await pd.drive_base.straight(565)  # BEFORE: 555 # 550 553
+    await yaw(43)  # 43 45 42
     await pd.drive_base.straight(430) # 300 (20.12.)
 
     # solving everything
