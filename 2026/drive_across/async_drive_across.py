@@ -26,7 +26,7 @@ async def drive_across(pd):
     await pd.drive_base.straight(345) #330
     await pd.drive_base.straight(-250)
     await yaw(90) 
-    await pd.drive_base.straight(765)
+    await pd.drive_base.straight(775)
     """
     pd.drive_base.drive(500, 0)
     while True:
@@ -38,12 +38,12 @@ async def drive_across(pd):
     """
     #await pd.drive_base.straight(-20)
     pd.action_right.run_angle(600, 455) # wait=False
-    await yaw(139) #141
+    await yaw(145.5) #141
     await pd.drive_base.straight(-135) #-90 #110
     yaw(153.5)
     await pd.action_right.run_angle(450, -700)
     await pd.drive_base.straight(30)
-    await yaw(45) #45
+    await yaw(43.5) #45
     await pd.drive_base.straight(230) #220
     await pd.drive_base.straight(-280) #-300
     await yaw(102) #112
