@@ -29,9 +29,9 @@ async def brush(pd):
     )
 
     await pd.drive_base.straight(100)
-    await yaw(14.5)
+    await yaw(16) #14.5
     print(pd.hub.imu.heading())
-    await pd.drive_base.straight(520)
+    await pd.drive_base.straight(510)
     await yaw(-90)
     await pd.drive_base.straight(150)
 
