@@ -15,22 +15,15 @@ watch = StopWatch()
 async def stonehenge(pd):
     pd.drive_base.use_gyro(False)
     pd.imu.reset_heading(0)
-    pd.drive_base.settings(straight_speed=500, straight_acceleration=400)
-    yaw = Yaw(
-        hub,
-        pd.right_motor,
-        pd.left_motor,
-        min_velocity=100,
-        max_velocity=400,
-        acceleration=300,
-    )
+    pd.drive_base.settings(straight_speed=400, straight_acceleration=300)
+    yaw = Yaw(hub, pd.right_motor, pd.left_motor)
 
     # driving to stonehenge
     await pd.drive_base.straight(50) # BEFORE: 50
-    await yaw(-16)  # -18
-    await pd.drive_base.straight(565)  # BEFORE: 555 # 550 553
+    await yaw(-14)  # -18
+    await pd.drive_base.straight(570)  # BEFORE: 555 # 550 553
     await yaw(43)  # 43 45 42
-    await pd.drive_base.straight(430) # 300 (20.12.)
+    await pd.drive_base.straight(270) # 300 (20.12.)
 
     # solving everything
     await multitask(solve1(pd), solve2(pd))
@@ -46,10 +39,10 @@ async def solve1(pd):
     await pd.action_right.run_angle(-1200, 7500)
 
 async def solve2(pd):
-    await pd.action_left.run_angle(590, -1250) # -610 -690 -820 -850 (20.12.)
-    await pd.action_left.run_angle(600, 1480)  # 1470
+    await pd.action_left.run_angle(400, -500) # -610 -690 -820 -850 (20.12.)
+    await pd.action_left.run_angle(600, 800)  # 1470
     await wait(1500)
-    await pd.action_left.run_angle(600, -250)  # -200
+    await pd.action_left.run_angle(600, -20)  # -200
 
 
 if __name__ == "__main__":
