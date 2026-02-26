@@ -41,7 +41,7 @@ async def artifact(pd):
     await pd.action_right.run_angle(-800, 1700)
 
     await pd.straight(-150)
-    await yaw(21)
+    await yaw(15)
     await pd.drive_base.arc(1500, angle=-30)
 
 
