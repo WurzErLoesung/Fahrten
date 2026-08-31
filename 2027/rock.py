@@ -1,20 +1,31 @@
+"""Mission template."""
+
 from pybricks.hubs import PrimeHub
+from pybricks.parameters import Stop
 from pybricks.tools import StopWatch, multitask, run_task, wait
 
 from pupdevices import PupDevices
+from yaw import Yaw
 
 MAX_VOLTAGE = 7000
 USE_GYRO = True
-DRIVE = (700, (500, 400), 400, (700, 500))   # speed, accel, turn_rate, turn_accel
+DRIVE = (500, (400, 400), 300, (500, 500))   # speed, accel, turn_rate, turn_accel
+
+YAW = dict(
+    min_velocity=50,
+    max_velocity=500,
+    acceleration=800,
+    stop_action=Stop.BRAKE,
+)
 
 
-async def delayed(ms, second_thing):
-    """Start second_thing() only after ms milliseconds. Pass a lambda, not a call."""
+async def delayed(ms, make_coro):
+    """Start make_coro() only after ms milliseconds. Pass a lambda, not a call."""
     await wait(ms)
-    await second_thing()
+    await make_coro()
 
 
-async def rock(pd):
+async def mission(pd, yaw):
     db, arm = pd.drive_base, pd.action_left
     watch = StopWatch()
 
@@ -22,7 +33,7 @@ async def rock(pd):
 
     # ---------
     await multitask(
-        db.straight(500),
+        db.straight(490),
         delayed(500, lambda: arm.run_angle(170, -300)),
     )
 
@@ -52,8 +63,10 @@ def main():
     hub.imu.reset_heading(0)
     pd.drive_base.use_gyro(USE_GYRO)
 
+    yaw = Yaw(hub, pd.right_motor, pd.left_motor, **YAW)
+
     try:
-        run_task(rock(pd))
+        run_task(mission(pd, yaw))
     finally:
         pd.drive_base.stop()
         #hub.speaker.beep(1000, 100)
