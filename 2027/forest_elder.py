@@ -44,7 +44,7 @@ async def mission(pd, yaw):
     await db.straight(-50)
     await multitask(yaw(-70), delayed(700, lambda: pd.action_right.run_angle(-200, 150)))
     await db.straight(160)
-    await pd.action_left.run_angle(-200, 80)
+    await pd.action_left.run_angle(-200, 105)
     await yaw(-40)
     await db.straight(-500)
     # ---------
