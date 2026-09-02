@@ -10,6 +10,7 @@ from yaw import Yaw
 MAX_VOLTAGE = 7000
 USE_GYRO = True
 DRIVE = (500, (400, 400), 300, (500, 500))   # speed, accel, turn_rate, turn_accel
+FAST = (977, 977)
 
 YAW = dict(
     min_velocity=50,
@@ -33,18 +34,19 @@ async def mission(pd, yaw):
 
     # ---------
     await multitask(
-        db.straight(490),
-        delayed(500, lambda: arm.run_angle(170, -300)),
+        db.straight(450),
+        delayed(500, lambda: arm.run_angle(170, -290)),
     )
-
-    db.settings(977, 977)
-    await db.straight(-100)
-
+    db.settings(700, 500)
+    await db.straight(-170)
+    db.settings(*DRIVE)
+    await yaw(-2)
     await multitask(
         arm.run_angle(400, 200),
-        delayed(200, lambda: db.straight(110)),
+        delayed(200, lambda: db.straight(150)),
     )
-    await pd.action_left.run_angle(400, -200)
+    db.settings(*FAST)
+    await pd.action_left.run_angle(400, -190)
     await db.straight(-500)
     # ---------
 
