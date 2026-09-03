@@ -55,7 +55,7 @@ async def mission(pd, yaw):
     await db.straight(-150)
     await yaw(98)
     await db.straight(165)
-    await yaw(0)
+    await yaw(3)
     await pd.action_right.run_angle(-300, 55)
     await db.straight(-100)
     await pd.action_right.run_angle(300, 55)
