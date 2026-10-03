@@ -11,6 +11,7 @@ MAX_VOLTAGE = 7000
 USE_GYRO = True
 DRIVE = (500, (400, 400), 300, (500, 500))   # speed, accel, turn_rate, turn_accel
 FAST = (977, 977)
+
 YAW = dict(
     min_velocity=50,
     max_velocity=500,
@@ -29,46 +30,10 @@ async def mission(pd, yaw):
     db, arm = pd.drive_base, pd.action_left
     watch = StopWatch()
 
-    db.settings(*DRIVE)
+    db.settings(500,400)
 
     # ---------
-    await db.straight(350)
-    await yaw(50)
-    await db.straight(350)
-    await yaw(100)
     await db.straight(200)
-    await yaw(110)
-    await db.straight(130)
-    await yaw(90)
-    db.settings(*FAST)
-    await db.straight(150)
-    db.settings(*DRIVE)
-    await multitask(pd.action_left.run_angle(500, 250), pd.action_right.run_angle(-200, 110))
-    await multitask(pd.action_left.run_angle(-300, 250), pd.action_right.run_angle(300, 110))
-    await multitask(db.straight(-110), delayed(200, lambda: pd.action_right.run_angle(-300, 150)))
-    await yaw(30)
-    await multitask(db.straight(305), pd.action_right.run_angle(300, 150))
-    await yaw(90)
-    await db.straight(425)
-    await yaw(45)
-    db.settings(270, 270)
-    await db.straight(200) # 165 #scheiß ameise
-    await db.straight(-80)
-    db.settings(250, 250)
-    await db.straight(220)
-    db.settings(*DRIVE)
-    await db.straight(-150)
-    await yaw(98)
-    await db.straight(165)
-    await yaw(0)
-    await pd.action_right.run_angle(-300, 55)
-    await db.straight(-110)
-    await pd.action_right.run_angle(300, 55)
-    await db.straight(50)
-    await pd.action_right.run_angle(300, 55)
-    await db.straight(-150)
-    await yaw(-30)
-    await db.straight(-680)
     # ---------
 
     print("Run took " + str(watch.time() / 1000) + " seconds.")

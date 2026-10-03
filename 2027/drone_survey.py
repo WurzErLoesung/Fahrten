@@ -33,9 +33,9 @@ async def mission(pd, yaw):
     db.settings(300, 300)
 
     # ---------
-    await db.straight(670)
-    await yaw(55)
-    await pd.action_right.run_angle(600, 1000)
+    await db.straight(650)
+    await yaw(52)
+    await pd.action_right.run_angle(600, 420)
     await yaw(90)
     db.settings(*FAST)
     await db.straight(-800)

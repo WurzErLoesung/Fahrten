@@ -4,6 +4,10 @@ from pybricks.pupdevices import ColorSensor, Motor, UltrasonicSensor
 from pybricks.robotics import DriveBase
 from pybricks.tools import StopWatch, wait
 
+# Aus calibrate.py ermittelte Werte hier eintragen.
+WHEEL_DIAMETER = 61.98
+AXLE_TRACK = 159.7
+
 
 def singleton(cls):
     instances = {}
@@ -20,18 +24,15 @@ def singleton(cls):
 class PupDevices:
     def __init__(self):
         self.hub = PrimeHub()
-        color_top_port = Port.C
-        # color_bottom_port = Port.B
-        # if self.hub.system.name() == "ROOTBOTS 2":
-            # color_top_port, color_bottom_port = color_bottom_port, color_top_port
-        self.right_motor = Motor(Port.B)
         self.left_motor = Motor(Port.F, positive_direction=Direction.COUNTERCLOCKWISE)
-        self.drive_base = DriveBase(self.left_motor, self.right_motor, 56, 145)
+        self.right_motor = Motor(Port.B)
+        self.drive_base = DriveBase(
+            self.left_motor, self.right_motor, WHEEL_DIAMETER, AXLE_TRACK
+        )
         self.action_left = Motor(Port.E)
         self.action_right = Motor(Port.A)
         self.imu = self.hub.imu
-        #self.color_bottom = ColorSensor(color_bottom_port)
-        self.color = ColorSensor(color_top_port)
+        self.color = ColorSensor(Port.C)
         self.timer = StopWatch()
         self.straight = self.drive_base.straight
 
