@@ -52,7 +52,7 @@ async def mission(pd, yaw):
     await db.straight(425)
     await yaw(45)
     db.settings(270, 270)
-    await db.straight(200) # 165 #scheiß ameise
+    await db.straight(200) # 165 #scheiß ameise + fr diese ameise spinnt
     await db.straight(-80)
     db.settings(250, 250)
     await db.straight(220)
@@ -60,13 +60,13 @@ async def mission(pd, yaw):
     await db.straight(-150)
     await yaw(98)
     await db.straight(165)
-    await yaw(0)
-    await pd.action_right.run_angle(-300, 55)
+    await yaw(-2)
+    await pd.action_right.run_angle(-300, 55) #55
     await db.straight(-110)
-    await pd.action_right.run_angle(300, 55)
+    await pd.action_right.run_angle(300, 55) #55
     await db.straight(50)
-    await pd.action_right.run_angle(300, 55)
-    await db.straight(-150)
+    await pd.action_right.run_angle(300, 55)#55
+    #await db.straight(-150) # not necessary
     await yaw(-30)
     await db.straight(-680)
     # ---------
