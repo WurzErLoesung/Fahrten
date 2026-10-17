@@ -41,7 +41,7 @@ async def mission(pd, yaw):
     await db.straight(130)
     await yaw(90)
     db.settings(*FAST)
-    await db.straight(150)
+    await db.straight(150) #bei der Forschungstation
     db.settings(*DRIVE)
     await multitask(pd.action_left.run_angle(500, 250), pd.action_right.run_angle(-200, 110))
     await multitask(pd.action_left.run_angle(-300, 250), pd.action_right.run_angle(300, 110))
@@ -51,7 +51,7 @@ async def mission(pd, yaw):
     await yaw(90)
     await db.straight(425)
     await yaw(45)
-    db.settings(270, 270)
+    db.settings(200, 200)
     await db.straight(200) # 165 #scheiß ameise + fr diese ameise spinnt
     await db.straight(-80)
     db.settings(250, 250)
