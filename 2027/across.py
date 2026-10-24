@@ -43,7 +43,7 @@ async def mission(pd, yaw):
     db.settings(*FAST)
     await db.straight(150) #bei der Forschungstation
     db.settings(*DRIVE)
-    await multitask(pd.action_left.run_angle(500, 250), pd.action_right.run_angle(-200, 110))
+    await multitask(pd.action_left.run_angle(450, 300), pd.action_right.run_angle(-200, 110)) #left one (500, 250); right one (-200;110)
     await multitask(pd.action_left.run_angle(-300, 250), pd.action_right.run_angle(300, 110))
     await multitask(db.straight(-110), delayed(200, lambda: pd.action_right.run_angle(-300, 150)))
     await yaw(30)
@@ -59,7 +59,7 @@ async def mission(pd, yaw):
     db.settings(*DRIVE)
     await db.straight(-150)
     await yaw(98)
-    await db.straight(165)
+    await db.straight(162) #165
     await yaw(-2)
     await pd.action_right.run_angle(-300, 55) #55
     await db.straight(-110)
