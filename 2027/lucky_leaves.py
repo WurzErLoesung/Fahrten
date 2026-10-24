@@ -40,7 +40,7 @@ async def mission(pd, yaw):
     db.settings(200,200)
     await db.straight(270)
     await yaw(-95)
-    await pd.action_right.run_angle(500, 45) #55 + 45 sagt Simon + 40 sagt Tkeo + Kompromiss 45
+    await pd.action_right.run_angle(500, 46) #55 + 45 sagt Simon + 40 sagt Tkeo + Kompromiss 45
     await db.straight(-42) #47
     await pd.action_right.run_angle(500, 200)
     await yaw(178) #-182
