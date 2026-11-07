@@ -70,7 +70,7 @@ async def mission(pd, yaw):
     await yaw(-30)
     await db.straight(-680)
     # ---------
-
+    # 33,106s
     print("Run took " + str(watch.time() / 1000) + " seconds.")
 
 

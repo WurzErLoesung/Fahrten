@@ -34,17 +34,19 @@ async def mission(pd, yaw):
 
     # ---------
     await db.straight(300)
-    await yaw(-11)
-    await multitask(db.straight(400), delayed(400, lambda: pd.action_right.run_angle(400, 500)))
+    await yaw(-8)
+    db.settings(700,500)
+    await multitask(db.straight(400), delayed(400, lambda: pd.action_right.run_angle(400, 520)))
+    db.settings(*DRIVE)
     await yaw(45)
     await db.straight(300)
-    await multitask(pd.action_left.run_angle(300, 300), delayed(250, lambda: pd.action_right.run_angle(-650, 230)))
+    await multitask(pd.action_left.run_angle(300, 300), delayed(250, lambda: pd.action_right.run_angle(-650, 240)))
     await pd.action_right.run_angle(700, 250)
     await multitask(db.straight(-250), pd.action_left.run_angle(-300, 300))
     await yaw(-9)
     await db.straight(-700)
     # ---------
-
+    # 13,358s
     print("Run took " + str(watch.time() / 1000) + " seconds.")
 
 

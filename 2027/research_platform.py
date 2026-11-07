@@ -34,11 +34,11 @@ async def mission(pd, yaw):
     db.settings(*DRIVE)
 
     # ---------
-    await db.straight(150)
-    await yaw(45)
-    await db.straight(585)#580
-    await yaw(5)
-    await db.straight(200)
+    # await db.straight(150)
+    # await yaw(45)
+    # await db.straight(615)#580
+    # await yaw(0)
+    # await db.straight(200)
     await arm_right.run_angle(400, 150)
     db.settings(*FAST)
     await db.straight(-70)
@@ -46,15 +46,15 @@ async def mission(pd, yaw):
     await db.straight(70)
     db.settings(*DRIVE)
     await arm_left.run_angle(3000, 3000)
-    db.settings(*FAST)
+    
     #await multitask(db.straight(-100), arm_left.run_angle(3000, -700))
-    await db.straight(-100)
-    await db.straight(200)
-    await db.straight(-100)
-    await db.straight(150)
-    await wait(300)
+    # await db.straight(-100)
+    # await db.straight(200)
+    # await db.straight(-100)
+    # await db.straight(150)
+    # await wait(300)
     await db.straight(-150)
-    await yaw(40)
+    await yaw(45)
     await db.straight(-800)
     # ---------
 

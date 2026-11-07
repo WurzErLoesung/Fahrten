@@ -41,7 +41,7 @@ async def mission(pd, yaw):
        delayed(195, lambda: db.straight(500)) #270 delayed; 190
     )
     # ---------
-
+    # 5,932s
     print("Run took " + str(watch.time() / 1000) + " seconds.")
 
 
